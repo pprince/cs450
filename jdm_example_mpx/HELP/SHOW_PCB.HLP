@@ -1,0 +1,9 @@
+SHOW_PCB		[1 argument]
+
+Displays the full contents of the PCB for a single process.  The
+argument must specify the name of an existing process.  The display
+includes the process name, class, priority, state, and suspended
+status.  In addition, it provides information about the current
+memory region and displays the current process context from the
+stack area.
+

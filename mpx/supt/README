@@ -1,0 +1,17 @@
+
+ =====================
+ = MPX SUPPORT FILES =
+ =====================
+
+ The supt/ directory and all files below were downloaded from:
+
+	 - http://www.csee.wvu.edu/~jdm/classes/cs450/protected/MPX/index.html
+
+ (Except for those named README, and the actual directory structure/hierarchy.)
+
+
+ MPX support library and header file:
+ ====================================
+ 	- mpx_supt.c
+ 	- mpx_supt.h
+

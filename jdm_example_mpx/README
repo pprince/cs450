@@ -1,0 +1,73 @@
+
+ =====================
+ = JDM's EXAMPLE MPX =
+ =====================
+
+ The DEMOS/ and HELP/ directories and all files below were downloaded from:
+
+	 - http://www.csee.wvu.edu/~jdm/classes/cs450/protected/MPX/index.html
+
+ (Except for those named README, and the actual directory structure/hierarchy.)
+
+
+ Information from JDM's site:
+ ----------------------------
+ This section contains demonstration executable files for each of the MPX
+ assignments. Just to show you it can be done :-)
+
+ To enable the HELP command, it is also necessary to download the helpfiles.
+
+ The demo version of COMHAN expects to find the helpfiles in the relative
+ directory ..\HELP. Therefore the following steps should be taken to setup the
+ demos:
+
+   1. Place the demo executables in a directory named DEMOS.
+   2. Place the helpfiles in a directory named HELP.
+   3. Ensure that DEMOS and HELP are both in the same directory or both at the root level of the same drive.
+
+ The demos can be run from the Windows command prompt, e.g.:
+
+    CD DEMOS
+    C:\DEMOS> MOD-R1
+
+
+ DEMOS/
+ ======
+ 	- mod-r1.exe
+ 	- mod-r2.exe
+ 	- mod-r3.exe
+ 	- mod-r4.exe
+ *** The file mod-r5.exe is listed on JDM's site as "coming soon".
+
+
+ HELP/
+ =====
+ 	- ALIAS.HLP
+ 	- BLOCK.HLP
+ 	- CLEAR.HLP
+ 	- CREATE_P.HLP
+ 	- DATE.HLP
+ 	- DIRECTOR.HLP
+ 	- DISPATCH.HLP
+ 	- HELP.HLP
+ 	- LOAD.HLP
+ 	- MOD-F.HLP
+ 	- MOD-R1.HLP
+ 	- MOD-R2.HLP
+ 	- MOD-R3.HLP
+ 	- MOD-R4.HLP
+ 	- PROMPT.HLP
+ 	- QUIT.HLP
+ 	- RESUME.HLP
+ 	- SET_PRIO.HLP
+ 	- SHOW_ALL.HLP
+ 	- SHOW_BLO.HLP
+ 	- SHOW_PCB.HLP
+ 	- SHOW_REA.HLP
+ 	- SUSPEND.HLP
+ 	- TERMINAT.HLP
+ 	- UNALIAS.HLP
+ 	- UNBLOCK.HLP
+ 	- UNLOAD.HLP
+ 	- VERSION.HLP
+

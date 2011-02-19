@@ -1,0 +1,11 @@
+DISPATCH		[0 arguments]
+
+MODULE R3:
+
+	Sets up all test processes and dispatches.  Processes
+	run until termination.
+
+MODULE R4:
+
+	Dispatches all currently ready, non-suspended processes.
+	Processes run until termination.

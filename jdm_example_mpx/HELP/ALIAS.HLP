@@ -1,0 +1,20 @@
+ALIAS	[0,1, or 2 arguments]
+
+This command inserts and displays command aliases.
+
+ALIAS str1 str2
+
+	Assigns string str1 as an alias for the command designated by
+	string str2.  str2 must already be in the command list;  it
+	may be an intrinsic command or an alias.  str1 must not be
+	in the table.  The command name may be abbreviated.
+
+ALIAS str1
+
+	Display the command associated with the alias designated by str1.
+	The alias name may be abbreviated.
+
+ALIAS
+
+	Display a list of all aliases.
+

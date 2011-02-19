@@ -1,0 +1,12 @@
+PROMPT		[0 or 1 argument]
+
+Manages the COMHAN prompt string.
+
+PROMPT str1
+
+	Sets the prompt string to str1.  This string must not
+	exceed ten characters.
+
+PROMPT
+
+	Restores the prompt string to the system default.

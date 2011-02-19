@@ -1,0 +1,5 @@
+UNLOAD		[1 argument]
+
+Unloads the program specified by the first argument and terminates
+the assoicated process.
+

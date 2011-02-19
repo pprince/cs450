@@ -1,0 +1,10 @@
+UNBLOCK		[1 argument]
+
+Sets a process to the ready state.  The argument must be the
+name of an existing process.  It is not considered an error if
+the process was already in the ready state.
+
+This command does not affect the actual status of any resources
+the process may have been waiting for.  It is intended only for
+testing basic process management mechanisms.
+

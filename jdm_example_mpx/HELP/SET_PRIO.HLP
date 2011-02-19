@@ -1,0 +1,11 @@
+SET_PRIORITY		[2 arguments]
+
+Sets the priority of a specified process to a specified value.
+The first argument specifies the process name, and the second
+argument is an integer with optional sign giving the desired
+priority.
+
+The specified priority must be within the permitted range for
+the process class.  This range is from -127 to 126 for application
+processes, or from -128 to 127 for system processes.
+

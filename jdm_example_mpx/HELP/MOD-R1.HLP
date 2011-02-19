@@ -1,0 +1,16 @@
+MPX Commands (Module R1:)
+
+	HELP: Display help information (this file)
+	VERSION: Display current COMHAN version information
+	DATE: Display or set the current date
+	DIRECTORY: Display a directory of MPX programs
+	QUIT: Exit COMHAN
+	PROMPT: Change the COMHAN prompt
+	ALIAS: Specify an alias for a command, or display aliases
+	UNALIAS: Delete an alias
+	CLEAR: Clear the screen
+
+	For help on a specific command, type
+
+		HELP command
+

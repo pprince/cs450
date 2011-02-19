@@ -1,0 +1,10 @@
+LOAD		[1 or 2 arguments]
+
+Loads the program file specified by the first argument and sets up
+a process for the program.  If the argument is XXX, the program file
+must have the name XXX.MPX in the default directory.  The process is
+given the name XXX.  It is initially in the ready, suspended state.
+
+A second optional argument can specify the initial priority.  If this
+argument is omitted, the default value (77) is used.
+

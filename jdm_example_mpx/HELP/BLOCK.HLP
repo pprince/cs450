@@ -1,0 +1,11 @@
+BLOCK		[1 argument]
+
+Sets a process to the blocked state.  The argument must be the
+name of an existing process.  It is not considered an error if
+the process was already blocked.
+
+This command does not specify a specific resource for a process
+to wait for.  It is intended only for testing basic process
+management mechanisms.
+
+

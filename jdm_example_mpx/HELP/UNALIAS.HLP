@@ -1,0 +1,9 @@
+UNALIAS	[1 argument]
+
+This command deletes a command alias.
+
+UNALIAS str1
+
+	Removes the alias designated by str1, if any.  The alias name
+	may not be abbreviated.
+

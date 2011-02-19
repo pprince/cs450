@@ -1,0 +1,21 @@
+DATE		[0 or 3 arguments]
+
+Dispalys or sets the system date.
+
+DATE
+
+	Display the current date.
+
+DATE mmm ddd yyy
+
+	Sets the date to the specified new value.
+
+	mmm must be an integer between 1 and 12, designating January
+		through December, respectively.
+
+	ddd must be an integer between 1 and the maximum number of
+		days in the specified month.  The year is also
+		checked to allow Feb. 29 during leap years only.
+
+	yyy must be an integer between 1900 and 2099 specifying a
+		*complete* year (e.g., 1992).

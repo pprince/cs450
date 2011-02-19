@@ -1,0 +1,5 @@
+SHOW_BLOCKED		[no arguments]
+
+Displays summary information for all processes in the blocked queue.
+The information includes process name, class, priority, state, and
+suspended status.

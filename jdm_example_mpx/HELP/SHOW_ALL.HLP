@@ -1,0 +1,6 @@
+SHOW_ALL		[no arguments]
+
+Displays summary information for all processes currently
+defined.  The information given includes process name; class;
+priority; state; and suspended status.
+

@@ -1,0 +1,25 @@
+
+ SUPPORT FILES FOR MPX Module 6:
+ ===============================
+
+ Terminal driver for Assignment 6 (link with your project):
+ ----------------------------------------------------------
+ 	- trmdrive.h
+ 	- trmdrive.c
+
+ Test processes for Assignment 6:
+ --------------------------------
+ 	- idle.mpx
+ 	- cputerm.mpx
+ 	- ioterm.mpx
+ 	- iotrm25.mpx
+
+ Test processes for Assignment 6 (assembler source):
+ ---------------------------------------------------
+ 	- idle.asm
+ 	- cputerm.asm
+ 	- ioterm.asm
+ 	- iotrm25.asm
+
+ *** The above 4 .asm files are MISSING from JDM's site!
+

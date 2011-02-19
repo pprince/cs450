@@ -1,0 +1,27 @@
+MPX Commands (Module F)
+
+	HELP: Display help information (this file)
+	VERSION: Display current COMHAN version information
+	DATE: Display or set the current date
+	DIRECTORY: Display a directory of MPX programs
+	QUIT: Exit COMHAN
+	PROMPT: Change the COMHAN prompt
+	ALIAS: Specify an alias for a command, or display aliases
+	UNALIAS: Delete an alias
+	CLEAR: Clear the terminal screen
+
+	SUSPEND: Suspend a process
+	RESUME: unsuspend a process
+	SET_PRIORITY: Change the priority of a process
+	TERMINATE: terminate a process
+	SHOW_ALL: Show the status of all processes
+	SHOW_PCB: Show the content of a specific PCB
+	SHOW_READY: Show all processes on the ready queue
+	SHOW_BLOCKED: Show all processes on the blocked queue
+
+        LOAD: Load a program and create a process
+        UNLOAD: unload a program and terminate the process
+
+	For help on a specific command, type
+
+		HELP command

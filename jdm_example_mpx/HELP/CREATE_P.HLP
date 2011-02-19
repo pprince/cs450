@@ -1,0 +1,31 @@
+CREATE_PROC		[1, 2 or 3 arguments]
+
+Create a dummy process to test PCB management.  This command
+is used in Module 2 only.  The process is given the class and priority
+specified by the remaining arguments.  It is initialized to the ready,
+suspended state.  The created process has no associated program code
+and cannot be dispatched.
+
+The first argument specifies the process name.  This name must be
+unique and must not exceed ten characters.
+
+The second argument specifies the priority.  The priority is a signed
+integer which must be within the range permitted for the process type.
+The permitted range is -127 to 126 for application processes, or
+-128 to 127 for system processes.
+
+This argument is optional.  If it is omitted, the initial priority
+will be set to 77.
+
+The third argument specifies the process class.  This must be either
+"application" or "system".  The class names may be abbreviated, and case
+is ignored.
+
+If the third argument is omitted, the class will be set to "application".
+Notice that the third argument cannot be given unless argument 2 is also
+given.
+
+This command does not provide the created process with an executable
+program to run.  It is intended only for testing basic process
+management commands.
+

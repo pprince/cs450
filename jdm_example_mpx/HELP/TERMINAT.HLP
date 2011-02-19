@@ -1,0 +1,11 @@
+TERMINATE_PROC		[1 argument]
+
+Terminates an existing process, or terminates all processes.
+
+The argument must specify the name of an existing process.
+Alternately, the argument '*' may be given to request termination
+of all processes.
+
+The designated process(es) is/are deleted.  The PCB and any
+memory or resources allocated for this process are released.
+

@@ -1,0 +1,9 @@
+QUIT		[no arguments]
+
+Terminates the MPX program.  The user is first asked
+
+	Are you sure you want to exit?
+
+Type "yes" to exit.  Any abbreviation is accepted,
+and case is ignored.  Type anything else to cancel the
+command.

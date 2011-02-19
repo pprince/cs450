@@ -1,0 +1,16 @@
+DIRECTORY	[0 or 1]
+
+	This command displays the names and sizes of the MPX
+	process files in a particular directory.  Any file
+	with a name ending in ".MPX" is assumed to be an
+	MPX process file.
+	
+	The optional argument specifies the directory to be
+	searched. This argument may be an absolute pathname or
+	a pathname relative to the current directory.  If absolute
+	it may include a drive specifier. If there is no argument,
+	the default directory "MPX Files" in the current directory
+	is searched.  Otherwise, the argument is used as a partial
+	pathname relative to the current directory to specify the
+	desired directory.
+

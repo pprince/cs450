@@ -1,0 +1,6 @@
+RESUME		[1 argument]
+
+Sets a process (or all processes) to the non-suspended status.
+The argument must be the name of an existing process.  Alternatively,
+the argument '*' may be given to resume all processes.  It is not
+considered an error if the process(es) was/were not suspended.

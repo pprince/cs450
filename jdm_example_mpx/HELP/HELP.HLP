@@ -1,0 +1,15 @@
+HELP		[0 or 1 argument]
+
+Displays help information to explain the system commands.
+
+HELP
+
+	Displays a list of all commands and a brief
+	summary of their purpose.
+
+HELP str1
+
+	Displays a detailed explanation of the command designated
+	by str1.  str1 must be a valid command.  It may be an
+	intrinsic command or an alias, and it may be abbreviated.
+
