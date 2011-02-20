@@ -59,7 +59,7 @@ int mpx_validate_date ( int year, int month, int day ) {
 
 	/* If year is invalid, return false. */
 	if ( year<1900 || year > 2999 ) {
-		return 1;
+		return 0;
 	}
 
 	/* Is the specified year a leap year? */
@@ -85,13 +85,13 @@ int mpx_validate_date ( int year, int month, int day ) {
 		break;
 
 		default:
-			return 1;
+			return 0;
 		break;
 	}
 
 	/* If day is invalid, return false. */
-	if ( day > days_in_month ) return 1;
+	if ( day > days_in_month ) return 0;
 
 	/* If we get this far, then the date is indeed valid; return true. */
-	return 0;
+	return 1;
 }
