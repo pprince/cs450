@@ -125,15 +125,12 @@ void mpx_shell(void) {
 		}
 
 		if ( argc <= 0 ) {
-			printf("ERROR: Invalid command-line.\n");
+			/* Blank command; just re-print the prompt. */
 			continue;
 		}
 
-		/* Temporary: Print out tokenization. */
-		printf("  argc = %d\n", argc);
-		for( i=0; i < argc; i++ ){
-			printf("    argv[%d] = \"%s\"\n", i, argv[i]);
-		}
+		/* Run the command, or print an error if it is invalid. */
+		dispatch_command( argv[0], argc, argv );
 
 		/* Free the memory for the dynamically-allocated *argv[] */
 		for( i=0; i < MAX_ARGS+1; i++ ){

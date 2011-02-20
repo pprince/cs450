@@ -63,13 +63,65 @@ void add_command( char *name, void (*function)(int argc, char *argv[]) ){
 	}
 }
 
+void dispatch_command( char *name, int argc, char *argv[] ) {
+
+	/* Temporary variable for iterating through the list of commands. */
+	struct mpx_command *this_command = list_head;
+
+	/* Temporary variables to keep track of matching command names. */
+	int num_matches = 0;
+	struct mpx_command *first_match;
+
+	/* Iterate through the linked list of commands, */
+	while( this_command != NULL ) {
+
+		/* Check to see if the given command is a valid abbrev. for the current command from the list */
+		if( strncmp( this_command->name, name, strlen(name) ) == 0 ) {
+			/* If so, keep track of how many matches thus far, */
+			num_matches++;
+			if (num_matches == 1) {
+				/* This is the first match in the list for the given command. */
+				first_match = this_command;
+			} else if (num_matches == 2) {
+				/* This is the first duplicate match in the list;
+				 * Print out the 'ambiguous command' header,
+				 * plus the first AND current ambiguous commands. */
+				printf("Ambiguous command: %s\n", name);
+				printf("    Matches:\n");
+				printf("        %s\n", first_match->name);
+				printf("        %s\n", this_command->name);
+			} else {
+				/* This is a subsequent duplicate match;
+				 * by this time, the header etc. has already been printed,
+				 * so we only need to print out the current command name. */
+				printf("        %s\n", this_command->name);
+			}
+		}
+
+		this_command = this_command->next;
+	}
+
+	/* If we got a command name that matches unambiguously, run that command. */
+	if ( num_matches == 1 ){
+		first_match->function(argc, argv);
+	}
+	
+	/* Otherwise, if we got no matches at all, say so. */
+	if ( num_matches == 0 ){
+		printf("ERROR: Invalid command name.\n");
+		printf("Type \"commands\" to see a list of valid commands.\n");
+	}
+}
+
 void mpxcmd_commands( int argc, char *argv[] ) {
 
 	/* Temporary variable for iterating through the list of commands. */
 	struct mpx_command *this_command = list_head;
 
 	while( this_command != NULL ) {
+
 		printf("        %s\n", this_command->name);
+
 		this_command = this_command->next;
 	}
 }
