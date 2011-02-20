@@ -178,7 +178,7 @@ void mpxcmd_exit( int argc, char *argv[] ) {
 		return;
 	}
 
-	chomp(buf);
+	mpx_chomp(buf);
 
 	if ( strlen(buf) == 3 ) {
 		if ( ( buf[0] == 'y' || buf[0] == 'Y') &&
