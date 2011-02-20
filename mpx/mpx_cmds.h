@@ -13,7 +13,7 @@ void init_commands(void);
 
 void add_command( char *name, void (*function)(int argc, char *argv) );
 
-void mpxcmd_commands( int argc, char *argv[] ) {
+void mpxcmd_commands( int argc, char *argv[] );
 
 
 #endif
