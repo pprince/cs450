@@ -4,14 +4,14 @@
 
 /** Node type for a singly-linked list of MPX commands. */
 struct mpx_command {
-	char name[MAX_ARG_LEN+1];
+	char name;
 	void (*function)(int argc, char *argv);
 	struct mpx_command *next;
 };
 
 void init_commands(void); 
 
-void add_command( char *name, void (*function)(int argc, char *argv) );
+void add_command( char *name, void (*function)(int argc, char *argv[]) );
 
 void mpxcmd_commands( int argc, char *argv[] );
 

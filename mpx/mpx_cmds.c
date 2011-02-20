@@ -42,7 +42,8 @@ void add_command( char *name, void (*function)(int argc, char *argv[]) ){
 	struct mpx_command *this_command;
 
 	/* Allocate space for the new command structure. */
-	struct mpx_command *new_command = sys_alloc_mem(sizeof(struct mpx_command));
+	struct mpx_command *new_command = (struct mpx_command *)sys_alloc_mem(sizeof(struct mpx_command));
+	new_command->name = (char *)sys_alloc_mem(MAX_ARG_LEN+1);
 		/* FIXME: check for malloc failure! */
 
 	/* Initialize the structure. */
