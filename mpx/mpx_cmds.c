@@ -165,7 +165,53 @@ void mpxcmd_date( int argc, char *argv[] ) {
 }
 
 
+void mpxcmd_exit( int argc, char *argv[] ) {
+	char buf[21];
+	char buf_size=20;
+	int retval;
+
+	printf("  ** Are you sure you want to terminate MPX? [y/n] ");
+
+	retval = sys_req( READ, TERMINAL, buf, &buf_size );
+	if ( retval < 0 ) {
+		printf("ERROR: sys_req() threw error while trying to read from the terminal!\n");
+		return;
+	}
+
+	chomp(buf);
+
+	if ( strlen(buf) == 3 ) {
+		if ( ( buf[0] == 'y' || buf[0] == 'Y') &&
+		     ( buf[1] == 'e' || buf[1] == 'E') &&
+		     ( buf[2] == 's' || buf[2] == 'S') ){
+				sys_exit();
+		}
+	}
+	if (strlen(buf) == 1 ) {
+		if ( buf[0] == 'y' || buf[0] == 'Y' ){
+			sys_exit();
+		}
+	}
+}
+
+
+void mpxcmd_help( int argc, char *argv[] ) {
+	
+	if ( argc == 1 ) {
+		mpxcmd_commands(argc, argv);
+		printf("\n");
+		printf("For detailed help a specific command, type:  help <command>\n");
+	}
+
+	if ( argc == 2 ) {
+		printf("No help available for command '%s'\n", argv[1]);
+	}
+}
+
+
 void init_commands(void) {
 	add_command("commands", mpxcmd_commands);
 	add_command("date", mpxcmd_date);
+	add_command("exit", mpxcmd_exit);
+	add_command("help", mpxcmd_exit);
 }
