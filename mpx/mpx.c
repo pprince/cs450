@@ -34,8 +34,10 @@
 /** This is the start-of-execution for the MPX executable. */
 int main(int argc, char *argv[]) {
 
-	sys_init( MODULE_R1 );	/* System-specific initialization.	*/
-	mpx_shell();		/* Execute the command-handler REPL.	*/
+	sys_init( MODULE_R1 );	/* System-specific initialization.		*/
+	init_commands();	/* Initialization for MPX user commands.	*/
+	mpxcmd_commands(argc, argv); /* ****  FIXME temporary ***/
+	mpx_shell();		/* Execute the command-handler REPL.		*/
 
 	/* mpx_shell() should never return, so if we get here, then
 	 * we should exit with error status. */
