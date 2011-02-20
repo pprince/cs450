@@ -140,14 +140,14 @@ void mpxcmd_date( int argc, char *argv[] ) {
 
 	if ( argc == 4 ){
 
-		if ( ! mpx_validate_date(argv[1], argv[2], argv[3]) ) {
+		date.year  = atoi(argv[1]);
+		date.month = atoi(argv[2]);
+		date.day   = atoi(argv[3]);
+
+		if ( ! mpx_validate_date(date.year, date.month, date.day) ) {
 			printf("ERROR: Invalid date specified; MPX system date is unchanged.\n");
 			return;
 		}
-
-		date.year  = argv[1];
-		date.month = argv[2];
-		date.day   = argv[3];
 
 		retval = sys_set_date(&date);
 		if ( retval != 0 ) {
