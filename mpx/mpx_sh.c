@@ -52,6 +52,6 @@ void mpx_shell(void) {
 
 	for(;;) { /* Loop Forever */
 		sys_req( READ, TERMINAL, cmdline, &line_buf_size );
-		printf("[cmdline]\n");
+		printf("[%s]\n", cmdline);
 	}
 }
