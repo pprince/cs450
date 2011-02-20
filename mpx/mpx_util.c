@@ -29,6 +29,25 @@
 
 #include "mpx_util.h"
 #include "mpx_supt.h"
+#include <string.h>
 
-
+/** Removes trailing newline, if any.
+ *
+ * This function checks to see if the last character in a string is a newline, and, if so, removes it.
+ * Otherwise, the string is left unchanged.
+ *
+ * The input must be a valid (allocated and null-terminated) C string, otherwise the results are undefined
+ * (but will most likley result in a segmentation fault / protection fault).
+ *
+ * Returns the number of characters removed from the string.
+ */
+int mpx_chomp ( char *str /**< The string to chomp. */ ){
+	if( strlen(str) > 0 ){
+		if( str[ strlen(str)-1 ] == '\n' ){
+			str[ strlen(str)-1 ] = '\0';
+			return 1;
+		}
+	}
+	return 0;
+}
 
