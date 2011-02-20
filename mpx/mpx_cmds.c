@@ -118,6 +118,9 @@ void mpxcmd_commands( int argc, char *argv[] ) {
 	/* Temporary variable for iterating through the list of commands. */
 	struct mpx_command *this_command = list_head;
 
+	printf("\n");
+	printf("    The following commands are available to you:\n");
+
 	while( this_command != NULL ) {
 
 		printf("        %s\n", this_command->name);
@@ -200,7 +203,7 @@ void mpxcmd_help( int argc, char *argv[] ) {
 	if ( argc == 1 ) {
 		mpxcmd_commands(argc, argv);
 		printf("\n");
-		printf("For detailed help a specific command, type:  help <command>\n");
+		printf("    For detailed help a specific command, type:  help <command>\n");
 	}
 
 	if ( argc == 2 ) {
