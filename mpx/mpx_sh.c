@@ -2,7 +2,7 @@
 /** \file	mpx_sh.c
  *  \brief	MPX Shell, aka Command Handler
  *
- * 	This file contains the functions etc. to implement the user interface for MPX.
+ * 	This file implements the user interface for MPX.
  *
 **/
 
