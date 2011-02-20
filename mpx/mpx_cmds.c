@@ -134,7 +134,7 @@ void mpxcmd_date( int argc, char *argv[] ) {
 
 	if ( argc == 1 ){
 		sys_get_date(&date);
-		printf("Current MPX system date (yyyy-mm-dd): %d-%d-%d\n", date.year, date.month, date.day);
+		printf("Current MPX system date (yyyy-mm-dd): %04d-%02d-%02d\n", date.year, date.month, date.day);
 		return;
 	}
 
@@ -144,10 +144,9 @@ void mpxcmd_date( int argc, char *argv[] ) {
 		date.month = atoi(argv[2]);
 		date.day   = atoi(argv[3]);
 
-		printf("date (yyyy-mm-dd): %d-%d-%d\n", date.year, date.month, date.day);
-
 		if ( ! mpx_validate_date(date.year, date.month, date.day) ) {
 			printf("ERROR: Invalid date specified; MPX system date is unchanged.\n");
+			printf("       Valid dates are between 1900-01-01 and 2999-12-31, inclusive.\n");
 			return;
 		}
 
