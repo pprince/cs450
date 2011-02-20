@@ -35,12 +35,31 @@
 #include <string.h>
 
 
+/** The current prompt string. */
+static char *mpx_prompt_string = NULL;
+
+
+/** Sets the current prompt to whatever string is given.
+ *
+ * If new_prompt is NULL, this is a no-op. */
+void mpx_setprompt( char *new_prompt ){
+	if (new_prompt == NULL) return;
+	if (mpx_prompt_string != NULL) {
+		sys_free_mem(mpx_prompt_string);
+	}
+	mpx_prompt_string = (char *)sys_alloc_mem(strlen(new_prompt)+1);
+	strcpy(mpx_prompt_string, new_prompt);
+}
+
+
 /** This function implements the MPX shell (command-line user interface).
  *
  * mpx_shell() never returns!
  *
  */
 void mpx_shell(void) {
+
+	mpx_setprompt(MPX_DEFAULT_PROMPT);
 
 	/** A buffer to hold the command line input by the user.
 	 *  We include space for the \r, \n, and \0 characters, if any. */
@@ -73,6 +92,9 @@ void mpx_shell(void) {
 	/* Loop Forever; this is the REPL. */
 	/* This loop terminates only via the MPX 'exit' command. */
 	for(;;) {
+		/* Output the current MPX prompt string. */
+		printf("%s", mpx_prompt_string);
+
 		/* Read in a line of input from the user. */
 		sys_req( READ, TERMINAL, cmdline, &line_buf_size );
 
