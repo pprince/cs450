@@ -27,9 +27,12 @@
  *
 **/
 
+
 #include "mpx_supt.h"
 #include "mpx_util.h"
 #include "mpx_sh.h"
+#include "mpx_cmds.h"
+
 
 /** This is the start-of-execution for the MPX executable. */
 int main(int argc, char *argv[]) {

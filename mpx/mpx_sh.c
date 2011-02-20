@@ -31,6 +31,7 @@
 #include "mpx_sh.h"
 #include "mpx_supt.h"
 #include "mpx_util.h"
+#include "mpx_cmds.h"
 #include <string.h>
 
 
