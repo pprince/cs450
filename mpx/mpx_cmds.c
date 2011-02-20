@@ -126,6 +126,33 @@ void mpxcmd_commands( int argc, char *argv[] ) {
 	}
 }
 
+
+/* *** BEGIN TEMPORARY TEST COMMANDS *** */
+void mpxcmd_test_aardvark ( int argc, char *argv[] ) {
+	printf("aardvark\n");
+}
+void mpxcmd_test_aaron ( int argc, char *argv[] ) {
+	printf("aaron\n");
+}
+void mpxcmd_test_aarow ( int argc, char *argv[] ) {
+	printf("aarow\n");
+}
+void mpxcmd_test_cthulu ( int argc, char *argv[] ) {
+	printf("cthulu\n");
+}
+void mpxcmd_test_ctharrrrgh ( int argc, char *argv[] ) {
+	printf("ctharrrrgh\n");
+}
+/* *** </END TEMPORARY TEST COMMANDS *** */
+
 void init_commands(void) {
 	add_command("commands", mpxcmd_commands);
+
+	/* TEMPORARY */
+	add_command("aardvark", mpxcmd_test_aardvark);
+	add_command("aaron", mpxcmd_test_aaron);
+	add_command("aarow", mpxcmd_test_aarow);
+	add_command("cthulu", mpxcmd_test_cthulu);
+	add_command("ctharrrrgh", mpxcmd_test_ctharrrrgh);
+	/* </end TEMPORARY */
 }
