@@ -84,9 +84,13 @@ void mpx_shell(void) {
 			argv[i] = sys_alloc_mem(MAX_ARG_LEN+1);			/* +1 for \0 */
 		}
 
+
 		/* Tokenize the command line entered by the user, and set argc. */
 		/* 0 is a special value here for argc; a value > 0 after the for loop indicates
-		 * that tokenizing was successful and that argc and argv contain valid data. */
+		 * that tokenizing was successful and that argc and argv contain valid data.
+		 * 
+		 *****  NOTE:  argc includes argv[0], but MAX_ARGS does not!  *****/
+
 		argc = 0; token = NULL;
 
 		for( i=0; i < MAX_ARGS+1; i++ ){
@@ -120,13 +124,13 @@ void mpx_shell(void) {
 		}
 
 		if ( argc <= 0 ) {
-			printf("ERROR: Invalid command-line.");
+			printf("ERROR: Invalid command-line.\n");
 			continue;
 		}
 
 		/* Temporary: Print out tokenization. */
 		printf("  argc = %d\n", argc);
-		for( i=0; i < argc+1; i++ ){
+		for( i=0; i < argc; i++ ){
 			printf("    argv[%d] = \"%s\"\n", i, argv[i]);
 		}
 
