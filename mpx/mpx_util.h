@@ -11,5 +11,7 @@
 #define MAX_ARGS		16
 
 int mpx_chomp ( char *str );
+int mpx_validate_date ( int year, int month, int day );
+
 
 #endif

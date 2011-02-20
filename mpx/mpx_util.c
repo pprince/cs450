@@ -51,3 +51,47 @@ int mpx_chomp ( char *str /**< The string to chomp. */ ){
 	return 0;
 }
 
+
+int mpx_validate_date ( int year, int month, int day ) {
+
+	int days_in_month;
+	int is_leapyear;
+
+	/* If year is invalid, return false. */
+	if ( year<1900 || year > 2999 ) {
+		return 1;
+	}
+
+	/* Is the specified year a leap year? */
+	is_leapyear = ((year%4==0 && year%100!=0)||(year%400==0));
+
+	/* Determine how many days are in the specified month. */
+	/* Also, if month is invalid (i.e., not 1-12 incl.), return false. */
+	switch (month) {
+		case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+			days_in_month = 31;
+		break;
+
+		case 4: case 6: case 9: case 11:
+			days_in_month = 30;
+		break;
+
+		case 2:
+			if ( is_leapyear ) {
+				days_in_month = 29;
+			} else {
+				days_in_month = 28;
+			}
+		break;
+
+		default:
+			return 1;
+		break;
+	}
+
+	/* If day is invalid, return false. */
+	if ( day > days_in_month ) return 1;
+
+	/* If we get this far, then the date is indeed valid; return true. */
+	return 0;
+}

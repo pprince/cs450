@@ -127,32 +127,40 @@ void mpxcmd_commands( int argc, char *argv[] ) {
 }
 
 
-/* *** BEGIN TEMPORARY TEST COMMANDS *** */
-void mpxcmd_test_aardvark ( int argc, char *argv[] ) {
-	printf("aardvark\n");
+void mpxcmd_date( int argc, char *argv[] ) {
+	int retval;	/**< Temp. storage for the return value of sys_ functions. */
+	date_rec date;	/**< Structure to hold a date (day, month, and year).
+	                     Will be used for both getting and setting the MPX system date. */
+
+	if ( argc == 1 ){
+		sys_get_date(&date);
+		printf("Current MPX system date (yyyy-mm-dd): %d-%d-%d\n", date.year, date.month, date.day);
+		return;
+	}
+
+	if ( argc == 4 ){
+
+		if ( ! mpx_validate_date(argv[1], argv[2], argv[3]) ) {
+			printf("ERROR: Invalid date specified; MPX system date is unchanged.\n");
+			return;
+		}
+
+		date.year  = argv[1];
+		date.month = argv[2];
+		date.day   = argv[3];
+
+		retval = sys_set_date(&date);
+		if ( retval != 0 ) {
+			printf("ERROR: sys_set_date() returned an error.\n");
+			return;
+		}
+
+		printf("The MPX system date has been changed.\n");
+		return;
 }
-void mpxcmd_test_aaron ( int argc, char *argv[] ) {
-	printf("aaron\n");
-}
-void mpxcmd_test_aarow ( int argc, char *argv[] ) {
-	printf("aarow\n");
-}
-void mpxcmd_test_cthulu ( int argc, char *argv[] ) {
-	printf("cthulu\n");
-}
-void mpxcmd_test_ctharrrrgh ( int argc, char *argv[] ) {
-	printf("ctharrrrgh\n");
-}
-/* *** </END TEMPORARY TEST COMMANDS *** */
+
 
 void init_commands(void) {
 	add_command("commands", mpxcmd_commands);
-
-	/* TEMPORARY */
-	add_command("aardvark", mpxcmd_test_aardvark);
-	add_command("aaron", mpxcmd_test_aaron);
-	add_command("aarow", mpxcmd_test_aarow);
-	add_command("cthulu", mpxcmd_test_cthulu);
-	add_command("ctharrrrgh", mpxcmd_test_ctharrrrgh);
-	/* </end TEMPORARY */
+	add_command("date", mpxcmd_date);
 }
