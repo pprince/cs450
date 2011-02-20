@@ -6,6 +6,6 @@
 #define MPX_DEFAULT_PROMPT	"MPX$  "
 
 void mpx_shell(void);
-mpx_setprompt(char *new_prompt);
+void mpx_setprompt(char *new_prompt);
 
 #endif

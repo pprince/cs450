@@ -35,7 +35,7 @@
 
 
 /** This is the start-of-execution for the MPX executable. */
-int main(int argc, char *argv[]) {
+void main(int argc, char *argv[]) {
 
 	sys_init( MODULE_R1 );	/* System-specific initialization.		*/
 	init_commands();	/* Initialization for MPX user commands.	*/

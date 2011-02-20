@@ -59,8 +59,6 @@ void mpx_setprompt( char *new_prompt ){
  */
 void mpx_shell(void) {
 
-	mpx_setprompt(MPX_DEFAULT_PROMPT);
-
 	/** A buffer to hold the command line input by the user.
 	 *  We include space for the \r, \n, and \0 characters, if any. */
 	char cmdline[ MAX_CMDLINE_LEN+2 ];
@@ -88,6 +86,9 @@ void mpx_shell(void) {
 	int i;
 	/** An index for use in nested for(;;) loops. */
 	int j;
+
+	/* We must initialize the prompt string. */
+	mpx_setprompt(MPX_DEFAULT_PROMPT);
 
 	/* Loop Forever; this is the REPL. */
 	/* This loop terminates only via the MPX 'exit' command. */
