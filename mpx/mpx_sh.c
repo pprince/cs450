@@ -58,13 +58,11 @@ void mpx_shell(void) {
 	 * But there is one caveat: argv[argc] is undefined in my implementation, not garanteed to be NULL. */
 	char **argv;
 
-	/** Temporary buffer for use in string tokenization.
-	 *
-	 * This must be at least as large as the maximum possible command-line. */
-	char token[MAX_CMDLINE_LEN+1];
+	/** Temporary pointer for use in string tokenization. */
+	char *token;
 
 	/** Delimiters that separate arguments in the MPX shell command-line environment. */
-	char *delim = "\t \n";
+	char *delims = "\t \n";
 
 	/** An index for use in for(;;) loops. */
 	int i;
@@ -89,7 +87,8 @@ void mpx_shell(void) {
 		/* Tokenize the command line entered by the user, and set argc. */
 		/* 0 is a special value here for argc; a value > 0 after the for loop indicates
 		 * that tokenizing was successful and that argc and argv contain valid data. */
-		argc = 0;
+		argc = 0; token = NULL;
+
 		for( i=0; i < MAX_ARGS+1; i++ ){
 
 			if (i==0) {
