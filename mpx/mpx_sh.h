@@ -3,7 +3,7 @@
 
 
 /** Defines the default prompt string for the MPX command-line user interface. */
-#define MPX_DEFAULT_PROMPT	"MPX$  "
+#define MPX_DEFAULT_PROMPT	"\nMPX$ "
 
 void mpx_shell(void);
 void mpx_setprompt(char *new_prompt);
