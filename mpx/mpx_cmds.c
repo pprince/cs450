@@ -70,6 +70,7 @@ void mpxcmd_commands( int argc, char *argv[] ) {
 
 	while( this_command != NULL ) {
 		printf("        %s\n", this_command->name);
+		this_command = this_command->next;
 	}
 }
 
