@@ -167,7 +167,7 @@ void mpxcmd_date( int argc, char *argv[] ) {
 
 void mpxcmd_exit( int argc, char *argv[] ) {
 	char buf[21];
-	char buf_size=20;
+	int buf_size=20;
 	int retval;
 
 	printf("  ** Are you sure you want to terminate MPX? [y/n] ");
@@ -213,5 +213,5 @@ void init_commands(void) {
 	add_command("commands", mpxcmd_commands);
 	add_command("date", mpxcmd_date);
 	add_command("exit", mpxcmd_exit);
-	add_command("help", mpxcmd_exit);
+	add_command("help", mpxcmd_help);
 }
