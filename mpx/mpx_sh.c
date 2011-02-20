@@ -50,8 +50,16 @@ void mpx_shell(void) {
 	/** Used to capture the return value of sys_req(). */
 	int err;
 
-	for(;;) { /* Loop Forever */
+	/* Loop Forever; this is the REPL. */
+	/* This loop terminates only via the MPX 'exit' command. */
+	for(;;) {
+		/* Read in a line of input from the user. */
 		sys_req( READ, TERMINAL, cmdline, &line_buf_size );
+
+		/* Remove trailing newline. */
+		mpx_chomp(cmdline);
+
+		/* Temporary: Print out the command-line. */
 		printf("[%s]\n", cmdline);
 	}
 }
