@@ -5,7 +5,7 @@
 /** Node type for a singly-linked list of MPX commands. */
 struct mpx_command {
 	char *name;
-	void (*function)(int argc, char *argv);
+	void (*function)(int argc, char *argv[]);
 	struct mpx_command *next;
 };
 
