@@ -7,7 +7,7 @@ struct mpx_command {
 	char name[MAX_ARG_LEN+1];
 	void (*function)(int argc, char *argv);
 	struct mpx_command *next;
-}
+};
 
 void init_commands(void); 
 
