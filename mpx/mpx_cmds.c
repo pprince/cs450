@@ -157,6 +157,10 @@ void mpxcmd_date( int argc, char *argv[] ) {
 
 		printf("The MPX system date has been changed.\n");
 		return;
+	}
+
+	printf("ERROR: Wrong number of arguments to 'date'.\n");
+	printf("       Type 'help date' for usage information.\n");
 }
 
 
