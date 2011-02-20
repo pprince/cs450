@@ -125,6 +125,7 @@ void mpx_shell(void) {
 		}
 
 		/* Temporary: Print out tokenization. */
+		printf("  argc = %d\n", argc);
 		for( i=0; i < argc+1; i++ ){
 			printf("    argv[%d] = \"%s\"\n", i, argv[i]);
 		}
