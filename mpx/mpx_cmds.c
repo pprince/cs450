@@ -206,8 +206,11 @@ void mpxcmd_help( int argc, char *argv[] ) {
 	}
 
 	if ( argc == 2 ) {
+
 		strncat(helpfile, argv[1], MAX_ARG_LEN);
 		strncat(helpfile, ".hlp", 4);
+
+		printf("\n");
 		if ( ! mpx_cat(helpfile) ){
 			printf("No help available for command '%s'\n", argv[1]);
 		}
