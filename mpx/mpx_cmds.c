@@ -116,6 +116,7 @@ void mpxcmd_commands( int argc, char *argv[] ) {
 
 	printf("\n");
 	printf("    The following commands are available to you:\n");
+	printf("\n");
 
 	while( this_command != NULL ) {
 
