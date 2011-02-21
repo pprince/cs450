@@ -277,4 +277,6 @@ void init_commands(void) {
 	add_command("date", mpxcmd_date);
 	add_command("exit", mpxcmd_exit);
 	add_command("help", mpxcmd_help);
+	add_command("ls", mpxcmd_ls);
+	add_command("version", mpxcmd_version);
 }
