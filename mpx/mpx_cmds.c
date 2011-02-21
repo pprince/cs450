@@ -195,16 +195,27 @@ void mpxcmd_exit( int argc, char *argv[] ) {
 
 
 void mpxcmd_help( int argc, char *argv[] ) {
-	
+	/* Must leave space for the path prefix, the command name, the filename suffix, and the \0. */ 
+	char helpfile[MAX_ARG_LEN+1+7+4] = "./help/";
+
 	if ( argc == 1 ) {
 		mpxcmd_commands(argc, argv);
 		printf("\n");
 		printf("    For detailed help a specific command, type:  help <command>\n");
+		return;
 	}
 
 	if ( argc == 2 ) {
-		printf("No help available for command '%s'\n", argv[1]);
+		strncat(helpfile, argv[1], MAX_ARG_LEN);
+		strncat(helpfile, ".hlp", 4);
+		if ( ! mpx_cat(helpfile) ){
+			printf("No help available for command '%s'\n", argv[1]);
+		}
+		return;
 	}
+
+	printf("ERROR: Wrong number of arguments to 'help'.\n");
+	printf("       Type 'help help' for usage information.\n");
 }
 
 

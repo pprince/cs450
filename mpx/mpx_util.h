@@ -11,7 +11,7 @@
 /** Defines the maximum length for a single command-line. */
 #define MAX_CMDLINE_LEN		255
 
-/** Defines the maximum length for a single argument to an MPX command. */
+/** Defines the maximum length for a single argument to an MPX command (and for the command names, also). */
 #define MAX_ARG_LEN		64
 
 /** Defines the maximum number of arguments to an MPX command. */
@@ -22,6 +22,7 @@
 
 int mpx_chomp ( char *str );
 int mpx_validate_date ( int year, int month, int day );
+int mpx_cat ( char *file_name );
 
 
 #endif

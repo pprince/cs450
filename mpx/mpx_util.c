@@ -26,6 +26,7 @@
 #include "mpx_util.h"
 #include "mpx_supt.h"
 #include <string.h>
+#include <stdio.h>
 
 /** Removes trailing newline, if any.
  *
@@ -91,3 +92,38 @@ int mpx_validate_date ( int year, int month, int day ) {
 	/* If we get this far, then the date is indeed valid; return true. */
 	return 1;
 }
+
+
+int mpx_cat ( char *file_name ){
+	char line_buffer[128];
+	char *fgets_retval;
+
+	FILE *fp;
+	fp = fopen( file_name, "r" );
+
+	if ( fp == NULL ) {
+		return 0;
+	}
+
+	for(;;){
+		fgets_retval = fgets( line_buffer, sizeof(line_buffer), fp );
+
+		if ( feof(fp) ){
+			/* End of file. */
+			break;
+		}
+		else if ( fgets_retval == NULL ) {
+			/* Error occurred. */
+			return 0;
+		}
+
+		fputs( line_buffer, stdout );
+	}
+
+	if ( fclose(fp) != 0 ){
+		return 0;
+	}
+
+	return 1;
+}
+
