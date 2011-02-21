@@ -247,7 +247,7 @@ void mpxcmd_ls( int argc, char *argv[] ){
 	num_files = 0;
 	for(;;){
 		retval = sys_get_entry( file_name, MAX_FILENAME_LEN, &file_size );
-		if ( retval = 0 ) {
+		if ( retval == 0 ) {
 			printf("%-15s    %30ld\n", file_name, file_size);
 			num_files++;
 		}
