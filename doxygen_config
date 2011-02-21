@@ -1,6 +1,4 @@
-# Doxyfile 1.7.3
-
-# This file describes the settings to be used by the documentation system
+documentation system
 # doxygen (www.doxygen.org) for a project
 #
 # All text after a hash (#) is considered a comment and will be ignored
@@ -51,7 +49,7 @@ PROJECT_LOGO           =
 # If a relative path is entered, it will be relative to the location 
 # where doxygen was started. If left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = doc
+OUTPUT_DIRECTORY       = doc/programmer_manual
 
 # If the CREATE_SUBDIRS tag is set to YES, then doxygen will create 
 # 4096 sub-directories (in 2 levels) under the output directory of each output 

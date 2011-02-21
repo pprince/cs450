@@ -34,7 +34,7 @@ static struct mpx_command *list_head = NULL;
 
 void add_command( char *name, void (*function)(int argc, char *argv[]) ){
 
-	/* Temporary variable for iterating through the list of commands. */
+	/** Temporary variable for iterating through the list of commands. */
 	struct mpx_command *this_command;
 
 	/* Allocate space for the new command structure. */
@@ -128,9 +128,11 @@ void mpxcmd_commands( int argc, char *argv[] ) {
 
 
 void mpxcmd_date( int argc, char *argv[] ) {
-	int retval;	/**< Temp. storage for the return value of sys_ functions. */
-	date_rec date;	/**< Structure to hold a date (day, month, and year).
-	                     Will be used for both getting and setting the MPX system date. */
+	/**< Temp. storage for the return value of sys_ functions. */
+	int retval;	
+	/**< Structure to hold a date (day, month, and year).
+	     Will be used for both getting and setting the MPX system date. */
+	date_rec date;	
 
 	if ( argc == 1 ){
 		sys_get_date(&date);
@@ -230,7 +232,7 @@ void mpxcmd_version( int argc, char *argv[] ){
 
 void mpxcmd_ls( int argc, char *argv[] ){
 	int	retval;
-	char	*dir; /*!< test doc of member */
+	char	*dir;
 	int 	num_files;
 	char	file_name[MAX_FILENAME_LEN+1];
 	long	file_size;
