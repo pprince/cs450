@@ -208,6 +208,69 @@ void mpxcmd_help( int argc, char *argv[] ) {
 }
 
 
+void mpxcmd_version( int argc, char *argv[] ){
+	printf("MPX System Version: %s\n", MPX_VERSION);
+}
+
+
+void mpxcmd_ls( int argc, char *argv[] ){
+	int	retval;
+	char	*dir; /*!< test doc of member */
+	int 	num_files;
+	char	file_name[MAX_FILENAME_LEN+1];
+	long	file_size;
+
+	if ( argc == 1 ){
+		dir = MPX_DEFAULT_EXE_DIR;
+	}
+	else if ( argc == 2 ){
+		dir = argv[1];
+	}
+	else {
+		printf("ERROR: Wrong number of arguments to 'ls'.\n");
+		printf("       Type 'help ls' for usage information.\n");
+		return;
+	}
+
+	retval = sys_open_dir( dir );
+	if ( retval != 0 ){
+		printf("ERROR: sys_open_dir() failed trying to open directory '%s'.\n", dir);
+		return;
+	}
+
+	printf("\n");
+	printf("    Listing of files in directory '%s':\n", dir);
+	printf("\n");
+	printf("File Name:         File Size (in bytes):\n");
+	printf("---------------    ------------------------------\n");
+
+	num_files = 0;
+	while( retval = sys_get_entry( file_name, MAX_FILENAME_LEN, &file_size ) ){
+		if ( retval = 0 ) {
+			printf("%-15s    %30ld\n", file_name, file_size);
+			num_files++;
+		}
+		else if ( retval == ERR_SUP_NOENTR ) {
+			break;
+		}
+		else {
+			printf("ERROR: sys_get_entry() failed trying to read directory '%s'.\n", dir);
+			printf("Giving up on this directory.\n");
+			return;
+		}
+	}
+
+	printf("\n");
+	printf("Total files in directory: %d\n", num_files);
+
+	retval = sys_close_dir();
+	if ( retval != 0 ){
+		printf("ERROR: sys_close_dir() returned an error.\n");
+		printf("Internal program state is unknown; you should exit and restart MPX.\n");
+	}
+}
+
+
 void init_commands(void) {
 	add_command("commands", mpxcmd_commands);
 	add_command("date", mpxcmd_date);
