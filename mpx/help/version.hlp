@@ -1,0 +1,10 @@
+VERSION                                                          [no arguments]
+
+  The 'version' command displays the current MPX system version information.
+
+  Usage:
+  ------
+
+    MPX$ version
+
+        Displays the MPX system version information.

@@ -1,21 +1,15 @@
-*-----------------------------------------------------------------------------*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-*
-------------------- LAST LINE.
+HELP                                                         [0 or 1 arguments]
+
+  The 'help' command displays documentation for the commands available in MPX.
+
+  Usage:
+  ------
+
+    MPX$ help
+
+        Lists all commands available in MPX.
+
+
+    MPX$ help [command name]
+
+        Shows the details help for the specified command.

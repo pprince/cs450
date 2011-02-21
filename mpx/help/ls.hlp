@@ -1,0 +1,18 @@
+LS                                                           [0 or 1 arguments]
+
+  Lists the contents of a directory holding MPX executable files.
+
+  Only MPX executables (file ending in ".mpx") are listed, and the ".mpx"
+  suffix is NOT displayed.
+
+  Usage:
+  ------
+
+    MPX$ ls
+
+        Lists the executables in the default MPX executable directory.
+
+
+    MPX$ ls [directory]
+
+        Lists the executables in the specified directory.

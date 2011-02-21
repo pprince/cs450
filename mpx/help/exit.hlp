@@ -1,0 +1,12 @@
+EXIT                                                             [no arguments]
+
+  The 'exit' command is used to terminate MPX.
+
+  The command will prompt the user for confirmation before exiting.
+
+  Usage:
+  ------
+
+    MPX$ exit
+
+        Terminates MPX, after asking the user for confirmation.

@@ -1,0 +1,21 @@
+*-----------------------------------------------------------------------------*
+*  This is how large a help file should be, rows and columns,
+*  to fit on one default-sized MS-DOS screen.
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+------------------- LAST LINE.
