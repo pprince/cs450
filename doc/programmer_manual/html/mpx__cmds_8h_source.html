@@ -60,22 +60,22 @@ $(document).ready(initResizable);
 <h1>mpx/mpx_cmds.h</h1>  </div>
 </div>
 <div class="contents">
-<a href="mpx__cmds_8h.html">Go to the documentation of this file.</a><div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef MPX_CMDS_H_GUARD</span>
+<div class="fragment"><pre class="fragment"><a name="l00001"></a>00001 <span class="preprocessor">#ifndef MPX_CMDS_H_GUARD</span>
 <a name="l00002"></a>00002 <span class="preprocessor"></span><span class="preprocessor">#define MPX_CMDS_H_GUARD</span>
 <a name="l00003"></a>00003 <span class="preprocessor"></span>
 <a name="l00004"></a>00004 <span class="comment"></span>
 <a name="l00005"></a>00005 <span class="comment">/** Node type for a singly-linked list of MPX commands. */</span>
 <a name="l00006"></a><a class="code" href="structmpx__command.html">00006</a> <span class="keyword">struct </span><a class="code" href="structmpx__command.html">mpx_command</a> {
-<a name="l00007"></a><a class="code" href="structmpx__command.html#a5ac083a645d964373f022d03df4849c8">00007</a>         <span class="keywordtype">char</span> *<a class="code" href="structmpx__command.html#a5ac083a645d964373f022d03df4849c8">name</a>;
-<a name="l00008"></a><a class="code" href="structmpx__command.html#a2a3bbb1c51f283ba87aceb0899a432f0">00008</a>         void (*<a class="code" href="structmpx__command.html#a2a3bbb1c51f283ba87aceb0899a432f0">function</a>)(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]);
-<a name="l00009"></a><a class="code" href="structmpx__command.html#a1da735265308199ae24872ee0c029024">00009</a>         <span class="keyword">struct </span><a class="code" href="structmpx__command.html">mpx_command</a> *<a class="code" href="structmpx__command.html#a1da735265308199ae24872ee0c029024">next</a>;
+<a name="l00007"></a>00007         <span class="keywordtype">char</span> *name;
+<a name="l00008"></a>00008         void (*function)(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]);
+<a name="l00009"></a>00009         <span class="keyword">struct </span><a class="code" href="structmpx__command.html">mpx_command</a> *next;
 <a name="l00010"></a>00010 };
 <a name="l00011"></a>00011 
-<a name="l00012"></a>00012 <span class="keywordtype">void</span> <a class="code" href="mpx__cmds_8c.html#a03724154f6e163f4c909012fdb4ef3c8">init_commands</a>(<span class="keywordtype">void</span>); 
-<a name="l00013"></a>00013 <span class="keywordtype">void</span> <a class="code" href="mpx__cmds_8c.html#a3b0720d8567fd96961dad86e730ef6c4">add_command</a>( <span class="keywordtype">char</span> *<a class="code" href="structmpx__command.html#a5ac083a645d964373f022d03df4849c8">name</a>, <span class="keywordtype">void</span> (*<a class="code" href="structmpx__command.html#a2a3bbb1c51f283ba87aceb0899a432f0">function</a>)(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]) );
-<a name="l00014"></a>00014 <span class="keywordtype">void</span> <a class="code" href="mpx__cmds_8c.html#ac7a7d7a6348a56a831267d2eb3553bf5">dispatch_command</a>( <span class="keywordtype">char</span> *name, <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[] );
+<a name="l00012"></a>00012 <span class="keywordtype">void</span> init_commands(<span class="keywordtype">void</span>); 
+<a name="l00013"></a>00013 <span class="keywordtype">void</span> <a class="code" href="mpx__cmds_8c.html#a3b0720d8567fd96961dad86e730ef6c4">add_command</a>( <span class="keywordtype">char</span> *name, <span class="keywordtype">void</span> (*function)(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]) );
+<a name="l00014"></a>00014 <span class="keywordtype">void</span> dispatch_command( <span class="keywordtype">char</span> *name, <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[] );
 <a name="l00015"></a>00015 
-<a name="l00016"></a>00016 <span class="keywordtype">void</span> <a class="code" href="mpx__cmds_8c.html#a31389982c954e01e63302786e30c2c23">mpxcmd_commands</a>( <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[] );
+<a name="l00016"></a>00016 <span class="keywordtype">void</span> mpxcmd_commands( <span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[] );
 <a name="l00017"></a>00017 
 <a name="l00018"></a>00018 
 <a name="l00019"></a>00019 <span class="preprocessor">#endif</span>
@@ -83,8 +83,8 @@ $(document).ready(initResizable);
 </div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="mpx__cmds_8h.html">mpx_cmds.h</a>      </li>
-      <li class="footer">Generated on Mon Feb 21 2011 for Paul Prince's MPX by&#160;
+      <li class="navelem"><b>mpx_cmds.h</b>      </li>
+      <li class="footer">Generated on Sat Feb 26 2011 for Paul Prince's MPX by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

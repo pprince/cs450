@@ -66,10 +66,10 @@ $(document).ready(initResizable);
 
 <p>MPX Shell, aka Command Handler.  
 <a href="#_details">More...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="mpx__sh_8h_source.html">mpx_sh.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="mpx__supt_8h_source.html">mpx_supt.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="mpx__util_8h_source.html">mpx_util.h</a>&quot;</code><br/>
-<code>#include &quot;<a class="el" href="mpx__cmds_8h_source.html">mpx_cmds.h</a>&quot;</code><br/>
+<div class="textblock"><code>#include &quot;mpx_sh.h&quot;</code><br/>
+<code>#include &quot;mpx_supt.h&quot;</code><br/>
+<code>#include &quot;mpx_util.h&quot;</code><br/>
+<code>#include &quot;mpx_cmds.h&quot;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
 </div>
 <p><a href="mpx__sh_8c_source.html">Go to the source code of this file.</a></p>
@@ -83,7 +83,8 @@ Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpx__sh_8c.html#a0e4be0248ef8ef73c9292258c80aac34">mpx_prompt_string</a> = NULL</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>This file implements the user interface for MPX. </p>
+<div class="textblock"><p>MPX Shell, aka Command Handler. </p>
+<p>This file implements the user interface for MPX. </p>
 
 <p>Definition in file <a class="el" href="mpx__sh_8c_source.html">mpx_sh.c</a>.</p>
 </div><hr/><h2>Function Documentation</h2>
@@ -127,8 +128,8 @@ Variables</h2></td></tr>
 
 <p><p>A buffer to hold the command line input by the user. We include space for the , <br/>
 , and \0 characters, if any.</p>
-<p>Buffer size argument for passing to <a class="el" href="mpx__supt_8c.html#a6ce105e2629f4baff249ab1a628eae29">sys_req()</a>.</p>
-<p>Used to capture the return value of <a class="el" href="mpx__supt_8c.html#a6ce105e2629f4baff249ab1a628eae29">sys_req()</a>.</p>
+<p>Buffer size argument for passing to sys_req().</p>
+<p>Used to capture the return value of sys_req().</p>
 <p>argc to be passed to MPX command; works just like the one passed to <a class="el" href="mpx_8c.html#a91a3bbcc7eb26e8695255b2795d6e46f">main()</a>.</p>
 <p>argv array to be passed to MPX command; works almost just like the one passed to <a class="el" href="mpx_8c.html#a91a3bbcc7eb26e8695255b2795d6e46f">main()</a>.</p>
 <p>But there is one caveat: argv[argc] is undefined in my implementation, not garanteed to be NULL.</p>
@@ -164,7 +165,7 @@ Variables</h2></td></tr>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="mpx__sh_8c.html">mpx_sh.c</a>      </li>
-      <li class="footer">Generated on Mon Feb 21 2011 for Paul Prince's MPX by&#160;
+      <li class="footer">Generated on Sat Feb 26 2011 for Paul Prince's MPX by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

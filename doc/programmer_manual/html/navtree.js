@@ -8,17 +8,16 @@ var NAVTREE =
       [ "params", "structparams.html", null ]
     ] ],
     [ "Data Structure Index", "classes.html", null ],
-    [ "Data Fields", "functions.html", null ],
     [ "File List", "files.html", [
       [ "mpx/mpx.c", "mpx_8c.html", null ],
       [ "mpx/mpx_cmds.c", "mpx__cmds_8c.html", null ],
-      [ "mpx/mpx_cmds.h", "mpx__cmds_8h.html", null ],
+      [ "mpx/mpx_cmds.h", null, null ],
       [ "mpx/mpx_sh.c", "mpx__sh_8c.html", null ],
-      [ "mpx/mpx_sh.h", "mpx__sh_8h.html", null ],
-      [ "mpx/mpx_supt.c", "mpx__supt_8c.html", null ],
-      [ "mpx/mpx_supt.h", "mpx__supt_8h.html", null ],
+      [ "mpx/mpx_sh.h", null, null ],
+      [ "mpx/mpx_supt.c", null, null ],
+      [ "mpx/mpx_supt.h", null, null ],
       [ "mpx/mpx_util.c", "mpx__util_8c.html", null ],
-      [ "mpx/mpx_util.h", "mpx__util_8h.html", null ]
+      [ "mpx/mpx_util.h", null, null ]
     ] ],
     [ "Globals", "globals.html", null ]
   ] ]
