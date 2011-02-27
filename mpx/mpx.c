@@ -1,14 +1,15 @@
 
 /** \file	mpx.c
- *  \brief	MPX Main File
+ *  \brief	MPX main() Function
  *  \author	Paul Prince <paul@littlebluetech.com>
  *  \date	2011
  *
- * 	This file contains the start-of-execution, i.e. function main(), for MPX.
+ * This file contains the start-of-execution, i.e. function main(), for MPX.
+ *
  *
 **/
 
-/** \mainpage
+/** \mainpage Introduction
  *
  *\section Code Repository
  *
@@ -49,7 +50,7 @@ void main(int argc, char *argv[]) {
 
 
 	/* mpx_shell() should never return, so if we get here, then
-	 * we should exit with error status. */
+	 * we should exit with error status (but don't actually...). */
 	printf("FATAL ERROR: mpx_shell() returned! That should never happen...\n");
 	sys_exit();	/* Terminate, after doing MPX-specific cleanup. */
 }

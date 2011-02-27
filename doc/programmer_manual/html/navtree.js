@@ -1,7 +1,7 @@
 var NAVTREE =
 [
   [ "Paul Prince's MPX", "index.html", [
-    [ "Main Page", "index.html", null ],
+    [ "Introduction", "index.html", null ],
     [ "Data Structures", "annotated.html", [
       [ "date_rec", "structdate__rec.html", null ],
       [ "mpx_command", "structmpx__command.html", null ],
