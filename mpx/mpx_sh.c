@@ -31,11 +31,11 @@
 #include <string.h>
 
 
-/** The current prompt string. */
+/** \brief The current prompt string. */
 static char *mpx_prompt_string = NULL;
 
 
-/** Sets the current prompt to whatever string is given.
+/** \brief Sets the current prompt to whatever string is given.
  *
  * If new_prompt is NULL, this is a no-op. */
 void mpx_setprompt( char *new_prompt ){
@@ -52,35 +52,37 @@ void mpx_setprompt( char *new_prompt ){
  *
  * mpx_shell() never returns!
  *
+ * \bug A command should be able to depend on argv[argc] == NULL, but we do not currently implement this feature.
+ *
  */
 void mpx_shell(void) {
 
-	/** A buffer to hold the command line input by the user.
-	 *  We include space for the \r, \n, and \0 characters, if any. */
+	/* A buffer to hold the command line input by the user.
+	 * We include space for the \r, \n, and \0 characters, if any. */
 	char cmdline[ MAX_CMDLINE_LEN+2 ];
 
-	/** Buffer size argument for passing to sys_req(). */
+	/* Buffer size argument for passing to sys_req(). */
 	int line_buf_size = MAX_CMDLINE_LEN;
 
-	/** Used to capture the return value of sys_req(). */
+	/* Used to capture the return value of sys_req(). */
 	int err;
 
-	/** argc to be passed to MPX command; works just like the one passed to main(). */
+	/* argc to be passed to MPX command; works just like the one passed to main(). */
 	int argc;
-	/** argv array to be passed to MPX command; works almost just like the one passed to main().
+	/* argv array to be passed to MPX command; works almost just like the one passed to main().
 	 *
 	 * But there is one caveat: argv[argc] is undefined in my implementation, not garanteed to be NULL. */
 	char **argv;
 
-	/** Temporary pointer for use in string tokenization. */
+	/* Temporary pointer for use in string tokenization. */
 	char *token;
 
-	/** Delimiters that separate arguments in the MPX shell command-line environment. */
+	/* Delimiters that separate arguments in the MPX shell command-line environment. */
 	char *delims = "\t \n";
 
-	/** An index for use in for(;;) loops. */
+	/* An index for use in for(;;) loops. */
 	int i;
-	/** An index for use in nested for(;;) loops. */
+	/* An index for use in nested for(;;) loops. */
 	int j;
 
 	/* We must initialize the prompt string. */

@@ -1,7 +1,10 @@
 var NAVTREE =
 [
-  [ "Paul Prince's MPX", "index.html", [
+  [ ""Paul Prince's MPX"", "index.html", [
     [ "Introduction", "index.html", null ],
+    [ "Related Pages", "pages.html", [
+      [ "Bug List", "bug.html", null ]
+    ] ],
     [ "Data Structures", "annotated.html", [
       [ "date_rec", "structdate__rec.html", null ],
       [ "mpx_command", "structmpx__command.html", null ],
@@ -11,13 +14,8 @@ var NAVTREE =
     [ "File List", "files.html", [
       [ "mpx/mpx.c", "mpx_8c.html", null ],
       [ "mpx/mpx_cmds.c", "mpx__cmds_8c.html", null ],
-      [ "mpx/mpx_cmds.h", null, null ],
       [ "mpx/mpx_sh.c", "mpx__sh_8c.html", null ],
-      [ "mpx/mpx_sh.h", null, null ],
-      [ "mpx/mpx_supt.c", null, null ],
-      [ "mpx/mpx_supt.h", null, null ],
-      [ "mpx/mpx_util.c", "mpx__util_8c.html", null ],
-      [ "mpx/mpx_util.h", null, null ]
+      [ "mpx/mpx_util.c", "mpx__util_8c.html", null ]
     ] ],
     [ "Globals", "globals.html", null ]
   ] ]
