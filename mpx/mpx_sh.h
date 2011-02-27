@@ -2,7 +2,7 @@
 #define MPX_SH_H_GUARD
 
 
-/** Defines the default prompt string for the MPX command-line user interface. */
+/*! Defines the default prompt string for the MPX command-line user interface. */
 #define MPX_DEFAULT_PROMPT	"\nMPX$ "
 
 void mpx_shell(void);

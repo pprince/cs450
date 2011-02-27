@@ -1,6 +1,6 @@
 
-/** \file	mpx_util.c
- *  \brief	Various utility functions used by all of MPX.
+/*! @file	mpx_util.c
+ *  @brief	Various utility functions used by all of MPX.
  *
  * 	This file contains the functions etc. to implement the user interface for MPX.
  *
@@ -28,7 +28,7 @@
 #include <string.h>
 #include <stdio.h>
 
-/** Removes trailing newline, if any.
+/*! Removes trailing newline, if any.
  *
  * This function checks to see if the last character in a string is a newline, and, if so, removes it.
  * Otherwise, the string is left unchanged.
@@ -38,7 +38,7 @@
  *
  * Returns the number of characters removed from the string.
  */
-int mpx_chomp ( char *str /**< The string to chomp. */ ){
+int mpx_chomp ( char *str /*!< The string to chomp. */ ){
 	if( strlen(str) > 0 ){
 		if( str[ strlen(str)-1 ] == '\n' ){
 			str[ strlen(str)-1 ] = '\0';

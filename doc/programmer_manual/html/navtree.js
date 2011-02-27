@@ -1,8 +1,9 @@
 var NAVTREE =
 [
-  [ ""Paul Prince's MPX"", "index.html", [
+  [ "Paul Prince's MPX", "index.html", [
     [ "Introduction", "index.html", null ],
     [ "Related Pages", "pages.html", [
+      [ "Todo List", "todo.html", null ],
       [ "Bug List", "bug.html", null ]
     ] ],
     [ "Data Structures", "annotated.html", [

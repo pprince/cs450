@@ -1,6 +1,6 @@
 
-/** \file	mpx_sh.c
- *  \brief	MPX Shell, aka Command Handler
+/*! @file	mpx_sh.c
+ *  @brief	MPX Shell, aka Command Handler
  *
  * 	This file implements the user interface for MPX.
  *
@@ -31,11 +31,11 @@
 #include <string.h>
 
 
-/** \brief The current prompt string. */
+/*! @brief The current prompt string. */
 static char *mpx_prompt_string = NULL;
 
 
-/** \brief Sets the current prompt to whatever string is given.
+/*! @brief Sets the current prompt to whatever string is given.
  *
  * If new_prompt is NULL, this is a no-op. */
 void mpx_setprompt( char *new_prompt ){
@@ -48,7 +48,7 @@ void mpx_setprompt( char *new_prompt ){
 }
 
 
-/** This function implements the MPX shell (command-line user interface).
+/*! This function implements the MPX shell (command-line user interface).
  *
  * mpx_shell() never returns!
  *

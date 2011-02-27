@@ -25,7 +25,7 @@ DOXYFILE_ENCODING      = UTF-8
 # The PROJECT_NAME tag is a single word (or a sequence of words surrounded 
 # by quotes) that should identify the project.
 
-PROJECT_NAME           = "\"Paul Prince's MPX\""
+PROJECT_NAME           = "Paul Prince's MPX"
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. 
 # This could be handy for archiving the generated documentation or 
@@ -825,7 +825,7 @@ ALPHABETICAL_INDEX     = YES
 # the COLS_IN_ALPHA_INDEX tag can be used to specify the number of columns 
 # in which this list will be split (can be a number in the range [1..20])
 
-COLS_IN_ALPHA_INDEX    = 5
+COLS_IN_ALPHA_INDEX    = 4
 
 # In case all classes in a project start with a common prefix, all 
 # classes will be put under the same header in the alphabetical index. 

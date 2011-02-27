@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>&quot;Paul Prince&#39;s MPX&quot;: mpx/mpx.c File Reference</title>
+<title>Paul Prince&#39;s MPX: mpx/mpx.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -21,7 +21,7 @@ $(document).ready(initResizable);
  <tbody>
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
-   <div id="projectname">"Paul Prince's MPX"&#160;<span id="projectnumber">R1</span></div>
+   <div id="projectname">Paul Prince's MPX&#160;<span id="projectnumber">R1</span></div>
    <div id="projectbrief">Programming Project for WVU CS 450 (Spring 2011)</div>
   </td>
  </tr>
@@ -64,7 +64,7 @@ $(document).ready(initResizable);
 </div>
 <div class="contents">
 
-<p>MPX <a class="el" href="mpx_8c.html#a91a3bbcc7eb26e8695255b2795d6e46f">main()</a> Function.  
+<p>MPX <a class="el" href="mpx_8c.html#a91a3bbcc7eb26e8695255b2795d6e46f">main()</a> function.  
 <a href="#_details">More...</a></p>
 <div class="textblock"><code>#include &quot;mpx_supt.h&quot;</code><br/>
 <code>#include &quot;mpx_util.h&quot;</code><br/>
@@ -76,10 +76,10 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpx_8c.html#a91a3bbcc7eb26e8695255b2795d6e46f">main</a> (int argc, char *argv[])</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>MPX <a class="el" href="mpx_8c.html#a91a3bbcc7eb26e8695255b2795d6e46f">main()</a> Function. </p>
+<div class="textblock"><p>MPX <a class="el" href="mpx_8c.html#a91a3bbcc7eb26e8695255b2795d6e46f">main()</a> function. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Paul Prince &lt;<a href="mailto:paul@littlebluetech.com">paul@littlebluetech.com</a>&gt; </dd></dl>
 <dl class="date"><dt><b>Date:</b></dt><dd>2011</dd></dl>
-<p>This file contains the start-of-execution, i.e. function <a class="el" href="mpx_8c.html#a91a3bbcc7eb26e8695255b2795d6e46f">main()</a>, for MPX. </p>
+<p>This file contains the start-of-execution, i.e. function <a class="el" href="mpx_8c.html#a91a3bbcc7eb26e8695255b2795d6e46f">main()</a>, for MPX, and also the top-level Doxygen documentation that becomes the introductory sections of the developer's manual. </p>
 </div><hr/><h2>Function Documentation</h2>
 <a class="anchor" id="a91a3bbcc7eb26e8695255b2795d6e46f"></a><!-- doxytag: member="mpx.c::main" ref="a91a3bbcc7eb26e8695255b2795d6e46f" args="(int argc, char *argv[])" -->
 <div class="memitem">
@@ -106,16 +106,14 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 <p>This is the start-of-execution for the MPX executable. </p>
-<div class="fragment"><pre class="fragment">                                  {
-
-        sys_init( MODULE_R1 );  <span class="comment">/* System-specific initialization.              */</span>
-        init_commands();        <span class="comment">/* Initialization for MPX user commands.        */</span>
-        <a class="code" href="mpx__sh_8c.html#ab47955aa8408d155482d8e48f40c6fc4">mpx_shell</a>();            <span class="comment">/* Execute the command-handler loop.            */</span>
-
+<div class="fragment"><pre class="fragment">{
+        sys_init( MODULE_R1 );  <span class="comment">/* System-specific initialization.       */</span>
+        init_commands();        <span class="comment">/* Initialization for MPX user commands. */</span>
+        <a class="code" href="mpx__sh_8c.html#ab47955aa8408d155482d8e48f40c6fc4">mpx_shell</a>();            <span class="comment">/* Execute the command-handler loop.     */</span>
 
         <span class="comment">/* mpx_shell() should never return, so if we get here, then</span>
 <span class="comment">         * we should exit with error status (but don&#39;t actually...). */</span>
-        printf(<span class="stringliteral">&quot;FATAL ERROR: mpx_shell() returned! That should never happen...\n&quot;</span>);
+        printf(<span class="stringliteral">&quot;FATAL ERROR: mpx_shell() returned! That shouldn&#39;t happen...\n&quot;</span>);
         sys_exit();     <span class="comment">/* Terminate, after doing MPX-specific cleanup. */</span>
 }
 </pre></div>
@@ -126,7 +124,7 @@ Functions</h2></td></tr>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="mpx_8c.html">mpx.c</a>      </li>
-      <li class="footer">Generated on Sun Feb 27 2011 for "Paul Prince's MPX" by&#160;
+      <li class="footer">Generated on Sun Feb 27 2011 for Paul Prince's MPX by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
