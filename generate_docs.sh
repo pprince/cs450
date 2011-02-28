@@ -11,6 +11,6 @@ rm -rf doc/programmer_manual/html
 doxygen doxygen_config
 cd doc/programmer_manual/latex
 make
-mv refman.pdf ../
+mv refman.pdf ../programmer_manual.pdf
 cd ../
 rm -rf latex
