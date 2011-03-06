@@ -336,7 +336,7 @@ void mpxcmd_ps ( int argc, char *argv[] )
 	for ( i=0; i<4; i++ ){
 		iter_node = queues[i]->head;
 		while ( iter_node != NULL ) {
-			printf("%16s %4d",
+			printf("%16s %4d\n",
 				iter_node->pcb->name,
 				iter_node->pcb->priority
 			);
