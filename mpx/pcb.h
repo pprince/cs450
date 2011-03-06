@@ -72,6 +72,15 @@ typedef struct {
 } pcb_t;
 
 
+/*! Enum constants for process sort order (i.e., queue insertion order.) */
+typedef enum {
+
+	FIFO,
+	PRIORITY
+
+} pcb_queue_sort_order_t;
+
+
 /* PCB queue node; points to a single PCB that is associated with this node. */
 typedef struct pcb_queue_node {
 
@@ -99,6 +108,9 @@ typedef struct {
 	/*! Number of elements in the queue. */
 	unsigned int		length;
 
+	/*! Specifies how elements in this queue are sorted at insert-time. */
+	pcb_queue_sort_order_t	sort_order;
+
 } pcb_queue_t;
 
 
@@ -111,5 +123,7 @@ typedef struct {
 void init_pcb_queues ( void );
 pcb_t* setup_pcb ( char *name, int priority, process_class_t class );
 pcb_t* find_pcb ( char *name );
+pcb_queue_t* insert_pcb ( pcb_t *pcb );
+
 
 #endif

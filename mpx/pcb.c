@@ -23,18 +23,22 @@ void init_pcb_queues(void)
 	queue_ready.head		= NULL;
 	queue_ready.tail		= NULL;
 	queue_ready.length		= 0;
+	queue_ready.sort_order		= PRIORITY;
 
 	queue_blocked.head		= NULL;
 	queue_blocked.tail		= NULL;
 	queue_blocked.length		= 0;
+	queue_blocked.sort_order	= FIFO;
 
 	queue_susp_ready.head		= NULL;
 	queue_susp_ready.tail		= NULL;
 	queue_susp_ready.length		= 0;
+	queue_susp_ready.sort_order	= FIFO;
 
 	queue_susp_blocked.head		= NULL;
 	queue_susp_blocked.tail		= NULL;
 	queue_susp_blocked.length	= 0;
+	queue_susp_blocked.sort_order	= FIFO;
 }
 
 
@@ -70,6 +74,14 @@ pcb_t* allocate_pcb (void)
 
 
 	return new_pcb;
+}
+
+
+/*! De-allocates the memory that was used for a PCB. */
+void free_pcb (pcb_t *pcb)
+{
+	sys_free_mem(pcb->stack_base);
+	sys_free_mem(pcb);
 }
 
 
@@ -159,6 +171,7 @@ pcb_t* find_pcb_in_queue(
 		if ( strcmp( this_queue_node->pcb->name, name) == 0 ) {
 			return this_queue_node->pcb;
 		}
+		this_queue_node = this_queue_node->next;
 	}
 
 	/* If we get here, we didn't find the process. */
@@ -202,4 +215,111 @@ pcb_t* find_pcb(
 
 	/* If we get here, the process was not found. */
 	return NULL;
+}
+
+
+/*! Inserts a PCB into the appropriate queue.
+ *
+ * Inspects the PCB's state member to determine which queue to insert into.
+ *
+ * Inspects the queue's sort_order member to determine whether to insert in
+ * order of priority, or to simply insert the PCB at the end of of the queue.
+ */
+pcb_queue_t* insert_pcb (
+	/*! Pointer to the PCB to be enqueued. */
+	pcb_t *pcb
+)
+{
+	/* Pointer to the queue we will insert into. */
+	pcb_queue_t		*queue;
+	/* Pointer to the new queue node descriptor we must make. */
+	pcb_queue_node_t	*new_queue_node;
+	/* For use in loops that iterating through the queue. */
+	pcb_queue_node_t	*iter_node;
+
+	/* Validate argument */
+	if (pcb == NULL) {
+		/* PCB to insert cannot be null... come on :) */
+		return NULL;
+	}
+
+	/* Determine which queue we will insert this PCB into. */
+	switch (pcb->state) {
+		case READY:
+			queue = &queue_ready;
+		break;
+		case BLOCKED:
+			queue = &queue_blocked;
+		break;
+		case SUSP_READY:
+			queue = &queue_susp_ready;
+		break;
+		case SUSP_BLOCKED:
+			queue = &queue_susp_blocked;
+		break;
+		default:
+			/* Unexpected value for PCB state (maybe Running?) */
+			return NULL;
+		break;
+	}
+
+	/* Allocate the new queue descriptor. */
+	new_queue_node =
+		(pcb_queue_node_t *)sys_alloc_mem(sizeof(pcb_queue_node_t));
+	if ( new_queue_node == NULL ){
+		/* Error allocating memory. */
+		return NULL;
+	}
+
+
+	/* Do the insert ... */
+	/* ----------------- */
+	
+	new_queue_node->pcb = pcb;
+
+	/* Case one: queue is empty. */
+	if ( queue->length == 0 ){
+		new_queue_node->next	= NULL;
+		new_queue_node->prev	= NULL;
+		queue->head		= new_queue_node;
+		queue->tail		= new_queue_node;
+		queue->length		= 1;
+		return queue;
+	}
+
+	/* Case two: only need to insert at end. */
+	if ( queue->sort_order == FIFO ){
+		new_queue_node->next	= NULL;
+		new_queue_node->prev	= queue->tail;
+		queue->tail->next	= new_queue_node;
+		queue->tail		= new_queue_node;
+		queue->length++;
+		return queue;
+	}
+
+	/* The hard case: insert in priority-order. */
+	iter_node = queue->head;
+	while (iter_node != NULL) {
+		if ( iter_node->pcb->priority < pcb->priority ){
+			/* Insert before iter_node */
+			new_queue_node->prev = iter_node->prev;
+			iter_node->prev = new_queue_node;
+			new_queue_node->next = iter_node;
+			if ( queue->head == iter_node ){
+				queue->head = new_queue_node;
+			}
+			queue->length++;
+			return queue;
+		}
+	}
+
+	/* If we got this far, we need to do an insert-at-the-end. */
+
+	/*! @todo Duplication of insert-at-end code is nasty! */
+	new_queue_node->next	= NULL;
+	new_queue_node->prev	= queue->tail;
+	queue->tail->next	= new_queue_node;
+	queue->tail		= new_queue_node;
+	queue->length++;
+	return queue;
 }
