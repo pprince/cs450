@@ -292,14 +292,9 @@ pcb_queue_t* insert_pcb (
 		return queue;
 	}
 
-	/* Case two: only need to insert at end. */
+	/* Case two: FIFO queue; we only need to insert at end. */
 	if ( queue->sort_order == FIFO ){
-		new_queue_node->next	= NULL;
-		new_queue_node->prev	= queue->tail;
-		queue->tail->next	= new_queue_node;
-		queue->tail		= new_queue_node;
-		queue->length++;
-		return queue;
+		goto INSERT_AT_END;
 	}
 
 	/* The hard case: insert in priority-order. */
@@ -319,14 +314,15 @@ pcb_queue_t* insert_pcb (
 		}
 		iter_node = iter_node->next;
 	}
-
 	/* If we got this far, we need to do an insert-at-the-end. */
 
-	/*! @todo Duplication of insert-at-end code is nasty! */
-	new_queue_node->next	= NULL;
-	new_queue_node->prev	= queue->tail;
-	queue->tail->next	= new_queue_node;
-	queue->tail		= new_queue_node;
-	queue->length++;
-	return queue;
+
+	INSERT_AT_END:
+		new_queue_node->next	= NULL;
+		new_queue_node->prev	= queue->tail;
+		queue->tail->next	= new_queue_node;
+		queue->tail		= new_queue_node;
+		queue->length++;
+		return queue;
 }
+

@@ -399,6 +399,7 @@ void mpxcmd_create_pcb ( int argc, char *argv[] )
 
 	if ( new_pcb == NULL ){
 		printf("ERROR: Failure creating process.\n");
+		return;
 	}
 
 	new_pcb_dest_queue = insert_pcb( new_pcb );
@@ -406,6 +407,8 @@ void mpxcmd_create_pcb ( int argc, char *argv[] )
 	if ( new_pcb_dest_queue == NULL ){
 		printf("ERROR: Failure enqueuing new process.\n");
 	}
+
+	printf("Success: Process created.\n");
 }
 
 
