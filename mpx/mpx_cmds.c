@@ -340,6 +340,7 @@ void mpxcmd_ps ( int argc, char *argv[] )
 				iter_node->pcb->name,
 				iter_node->pcb->priority
 			);
+			iter_node = iter_node->next;
 		}
 	}
 }
