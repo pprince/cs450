@@ -14,6 +14,7 @@
 #include "mpx_cmds.h"
 #include "mpx_supt.h"
 #include "mpx_util.h"
+#include "pcb.h"
 #include <string.h>
 
 
@@ -301,11 +302,87 @@ void mpxcmd_ls( int argc, char *argv[] ){
 }
 
 
+/*! Implements the <tt>suspend</tt> shell command.
+ */
+void mpxcmd_suspend ( int argc, char *argv[] )
+{
+}
+
+
+/*! Implements the <tt>resume</tt> shell command.
+ *
+ */
+void mpxcmd_resume ( int argc, char *argv[] )
+{
+}
+
+
+/*! Implements the <tt>renice</tt> shell command.
+ *
+ */
+void mpxcmd_renice ( int argc, char *argv[] )
+{
+}
+
+
+/*! Implements the <tt>ps</tt> shell command.
+ *
+ */
+void mpxcmd_ps ( int argc, char *argv[] )
+{
+}
+
+
+/*! Implements the <tt>create_pcb</tt> shell command.
+ *
+ * \attention This TEMPORARY command will be replaced later. */
+void mpxcmd_create_pcb ( int argc, char *argv[] )
+{
+}
+
+
+/*! Implements the <tt>delete_pcb</tt> shell command.
+ *
+ * \attention This TEMPORARY command will be replaced later. */
+void mpxcmd_delete_pcb ( int argc, char *argv[] )
+{
+}
+
+
+/*! Implements the <tt>block</tt> shell command.
+ *
+ * \attention This TEMPORARY command will be replaced later. */
+void mpxcmd_block ( int argc, char *argv[] )
+{
+}
+
+
+/*! Implements the <tt>unblock</tt> shell command.
+ *
+ * \attention This TEMPORARY command will be replaced later. */
+void mpxcmd_unblock ( int argc, char *argv[] )
+{
+}
+
+
 void init_commands(void) {
+	/* R1 commands */
 	add_command("commands", mpxcmd_commands);
 	add_command("date", mpxcmd_date);
 	add_command("exit", mpxcmd_exit);
 	add_command("help", mpxcmd_help);
 	add_command("ls", mpxcmd_ls);
 	add_command("version", mpxcmd_version);
+
+	/* R2 commands */
+	add_command("suspend", mpxcmd_suspend);
+	add_command("resume", mpxcmd_resume);
+	add_command("renice", mpxcmd_renice);
+	add_command("ps", mpxcmd_ps);
+
+	/* R2 Tempoary commands */
+	add_command("create_pcb", mpxcmd_create_pcb);
+	add_command("delete_pcb", mpxcmd_delete_pcb);
+	add_command("block", mpxcmd_block);
+	add_command("unblock", mpxcmd_unblock);
 }
