@@ -353,9 +353,9 @@ void mpxcmd_create_pcb ( int argc, char *argv[] )
 		return;
 	}
 
-	int priority = atoi(argv[3]);
+	new_pcb_priority = atoi(argv[3]);
 
-	if ( priority < -127 || priority > 128 ){
+	if ( new_pcb_priority < -127 || new_pcb_priority > 128 ){
 		printf("ERROR: Invalid priority specified.\n");
 		printf("Priority must be between -127 and 128 (inclusive).\n");
 		return;
