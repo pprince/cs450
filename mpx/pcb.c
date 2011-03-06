@@ -316,6 +316,7 @@ pcb_queue_t* insert_pcb (
 			queue->length++;
 			return queue;
 		}
+		iter_node = iter_node->next;
 	}
 
 	/* If we got this far, we need to do an insert-at-the-end. */
