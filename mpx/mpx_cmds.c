@@ -367,7 +367,7 @@ void mpxcmd_unblock ( int argc, char *argv[] )
 
 void init_commands(void) {
 	/* R1 commands */
-	add_command("commands", mpxcmd_commands);
+	/* add_command("commands", mpxcmd_commands); */
 	add_command("date", mpxcmd_date);
 	add_command("exit", mpxcmd_exit);
 	add_command("help", mpxcmd_help);
