@@ -114,6 +114,9 @@ typedef struct {
 } pcb_queue_t;
 
 
+pcb_queue_t   *queues[4];
+
+
 /* FUNCTIONS
  * --
  *  These are documented in the .c file.

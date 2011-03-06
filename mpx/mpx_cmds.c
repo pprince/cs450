@@ -330,6 +330,18 @@ void mpxcmd_renice ( int argc, char *argv[] )
  */
 void mpxcmd_ps ( int argc, char *argv[] )
 {
+	int i;
+	pcb_queue_node_t *iter_node;
+
+	for ( i=0; i<4; i++ ){
+		iter_node = queues[i]->head;
+		while ( iter_node != NULL ) {
+			printf("%16s %4d",
+				iter_node->pcb->name,
+				iter_node->pcb->priority
+			);
+		}
+	}
 }
 
 

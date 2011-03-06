@@ -20,21 +20,25 @@ static pcb_queue_t	queue_susp_blocked;
 /*! Must be called before using any other PCB or queue functions. */
 void init_pcb_queues(void)
 {
+	queues[0] = &queue_ready;
 	queue_ready.head		= NULL;
 	queue_ready.tail		= NULL;
 	queue_ready.length		= 0;
 	queue_ready.sort_order		= PRIORITY;
 
+	queues[1] = &queue_blocked;
 	queue_blocked.head		= NULL;
 	queue_blocked.tail		= NULL;
 	queue_blocked.length		= 0;
 	queue_blocked.sort_order	= FIFO;
 
+	queues[2] = &queue_susp_ready;
 	queue_susp_ready.head		= NULL;
 	queue_susp_ready.tail		= NULL;
 	queue_susp_ready.length		= 0;
 	queue_susp_ready.sort_order	= FIFO;
 
+	queues[3] = &queue_susp_blocked;
 	queue_susp_blocked.head		= NULL;
 	queue_susp_blocked.tail		= NULL;
 	queue_susp_blocked.length	= 0;
