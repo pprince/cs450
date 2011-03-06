@@ -9,14 +9,20 @@ var NAVTREE =
     [ "Data Structures", "annotated.html", [
       [ "date_rec", "structdate__rec.html", null ],
       [ "mpx_command", "structmpx__command.html", null ],
-      [ "params", "structparams.html", null ]
+      [ "params", "structparams.html", null ],
+      [ "pcb_queue_node", "structpcb__queue__node.html", null ],
+      [ "pcb_queue_t", "structpcb__queue__t.html", null ],
+      [ "pcb_t", "structpcb__t.html", null ]
     ] ],
     [ "Data Structure Index", "classes.html", null ],
+    [ "Data Fields", "functions.html", null ],
     [ "File List", "files.html", [
       [ "mpx/mpx.c", "mpx_8c.html", null ],
       [ "mpx/mpx_cmds.c", "mpx__cmds_8c.html", null ],
       [ "mpx/mpx_sh.c", "mpx__sh_8c.html", null ],
-      [ "mpx/mpx_util.c", "mpx__util_8c.html", null ]
+      [ "mpx/mpx_util.c", "mpx__util_8c.html", null ],
+      [ "mpx/pcb.c", "pcb_8c.html", null ],
+      [ "mpx/pcb.h", "pcb_8h.html", null ]
     ] ],
     [ "Globals", "globals.html", null ]
   ] ]

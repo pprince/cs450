@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Paul Prince&#39;s MPX: params Struct Reference</title>
+<title>Paul Prince&#39;s MPX: Data Fields</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -40,7 +40,13 @@ $(document).ready(initResizable);
     <ul class="tablist">
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+      <li class="current"><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow3" class="tabs2">
+    <ul class="tablist">
+      <li class="current"><a href="functions.html"><span>All</span></a></li>
+      <li><a href="functions_vars.html"><span>Variables</span></a></li>
     </ul>
   </div>
 </div>
@@ -54,36 +60,61 @@ $(document).ready(initResizable);
   </div>
 </div>
 <script type="text/javascript">
-  initNavTree('structparams.html','');
+  initNavTree('functions.html','');
 </script>
 <div id="doc-content">
-<div class="header">
-  <div class="summary">
-<a href="#pub-attribs">Data Fields</a>  </div>
-  <div class="headertitle">
-<h1>params Struct Reference</h1>  </div>
-</div>
 <div class="contents">
-<!-- doxytag: class="params" --><table class="memberdecls">
-<tr><td colspan="2"><h2><a name="pub-attribs"></a>
-Data Fields</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab3dee384d0abe30d9ff31e204430241d"></a><!-- doxytag: member="params::op_code" ref="ab3dee384d0abe30d9ff31e204430241d" args="" -->
-int&#160;</td><td class="memItemRight" valign="bottom"><b>op_code</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="accfd0301c469314772cc651ec198d492"></a><!-- doxytag: member="params::device_id" ref="accfd0301c469314772cc651ec198d492" args="" -->
-int&#160;</td><td class="memItemRight" valign="bottom"><b>device_id</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac6777c7d7b43f9dbfea30af51f0533b9"></a><!-- doxytag: member="params::buf_p" ref="ac6777c7d7b43f9dbfea30af51f0533b9" args="" -->
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>buf_p</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ac0297f930bfecab5de87b3f79113df"></a><!-- doxytag: member="params::count_p" ref="a3ac0297f930bfecab5de87b3f79113df" args="" -->
-int *&#160;</td><td class="memItemRight" valign="bottom"><b>count_p</b></td></tr>
-</table>
-<hr/>The documentation for this struct was generated from the following file:<ul>
-<li>mpx/mpx_supt.c</li>
+<div class="textblock">Here is a list of all documented struct and union fields with links to the struct/union documentation for each field:</div><ul>
+<li>class
+: <a class="el" href="structpcb__t.html#a4cc07cc4043cc2503c86a0b65fc4dca1">pcb_t</a>
+</li>
+<li>exec_address
+: <a class="el" href="structpcb__t.html#a62abe4c6bc8637160a5b8863b14d021e">pcb_t</a>
+</li>
+<li>head
+: <a class="el" href="structpcb__queue__t.html#a7c75f07624d866015c2e689e4b114c18">pcb_queue_t</a>
+</li>
+<li>length
+: <a class="el" href="structpcb__queue__t.html#ac8d42bcd4a44e078047ccd7291059238">pcb_queue_t</a>
+</li>
+<li>load_address
+: <a class="el" href="structpcb__t.html#a31ac45c6998d4000257128dab15d3fff">pcb_t</a>
+</li>
+<li>memory_size
+: <a class="el" href="structpcb__t.html#a62a3c173282498307bcf4b1fdc3afed0">pcb_t</a>
+</li>
+<li>name
+: <a class="el" href="structpcb__t.html#afad75c5ea4d1915d909dbad676371f58">pcb_t</a>
+</li>
+<li>next
+: <a class="el" href="structpcb__queue__node.html#a4c17fdaca092efd3da5baffe128278dd">pcb_queue_node</a>
+</li>
+<li>pcb
+: <a class="el" href="structpcb__queue__node.html#a72bbd545b58e53fe37e077ffe6b2aa3b">pcb_queue_node</a>
+</li>
+<li>prev
+: <a class="el" href="structpcb__queue__node.html#a3229440fab109be97a790e9738668c0c">pcb_queue_node</a>
+</li>
+<li>priority
+: <a class="el" href="structpcb__t.html#acec9ce2df15222151ad66fcb1d74eb9f">pcb_t</a>
+</li>
+<li>stack_base
+: <a class="el" href="structpcb__t.html#aee07beae2c8ac4276156bef88ba0183d">pcb_t</a>
+</li>
+<li>stack_top
+: <a class="el" href="structpcb__t.html#afc93e68f5bb6f00d1c6ce79c9d102ffb">pcb_t</a>
+</li>
+<li>state
+: <a class="el" href="structpcb__t.html#a4d5915ca3699801884f572d0ff51fd24">pcb_t</a>
+</li>
+<li>tail
+: <a class="el" href="structpcb__queue__t.html#ac5054873965f12bcf1b00894023945a7">pcb_queue_t</a>
+</li>
 </ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
-      <li class="navelem"><a class="el" href="structparams.html">params</a>      </li>
       <li class="footer">Generated on Sun Mar 6 2011 for Paul Prince's MPX by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>

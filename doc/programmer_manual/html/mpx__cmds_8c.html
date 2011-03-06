@@ -101,7 +101,7 @@ Variables</h2></td></tr>
 <dl class="author"><dt><b>Author:</b></dt><dd>Paul Prince &lt;<a href="mailto:paul@littlebluetech.com">paul@littlebluetech.com</a>&gt; </dd></dl>
 <dl class="date"><dt><b>Date:</b></dt><dd>2011</dd></dl>
 <p>This file implements each of the user commands for MPX.</p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>We should typedef structs (particularly struct <a class="el" href="structmpx__command.html">mpx_command</a>). </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>We should typedef structs (particularly struct <a class="el" href="structmpx__command.html" title="Node type for a singly-linked list of MPX commands.">mpx_command</a>). </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
 <a class="anchor" id="a3b0720d8567fd96961dad86e730ef6c4"></a><!-- doxytag: member="mpx_cmds.c::add_command" ref="a3b0720d8567fd96961dad86e730ef6c4" args="(char *name, void(*function)(int argc, char *argv[]))" -->
 <div class="memitem">
@@ -141,11 +141,11 @@ Variables</h2></td></tr>
 </dl>
 <div class="fragment"><pre class="fragment">{
         <span class="comment">/* Temporary variable for iterating through the list of commands. */</span>
-        <span class="keyword">struct </span><a class="code" href="structmpx__command.html">mpx_command</a> *this_command;
+        <span class="keyword">struct </span><a class="code" href="structmpx__command.html" title="Node type for a singly-linked list of MPX commands.">mpx_command</a> *this_command;
 
         <span class="comment">/* Allocate space for the new command structure. */</span>
-        <span class="keyword">struct </span><a class="code" href="structmpx__command.html">mpx_command</a> *new_command =
-                (<span class="keyword">struct </span><a class="code" href="structmpx__command.html">mpx_command</a> *)sys_alloc_mem(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code" href="structmpx__command.html">mpx_command</a>));
+        <span class="keyword">struct </span><a class="code" href="structmpx__command.html" title="Node type for a singly-linked list of MPX commands.">mpx_command</a> *new_command =
+                (<span class="keyword">struct </span><a class="code" href="structmpx__command.html" title="Node type for a singly-linked list of MPX commands.">mpx_command</a> *)sys_alloc_mem(<span class="keyword">sizeof</span>(<span class="keyword">struct</span> <a class="code" href="structmpx__command.html" title="Node type for a singly-linked list of MPX commands.">mpx_command</a>));
         new_command-&gt;name = (<span class="keywordtype">char</span> *)sys_alloc_mem(MAX_ARG_LEN+1);
         <span class="comment">/* Initialize the structure. */</span>
         strcpy( new_command-&gt;name, name );
@@ -204,11 +204,11 @@ Variables</h2></td></tr>
 <div class="fragment"><pre class="fragment">                                                            {
 
         <span class="comment">/* Temporary variable for iterating through the list of commands. */</span>
-        <span class="keyword">struct </span><a class="code" href="structmpx__command.html">mpx_command</a> *this_command = <a class="code" href="mpx__cmds_8c.html#a955d864404841b62305123293d0b1a4b" title="A linked-list of MPX shell commands.">list_head</a>;
+        <span class="keyword">struct </span><a class="code" href="structmpx__command.html" title="Node type for a singly-linked list of MPX commands.">mpx_command</a> *this_command = <a class="code" href="mpx__cmds_8c.html#a955d864404841b62305123293d0b1a4b" title="A linked-list of MPX shell commands.">list_head</a>;
 
         <span class="comment">/* Temporary variables to keep track of matching command names. */</span>
         <span class="keywordtype">int</span> num_matches = 0;
-        <span class="keyword">struct </span><a class="code" href="structmpx__command.html">mpx_command</a> *first_match;
+        <span class="keyword">struct </span><a class="code" href="structmpx__command.html" title="Node type for a singly-linked list of MPX commands.">mpx_command</a> *first_match;
 
         <span class="comment">/* Iterate through the linked list of commands, */</span>
         <span class="keywordflow">while</span>( this_command != NULL ) {
@@ -340,7 +340,7 @@ Variables</h2></td></tr>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="mpx__cmds_8c.html">mpx_cmds.c</a>      </li>
-      <li class="footer">Generated on Mon Feb 28 2011 for Paul Prince's MPX by&#160;
+      <li class="footer">Generated on Sun Mar 6 2011 for Paul Prince's MPX by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<title>Paul Prince&#39;s MPX: Data Structures</title>
+<title>Paul Prince&#39;s MPX: Data Fields - Variables</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
@@ -38,9 +38,15 @@ $(document).ready(initResizable);
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="classes.html"><span>Data&#160;Structure&#160;Index</span></a></li>
-      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+      <li class="current"><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+    </ul>
+  </div>
+  <div id="navrow3" class="tabs2">
+    <ul class="tablist">
+      <li><a href="functions.html"><span>All</span></a></li>
+      <li class="current"><a href="functions_vars.html"><span>Variables</span></a></li>
     </ul>
   </div>
 </div>
@@ -54,22 +60,57 @@ $(document).ready(initResizable);
   </div>
 </div>
 <script type="text/javascript">
-  initNavTree('annotated.html','');
+  initNavTree('functions.html','');
 </script>
 <div id="doc-content">
-<div class="header">
-  <div class="headertitle">
-<h1>Data Structures</h1>  </div>
-</div>
 <div class="contents">
-<div class="textblock">Here are the data structures with brief descriptions:</div><table>
-  <tr><td class="indexkey"><a class="el" href="structdate__rec.html">date_rec</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="structmpx__command.html">mpx_command</a></td><td class="indexvalue">Node type for a singly-linked list of MPX commands </td></tr>
-  <tr><td class="indexkey"><a class="el" href="structparams.html">params</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="structpcb__queue__node.html">pcb_queue_node</a></td><td class="indexvalue"></td></tr>
-  <tr><td class="indexkey"><a class="el" href="structpcb__queue__t.html">pcb_queue_t</a></td><td class="indexvalue">PCB queue; represents a queue of processes </td></tr>
-  <tr><td class="indexkey"><a class="el" href="structpcb__t.html">pcb_t</a></td><td class="indexvalue">Process control block structure </td></tr>
-</table>
+&#160;<ul>
+<li>class
+: <a class="el" href="structpcb__t.html#a4cc07cc4043cc2503c86a0b65fc4dca1">pcb_t</a>
+</li>
+<li>exec_address
+: <a class="el" href="structpcb__t.html#a62abe4c6bc8637160a5b8863b14d021e">pcb_t</a>
+</li>
+<li>head
+: <a class="el" href="structpcb__queue__t.html#a7c75f07624d866015c2e689e4b114c18">pcb_queue_t</a>
+</li>
+<li>length
+: <a class="el" href="structpcb__queue__t.html#ac8d42bcd4a44e078047ccd7291059238">pcb_queue_t</a>
+</li>
+<li>load_address
+: <a class="el" href="structpcb__t.html#a31ac45c6998d4000257128dab15d3fff">pcb_t</a>
+</li>
+<li>memory_size
+: <a class="el" href="structpcb__t.html#a62a3c173282498307bcf4b1fdc3afed0">pcb_t</a>
+</li>
+<li>name
+: <a class="el" href="structpcb__t.html#afad75c5ea4d1915d909dbad676371f58">pcb_t</a>
+</li>
+<li>next
+: <a class="el" href="structpcb__queue__node.html#a4c17fdaca092efd3da5baffe128278dd">pcb_queue_node</a>
+</li>
+<li>pcb
+: <a class="el" href="structpcb__queue__node.html#a72bbd545b58e53fe37e077ffe6b2aa3b">pcb_queue_node</a>
+</li>
+<li>prev
+: <a class="el" href="structpcb__queue__node.html#a3229440fab109be97a790e9738668c0c">pcb_queue_node</a>
+</li>
+<li>priority
+: <a class="el" href="structpcb__t.html#acec9ce2df15222151ad66fcb1d74eb9f">pcb_t</a>
+</li>
+<li>stack_base
+: <a class="el" href="structpcb__t.html#aee07beae2c8ac4276156bef88ba0183d">pcb_t</a>
+</li>
+<li>stack_top
+: <a class="el" href="structpcb__t.html#afc93e68f5bb6f00d1c6ce79c9d102ffb">pcb_t</a>
+</li>
+<li>state
+: <a class="el" href="structpcb__t.html#a4d5915ca3699801884f572d0ff51fd24">pcb_t</a>
+</li>
+<li>tail
+: <a class="el" href="structpcb__queue__t.html#ac5054873965f12bcf1b00894023945a7">pcb_queue_t</a>
+</li>
+</ul>
 </div>
 </div>
   <div id="nav-path" class="navpath">
