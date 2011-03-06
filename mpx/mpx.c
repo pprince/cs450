@@ -49,7 +49,7 @@
 #include "mpx_util.h"
 #include "mpx_sh.h"
 #include "mpx_cmds.h"
-#include "mpx_pcb.h"
+#include "pcb.h"
 
 
 /*! This is the start-of-execution for the MPX executable. */
@@ -58,7 +58,7 @@ void main(int argc, char *argv[])
 	sys_init( MODULE_R1 );	/* System-specific initialization.       */
 
 	init_commands();	/* Initialization for MPX user commands. */
-	init_pcb_queues();	/* Initialization for PCB queues.	 */s
+	init_pcb_queues();	/* Initialization for PCB queues.	 */
 
 	mpx_shell();		/* Execute the command-handler loop.     */
 
