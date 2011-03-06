@@ -114,7 +114,7 @@ typedef struct {
 } pcb_queue_t;
 
 
-pcb_queue_t   *queues[4];
+extern pcb_queue_t   *queues[];
 
 
 /* FUNCTIONS

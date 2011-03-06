@@ -1,6 +1,8 @@
 #ifndef MPX_CMDS_H_GUARD
 #define MPX_CMDS_H_GUARD
 
+#include "pcb.h"
+extern pcb_queue_t *queues[];
 
 /*! Node type for a singly-linked list of MPX commands. */
 struct mpx_command {
