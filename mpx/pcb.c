@@ -308,6 +308,7 @@ pcb_queue_t* insert_pcb (
 		if ( iter_node->pcb->priority < pcb->priority ){
 			/* Insert before iter_node */
 			new_queue_node->prev = iter_node->prev;
+			iter_node->prev->next = new_queue_node;
 			iter_node->prev = new_queue_node;
 			new_queue_node->next = iter_node;
 			if ( queue->head == iter_node ){
