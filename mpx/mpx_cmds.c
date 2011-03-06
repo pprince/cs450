@@ -343,6 +343,18 @@ void mpxcmd_ps ( int argc, char *argv[] )
 			iter_node = iter_node->next;
 		}
 	}
+
+	printf("\nReversed:\n");
+	for ( i=3; i>=0; i-- ){
+		iter_node = queues[i]->tail;
+		while ( iter_node != NULL ) {
+			printf("%16s %4d\n",
+				iter_node->pcb->name,
+				iter_node->pcb->priority
+			);
+			iter_node = iter_node->prev;
+		}
+	}
 }
 
 
