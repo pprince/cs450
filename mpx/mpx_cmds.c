@@ -338,6 +338,49 @@ void mpxcmd_ps ( int argc, char *argv[] )
  * \attention This TEMPORARY command will be replaced later. */
 void mpxcmd_create_pcb ( int argc, char *argv[] )
 {
+	pcb_t		*new_pcb;
+	int		new_pcb_priority;
+	process_class_t	new_pcb_class;
+	pcb_queue_t	*new_pcb_dest_queue;
+
+	if ( argc != 4 ){
+		printf("ERROR: Wrong number of arguments to create_pcb.\n");
+		return;
+	}
+
+	if ( strlen(argv[1]) > MAX_ARG_LEN ) {
+		printf("ERROR: Specified process name is too long.\n");
+		return;
+	}
+
+	int priority = atoi(argv[3]);
+
+	if ( priority < -127 || priority > 128 ){
+		printf("ERROR: Invalid priority specified.\n");
+		printf("Priority must be between -127 and 128 (inclusive).\n");
+		return;
+	}
+	
+	if ( strlen(argv[2]) == 1 && argv[2][0] == 'A' ) {
+		new_pcb_class = APPLICATION;
+	} else if ( strlen(argv[2]) == 1 && argv[2][0] == 'S' ) {
+		new_pcb_class = SYSTEM;
+	} else {
+		printf("ERROR: Invalid process class specified.\n");
+		return;
+	}
+	
+	new_pcb = setup_pcb( argv[1], new_pcb_priority, new_pcb_class);
+
+	if ( new_pcb == NULL ){
+		printf("ERROR: Failure creating process.\n");
+	}
+
+	new_pcb_dest_queue = insert_pcb( new_pcb );
+
+	if ( new_pcb_dest_queue == NULL ){
+		printf("ERROR: Failure enqueuing new process.\n");
+	}
 }
 
 
