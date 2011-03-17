@@ -11,11 +11,12 @@
 #include "mpx_util.h"
 
 
-static pcb_queue_t	queue_ready;
-static pcb_queue_t	queue_blocked;
-static pcb_queue_t	queue_susp_ready;
-static pcb_queue_t	queue_susp_blocked;
-pcb_queue_t *queues[4];
+static	pcb_queue_t	queue_ready;
+static	pcb_queue_t	queue_blocked;
+static	pcb_queue_t	queue_susp_ready;
+static	pcb_queue_t	queue_susp_blocked;
+
+	pcb_queue_t	*queues[4];
 
 
 /*! Must be called before using any other PCB or queue functions. */
