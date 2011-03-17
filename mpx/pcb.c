@@ -50,7 +50,7 @@ void init_pcb_queues(void)
 
 /*! Allocates memory for a new PCB, but does not initialize it.
  *
- * This function will also allocate memory for the stack and initialize
+ * This function will also allocate memory for the PCB's stack, and initialize
  * the stack_top and stack_base members.
  *
  * @return	Returns a pointer to the new PCB, or NULL if an error occured.
@@ -91,7 +91,11 @@ void free_pcb (pcb_t *pcb)
 }
 
 
-/*! Creates a new PCB object and initializes its fields.
+/*! Creates, allocates, and initializes a new PCB object.
+ *
+ * This function creates a new PCB object (pcb_t), then calls allocate_pcb() to
+ * do the allocation step. It then initializes the PCB's various fields
+ * according to both default values and the parameters passed in.
  *
  * @return	Returns a pointer to the new PCB, or NULL if an error occured.
  */
@@ -206,6 +210,11 @@ pcb_t* find_pcb(
 	}
 
 	/* Search for the PCB.  If we find it, return it. */
+	/*!
+	 * @todo This really should be done a little cleaner, possibly
+	 * 	using a foreach() macro, like the one at:
+	 * 	http://stackoverflow.com/questions/400951/c-foreach-or-similar
+	 */
 	if ( found_pcb = find_pcb_in_queue( name, &queue_ready ) ) {
 		return found_pcb;
 	}
@@ -221,6 +230,26 @@ pcb_t* find_pcb(
 
 	/* If we get here, the process was not found. */
 	return NULL;
+}
+
+
+/*! Removes a PCB from its queue.
+ *
+ * Given a pointer to a valid and en-queued PCP, this function will remove
+ * that PCB from the queue that it is in.
+ *
+ * However, this function will \em not \em modify the state member of the PCB;
+ * the caller is responsible for doing that, if the PCB is to be re-enqueued
+ * rather than de-allocated.
+ *
+ * @return	Returns a pointer to the new PCB, or NULL if an error occured.
+ */
+pcb_queue_t* remove_pcb (
+	/*! Pointer to the PCB to be de-queued. */
+	pcb_t *pcb
+)
+{
+	
 }
 
 

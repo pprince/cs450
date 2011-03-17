@@ -114,7 +114,25 @@ typedef struct {
 } pcb_queue_t;
 
 
+/* MACROS *
+ * ------ */
+#define foreach_list_item( item, list ) \
+	for ( T * item = list->head; item != NULL; item = item->next )
+
+#define foreach_array_element( item, array ) \
+	for(int keep = 1, \
+		count = 0,\
+		size = sizeof (array) / sizeof *(array); \
+	keep && count != size; \
+	keep = !keep, count++) \
+	for(item = (array) + count; keep; keep = !keep)
+
+
+
+/* EXTERNS *
+ * ------- */
 extern pcb_queue_t   *queues[];
+
 
 
 /* FUNCTIONS
