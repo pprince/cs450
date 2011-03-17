@@ -116,7 +116,7 @@ typedef struct {
 
 /* MACROS *
  * ------ */
-#define foreach_list_item( item, list ) \
+#define foreach_listitem( item, list ) \
 	for ( T * item = list->head; item != NULL; item = item->next )
 
 #define foreach_array_element( item, array ) \

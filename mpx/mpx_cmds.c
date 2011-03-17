@@ -355,6 +355,18 @@ void mpxcmd_ps ( int argc, char *argv[] )
 			iter_node = iter_node->prev;
 		}
 	}
+
+
+	printf("\n\n**> TEST OF foreach_listitem():\n");
+
+	foreach_listitem( iter_node, queues[0] ){
+		printf("%16s %4d\n",
+			iter_node->pcb->name,
+			iter_node->pcb->priority
+		);
+	}
+		
+
 }
 
 
