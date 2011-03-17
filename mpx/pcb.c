@@ -303,8 +303,6 @@ pcb_queue_t* insert_pcb (
 	while (iter_node != NULL) {
 		if ( iter_node->pcb->priority < pcb->priority ){
 			/* Insert before iter_node */
-			/*! @todo New insertions should happen *behind* all
-			 * equal-priority process in the queue! */
 			new_queue_node->prev = iter_node->prev;
 			iter_node->prev->next = new_queue_node;
 			iter_node->prev = new_queue_node;
