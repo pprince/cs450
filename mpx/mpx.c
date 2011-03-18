@@ -55,12 +55,17 @@
 /*! This is the start-of-execution for the MPX executable. */
 void main(int argc, char *argv[])
 {
-	sys_init( MODULE_R1 );	/* System-specific initialization.       */
+	/* System-specific initialization, provided by support software. */
+	sys_init( MODULE_R2 );
 
-	init_commands();	/* Initialization for MPX user commands. */
-	init_pcb_queues();	/* Initialization for PCB queues.	 */
+	/* Initialization for MPX user commands. */
+	init_commands();
 
-	mpx_shell();		/* Execute the command-handler loop.     */
+	/* Initialization for PCB queues. */
+	init_pcb_queues();
+
+	/* Execute the command-handler loop. */
+	mpx_shell();
 
 	/* mpx_shell() should never return, so if we get here, then
 	 * we should exit with error status (but don't actually...). */

@@ -3,7 +3,7 @@
 
 
 /*! Defines the version of MPX. */
-#define MPX_VERSION		"R1 (2011-02-21)"
+#define MPX_VERSION		"R2 (2011-03-18)"
 
 /*! Defined the default directory for MPX executables. */
 #define MPX_DEFAULT_EXE_DIR	"./exe/"
