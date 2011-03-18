@@ -16,7 +16,13 @@ static	pcb_queue_t	queue_blocked;
 static	pcb_queue_t	queue_susp_ready;
 static	pcb_queue_t	queue_susp_blocked;
 
-	pcb_queue_t	*queues[4];
+
+/*! Extern variable that allows other files to directly access PCB queues.
+ *
+ * @todo  We really need to replace this with some various
+ * get_queue() type functions!
+ */
+pcb_queue_t	*queues[4];
 
 
 /*! Must be called before using any other PCB or queue functions. */
@@ -38,13 +44,50 @@ void init_pcb_queues(void)
 	queue_susp_ready.head		= NULL;
 	queue_susp_ready.tail		= NULL;
 	queue_susp_ready.length		= 0;
-	queue_susp_ready.sort_order	= FIFO;
+	queue_susp_ready.sort_order	= PRIORITY;
 
 	queues[3] = &queue_susp_blocked;
 	queue_susp_blocked.head		= NULL;
 	queue_susp_blocked.tail		= NULL;
 	queue_susp_blocked.length	= 0;
 	queue_susp_blocked.sort_order	= FIFO;
+}
+
+
+/*! References the PCB queue appropriate for processes of a given state.
+ *
+ * Note that RUNNING is <em>not</em> a valid value for passing as the \c state
+ * parameter, since running processes do not belong in <em>any</em> queue.
+ *
+ * @return	Returns either a pointer to a valid PCB queue that should hold
+ * 		processes of the given state, or NULL on error.
+ */
+pcb_queue_t* get_queue_by_state (
+	/* [in] One of the valid process states (except RUNNING). */
+	process_state_t state
+) {
+	switch (state) {
+		case READY:
+			return &queue_ready;
+		break;
+		case BLOCKED:
+			return &queue_blocked;
+		break;
+		case SUSP_READY:
+			return &queue_susp_ready;
+		break;
+		case SUSP_BLOCKED:
+			return &queue_susp_blocked;
+		break;
+		case RUNNING:
+			/* RUNNING processes don't go in *any* queue. */
+			return NULL;
+		break;
+		default:
+			/* Totally Unexpected value for process state. */
+			return NULL;
+		break;
+	}
 }
 
 
@@ -238,18 +281,79 @@ pcb_t* find_pcb(
  * Given a pointer to a valid and en-queued PCP, this function will remove
  * that PCB from the queue that it is in.
  *
- * However, this function will \em not \em modify the state member of the PCB;
+ * However, this function will <em>not</em> modify the state member of the PCB;
  * the caller is responsible for doing that, if the PCB is to be re-enqueued
  * rather than de-allocated.
  *
- * @return	Returns a pointer to the new PCB, or NULL if an error occured.
+ * @return
+ * 	Returns a pointer to the queue the PCB was removed from,
+ * 	or NULL if an error occurred.
  */
 pcb_queue_t* remove_pcb (
 	/*! Pointer to the PCB to be de-queued. */
 	pcb_t *pcb
 )
 {
-	
+	/* Loop index / iterator. */
+	pcb_queue_node_t* this_node;
+
+	/* Validate argument. */
+	if ( pcb == NULL ){
+		/* ERROR: Got NULL pointer for argument. */
+		return NULL;
+	}
+
+	/* Fetch the queue that we will be removing this process from. */
+	pcb_queue_t* queue = get_queue_by_state( pcb->state );
+
+	/* Validate queue. */
+	if ( queue == NULL ){
+		/* ERROR: PCB seems to have invalid state assigned... */
+		return NULL;
+	}
+
+	foreach_listitem( this_node, queue ){
+		if ( this_node->pcb == pcb ){
+
+			/* We've found our queue node.  Remove it:
+			 * --------------------------------------- */
+
+			/* Fix forward links and head: */
+			if ( queue->head == this_node ){
+				queue->head = this_node->next;
+			} else {
+				this_node->prev->next = this_node->next;
+			}
+
+			/* Fix backward links and tail: */
+			if ( queue->tail == this_node ){
+				queue->tail = this_node->prev;
+			} else {
+				this_node->next->prev = this_node->prev;
+			}
+
+			/* Adjust queue's node count: */
+			queue->length--;
+
+			/* And, de-allocate the queue descriptor (aka node):
+			 * (with check for error.) */
+			if ( sys_free_mem(this_node) != 0 ){
+				/* ERROR: failure freeing memory...
+				 *   Maybe we should just let this one slide,
+				 *   (as failure to free memory is not an
+				 *   immediately-fatal condition...),
+				 *   But for now, err on the side of caution. */
+				return NULL;
+			}
+
+			return queue;
+		}
+	}
+
+	/* If, at this point, this_node is NULL, it means we didn't
+	 * find the PCB in the queue where it should have been... so,
+	 * ERROR: PCB wasn't found in the queue where it was expected. */
+	return NULL;
 }
 
 
@@ -259,6 +363,10 @@ pcb_queue_t* remove_pcb (
  *
  * Inspects the queue's sort_order member to determine whether to insert in
  * order of priority, or to simply insert the PCB at the end of of the queue.
+ *
+ * @return
+ * 	Returns a pointer to the queue the PCB was inserted into,
+ * 	or NULL if an error occurred.
  */
 pcb_queue_t* insert_pcb (
 	/*! Pointer to the PCB to be enqueued. */

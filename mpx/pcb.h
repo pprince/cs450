@@ -204,10 +204,12 @@ extern pcb_queue_t   *queues[];
  * --
  */
 
-void init_pcb_queues ( void );
-pcb_t* setup_pcb ( char *name, int priority, process_class_t class );
-pcb_t* find_pcb ( char *name );
-pcb_queue_t* insert_pcb ( pcb_t *pcb );
+void		init_pcb_queues		( void );
+pcb_queue_t*	get_queue_by_state	( process_state_t state );
+pcb_t*		setup_pcb   ( char *name, int priority, process_class_t class );
+pcb_t*		find_pcb		( char *name );
+pcb_queue_t*	remove_pcb		( pcb_t *pcb );
+pcb_queue_t*	insert_pcb		( pcb_t *pcb );
 
 
 #endif
