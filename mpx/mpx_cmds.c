@@ -72,7 +72,8 @@ void add_command(
  *
  *  @attention	Produces output (via printf)!
  */
-void dispatch_command( char *name, int argc, char *argv[] ) {
+void dispatch_command( char *name, int argc, char *argv[] )
+{
 
 	/* Temporary variable for iterating through the list of commands. */
 	struct mpx_command *this_command = list_head;
@@ -84,25 +85,28 @@ void dispatch_command( char *name, int argc, char *argv[] ) {
 	/* Iterate through the linked list of commands, */
 	while( this_command != NULL ) {
 
-		/* Check to see if the given command is a valid abbrev. for the current command from the list */
+		/* Check to see if the given command is a valid abbrev. for the
+		 * current command from the list: */
 		if( strncmp( this_command->name, name, strlen(name) ) == 0 ) {
 			/* If so, keep track of how many matches thus far, */
 			num_matches++;
 			if (num_matches == 1) {
-				/* This is the first match in the list for the given command. */
+				/* This is the first match in the list for
+				 * the given command. */
 				first_match = this_command;
 			} else if (num_matches == 2) {
-				/* This is the first duplicate match in the list;
-				 * Print out the 'ambiguous command' header,
-				 * plus the first AND current ambiguous commands. */
+				/* This is the first duplicate match; print
+				 * out the 'ambiguous command' header, plus
+				 * the first AND current ambiguous commands. */
 				printf("Ambiguous command: %s\n", name);
 				printf("    Matches:\n");
 				printf("        %s\n", first_match->name);
 				printf("        %s\n", this_command->name);
 			} else {
 				/* This is a subsequent duplicate match;
-				 * by this time, the header etc. has already been printed,
-				 * so we only need to print out the current command name. */
+				 * by this time, the header etc. has already
+				 * been printed, so we only need to print out
+				 * the current command name. */
 				printf("        %s\n", this_command->name);
 			}
 		}
@@ -110,19 +114,20 @@ void dispatch_command( char *name, int argc, char *argv[] ) {
 		this_command = this_command->next;
 	}
 
-	/* If we got a command name that matches unambiguously, run that command. */
+	/* If we got a command name that matches unambiguously, run that cmd: */
 	if ( num_matches == 1 ){
 		first_match->function(argc, argv);
 	}
 	
-	/* Otherwise, if we got no matches at all, say so. */
+	/* Otherwise, if we got no matches at all, say so: */
 	if ( num_matches == 0 ){
 		printf("ERROR: Invalid command name.\n");
-		printf("Type \"commands\" to see a list of valid commands.\n");
+		printf("Type \"help\" to see a list of valid commands.\n");
 	}
 }
 
-void mpxcmd_commands( int argc, char *argv[] ) {
+void mpxcmd_commands( int argc, char *argv[] )
+{
 
 	/* Temporary variable for iterating through the list of commands. */
 	struct mpx_command *this_command = list_head;
@@ -140,47 +145,61 @@ void mpxcmd_commands( int argc, char *argv[] ) {
 }
 
 
-void mpxcmd_date( int argc, char *argv[] ) {
-	/*!< Temp. storage for the return value of sys_ functions. */
+void mpxcmd_date( int argc, char *argv[] )
+{
+	/* Temporary storage for the return value of sys_ functions. */
 	int retval;	
-	/*!< Structure to hold a date (day, month, and year).
-	     Will be used for both getting and setting the MPX system date. */
+
+	/* Structure to hold a date (day, month, and year). */
 	date_rec date;	
 
+	/* Called with no arguments, we should just print the date: */
 	if ( argc == 1 ){
 		sys_get_date(&date);
-		printf("Current MPX system date (yyyy-mm-dd): %04d-%02d-%02d\n", date.year, date.month, date.day);
+		printf("Current MPX system date (yyyy-mm-dd): %04d-%02d-%02d\n",
+				date.year, date.month, date.day);
 		return;
 	}
 
+	/* Called with three arguments, we need to try to set the date
+	 * from the values provided by the user. */
 	if ( argc == 4 ){
 
+		/* Convert string arguments to integer values: */
 		date.year  = atoi(argv[1]);
 		date.month = atoi(argv[2]);
 		date.day   = atoi(argv[3]);
 
+		/* Check that the user's input represents a valid date: */
 		if ( ! mpx_validate_date(date.year, date.month, date.day) ) {
-			printf("ERROR: Invalid date specified; MPX system date is unchanged.\n");
-			printf("       Valid dates are between 1900-01-01 and 2999-12-31, inclusive.\n");
+			/* Lines broken confusingly due to 80-column limit: */
+			printf("ERROR: Invalid date specified; ");
+			printf("MPX system date is unchanged.\n");
+			printf("       Valid dates are between 1900-01-01 ");
+			printf("and 2999-12-31, inclusive.\n");
 			return;
 		}
 
+		/* Attempt to set that date, catching errors: */
 		retval = sys_set_date(&date);
 		if ( retval != 0 ) {
 			printf("ERROR: sys_set_date() returned an error.\n");
 			return;
 		}
 
+		/* Success! */
 		printf("The MPX system date has been changed.\n");
 		return;
 	}
 
+	/* If we get to here, the user invoked the date command incorrectly. */
 	printf("ERROR: Wrong number of arguments to 'date'.\n");
 	printf("       Type 'help date' for usage information.\n");
 }
 
 
-void mpxcmd_exit( int argc, char *argv[] ) {
+void mpxcmd_exit( int argc, char *argv[] )
+{
 	char buf[21];
 	int buf_size=20;
 	int retval;
@@ -189,7 +208,8 @@ void mpxcmd_exit( int argc, char *argv[] ) {
 
 	retval = sys_req( READ, TERMINAL, buf, &buf_size );
 	if ( retval < 0 ) {
-		printf("ERROR: sys_req() threw error while trying to read from the terminal!\n");
+		printf("ERROR: sys_req() threw error while trying to read ");
+		printf("from the terminal!\n");
 		return;
 	}
 
@@ -210,14 +230,23 @@ void mpxcmd_exit( int argc, char *argv[] ) {
 }
 
 
-void mpxcmd_help( int argc, char *argv[] ) {
-	/* Must leave space for the path prefix, the command name, the filename suffix, and the \0. */ 
+void mpxcmd_help( int argc, char *argv[] )
+{
+
+	/* Buffer to hold the name of the Help File we will display.
+	 *   Note: we must leave space for the path prefix, the command name,
+	 *   the filename suffix, and the \0.	*/ 
 	char helpfile[MAX_ARG_LEN+1+7+4] = "./help/";
 
 	if ( argc == 1 ) {
 		mpxcmd_commands(argc, argv);
 		printf("\n");
-		printf("    For detailed help a specific command, type:  help <command>\n");
+		printf("    For detailed help a specific command, type:\n");
+		printf("\n");
+		printf("            help <command>\n");
+		printf("            --------------\n");
+		printf("\n");
+		printf("   at the MPX shell prompt.\n");
 		return;
 	}
 
@@ -238,12 +267,14 @@ void mpxcmd_help( int argc, char *argv[] ) {
 }
 
 
-void mpxcmd_version( int argc, char *argv[] ){
+void mpxcmd_version( int argc, char *argv[] )
+{
 	printf("MPX System Version: %s\n", MPX_VERSION);
 }
 
 
-void mpxcmd_ls( int argc, char *argv[] ){
+void mpxcmd_ls( int argc, char *argv[] )
+{
 	int	retval;
 	char	*dir;
 	int 	num_files;
@@ -264,7 +295,8 @@ void mpxcmd_ls( int argc, char *argv[] ){
 
 	retval = sys_open_dir( dir );
 	if ( retval != 0 ){
-		printf("ERROR: sys_open_dir() failed trying to open directory '%s'.\n", dir);
+		printf("ERROR: sys_open_dir() failed");
+		printf("trying to open directory '%s'.\n", dir);
 		return;
 	}
 
@@ -276,7 +308,7 @@ void mpxcmd_ls( int argc, char *argv[] ){
 
 	num_files = 0;
 	for(;;){
-		retval = sys_get_entry( file_name, MAX_FILENAME_LEN, &file_size );
+		retval = sys_get_entry(file_name, MAX_FILENAME_LEN, &file_size);
 		if ( retval == 0 ) {
 			printf("%-15s    %30ld\n", file_name, file_size);
 			num_files++;
@@ -285,7 +317,8 @@ void mpxcmd_ls( int argc, char *argv[] ){
 			break;
 		}
 		else {
-			printf("ERROR: sys_get_entry() failed trying to read directory '%s'.\n", dir);
+			printf("ERROR: sys_get_entry() failed");
+			pritnf("trying to read directory '%s'.\n", dir);
 			printf("Giving up on this directory.\n");
 			return;
 		}
@@ -297,7 +330,6 @@ void mpxcmd_ls( int argc, char *argv[] ){
 	retval = sys_close_dir();
 	if ( retval != 0 ){
 		printf("ERROR: sys_close_dir() returned an error.\n");
-		printf("Internal program state is unknown; you should exit and restart MPX.\n");
 	}
 }
 
@@ -376,8 +408,8 @@ void mpxcmd_ps ( int argc, char *argv[] )
 void mpxcmd_create_pcb ( int argc, char *argv[] )
 {
 	pcb_t		*new_pcb;
-	int		new_pcb_priority;
-	process_class_t	new_pcb_class;
+	int		 new_pcb_priority;
+	process_class_t	 new_pcb_class;
 	pcb_queue_t	*new_pcb_dest_queue;
 
 	if ( argc != 4 ){
@@ -448,14 +480,16 @@ void mpxcmd_unblock ( int argc, char *argv[] )
 }
 
 
-void init_commands(void) {
+void init_commands(void)
+{
 	/* R1 commands */
-	/* add_command("commands", mpxcmd_commands); */
 	add_command("date", mpxcmd_date);
 	add_command("exit", mpxcmd_exit);
 	add_command("help", mpxcmd_help);
 	add_command("ls", mpxcmd_ls);
 	add_command("version", mpxcmd_version);
+		/* Removed after R1:
+		 *   add_command("commands", mpxcmd_commands); */
 
 	/* R2 commands */
 	add_command("suspend", mpxcmd_suspend);
@@ -463,7 +497,7 @@ void init_commands(void) {
 	add_command("renice", mpxcmd_renice);
 	add_command("ps", mpxcmd_ps);
 
-	/* R2 Tempoary commands */
+	/* R2 Temporary commands */
 	add_command("create_pcb", mpxcmd_create_pcb);
 	add_command("delete_pcb", mpxcmd_delete_pcb);
 	add_command("block", mpxcmd_block);
