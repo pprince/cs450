@@ -100,6 +100,7 @@ int pager_printf (const char *format, ...)
 
 	if ( (rows_printed % (SCREEN_ROWS-1)) == 0 ){
 		rows_printed = 0;
+		end_of_page_prompt();
 	}
 
 	return bytes_written;
