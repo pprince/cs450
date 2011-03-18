@@ -25,9 +25,9 @@
 
 #include "mpx_util.h"
 #include "mpx_supt.h"
+#include "pager.h"
 #include <string.h>
 #include <stdio.h>
-#include <pager.h>
 
 /*! Removes trailing newline, if any.
  *
