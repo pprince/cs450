@@ -136,3 +136,7 @@ int mpx_cat ( char *file_name ){
 	return 1;
 }
 
+
+void mpx_cls (void) {
+	sys_req(CLEAR, TERMINAL, NULL, 0);
+}

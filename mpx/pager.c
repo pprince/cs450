@@ -22,6 +22,7 @@
 
 #include "pager.h"
 #include "mpx_supt.h"
+#include "mpx_util.h"
 #include <stdio.h>
 #include <stdarg.h>
 
@@ -42,6 +43,8 @@ void end_of_page_prompt (void)
 		printf("from the terminal!\n");
 		return;
 	}
+
+	mpx_cls();
 }
 
 /*! Keeps track of how many rows have been printed on the current screen.

@@ -23,6 +23,7 @@
 int mpx_chomp ( char *str );
 int mpx_validate_date ( int year, int month, int day );
 int mpx_cat ( char *file_name );
+void mpx_cls ( void );
 
 
 #endif
