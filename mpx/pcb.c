@@ -65,7 +65,8 @@ void init_pcb_queues(void)
 pcb_queue_t* get_queue_by_state (
 	/* [in] One of the valid process states (except RUNNING). */
 	process_state_t state
-) {
+)
+{
 	switch (state) {
 		case READY:
 			return &queue_ready;
@@ -80,14 +81,14 @@ pcb_queue_t* get_queue_by_state (
 			return &queue_susp_blocked;
 		break;
 		case RUNNING:
-			/* RUNNING processes don't go in *any* queue. */
+			/* ERROR: running processes don't go in *any* queue. */
 			return NULL;
 		break;
-		default:
-			/* Totally Unexpected value for process state. */
-			return NULL;
-		break;
+		/* no default (to avoid stupid Turbo C warning.) */
 	}
+	/* case default: */
+	/*   ERROR: Totally Unexpected value for process state. */
+	return NULL;
 }
 
 
