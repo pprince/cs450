@@ -446,6 +446,9 @@ static <a class="el" href="structpcb__queue__t.html">pcb_queue_t</a>&#160;</td><
         <span class="comment">/* Pointer to the requested PCB, if we find it. */</span>
         <a class="code" href="structpcb__t.html" title="Process control block structure.">pcb_t</a> *found_pcb;
 
+        <span class="comment">/* Loop index. */</span>
+        <span class="keywordtype">int</span> i;
+
         <span class="comment">/* Validate arguments. */</span>
         <span class="keywordflow">if</span> ( name == NULL || strlen(name) &gt; MAX_ARG_LEN ) {
                 <span class="comment">/* Invalid process name. */</span>
@@ -453,20 +456,16 @@ static <a class="el" href="structpcb__queue__t.html">pcb_queue_t</a>&#160;</td><
         }
 
         <span class="comment">/* Search for the PCB.  If we find it, return it. */</span>
-        <span class="keywordflow">if</span> ( found_pcb = <a class="code" href="pcb_8c.html#a32037c0c0481883bd395949c96d3e46b" title="Search the given queue for the named process.">find_pcb_in_queue</a>( name, &amp;queue_ready ) ) {
-                <span class="keywordflow">return</span> found_pcb;
-        }
-        <span class="keywordflow">if</span> ( found_pcb = <a class="code" href="pcb_8c.html#a32037c0c0481883bd395949c96d3e46b" title="Search the given queue for the named process.">find_pcb_in_queue</a>( name, &amp;queue_blocked ) ) {
-                <span class="keywordflow">return</span> found_pcb;
-        }
-        <span class="keywordflow">if</span> ( found_pcb = <a class="code" href="pcb_8c.html#a32037c0c0481883bd395949c96d3e46b" title="Search the given queue for the named process.">find_pcb_in_queue</a>( name, &amp;queue_susp_ready ) ) {
-                <span class="keywordflow">return</span> found_pcb;
-        }
-        <span class="keywordflow">if</span> ( found_pcb = <a class="code" href="pcb_8c.html#a32037c0c0481883bd395949c96d3e46b" title="Search the given queue for the named process.">find_pcb_in_queue</a>( name, &amp;queue_susp_blocked ) ) {
-                <span class="keywordflow">return</span> found_pcb;
+        <span class="keywordflow">for</span> ( i=0; i&lt;4; i++ ){
+                found_pcb = <a class="code" href="pcb_8c.html#a32037c0c0481883bd395949c96d3e46b" title="Search the given queue for the named process.">find_pcb_in_queue</a>( name, <a class="code" href="pcb_8c.html#aa812d00cb49f2c676ccb219e8bdd3887" title="Extern variable that allows other files to directly access PCB queues.">queues</a>[i] );
+                <span class="keywordflow">if</span> ( found_pcb ){
+                        <span class="comment">/* We found it; return it. */</span>
+                        <span class="keywordflow">return</span> found_pcb;
+                }
         }
 
-        <span class="comment">/* If we get here, the process was not found. */</span>
+        <span class="comment">/* If we get to here, the process was not found in any queue.</span>
+<span class="comment">         * (&quot;Sorry Mario, your PCB is in another castle!&quot;) */</span>
         <span class="keywordflow">return</span> NULL;
 }
 </pre></div>
@@ -501,6 +500,9 @@ static <a class="el" href="structpcb__queue__t.html">pcb_queue_t</a>&#160;</td><
         <span class="comment">/* Loop index / iterator. */</span>
         <a class="code" href="structpcb__queue__node__t.html">pcb_queue_node_t</a>* this_node;
 
+        <span class="comment">/* The queue we will soon try to remove the given PCB from. */</span>
+        <a class="code" href="structpcb__queue__t.html" title="PCB queue; represents a queue of processes.">pcb_queue_t</a>* queue = NULL;
+
         <span class="comment">/* Validate argument. */</span>
         <span class="keywordflow">if</span> ( pcb == NULL ){
                 <span class="comment">/* ERROR: Got NULL pointer for argument. */</span>
@@ -508,7 +510,7 @@ static <a class="el" href="structpcb__queue__t.html">pcb_queue_t</a>&#160;</td><
         }
 
         <span class="comment">/* Fetch the queue that we will be removing this process from. */</span>
-        <a class="code" href="structpcb__queue__t.html" title="PCB queue; represents a queue of processes.">pcb_queue_t</a>* queue = <a class="code" href="pcb_8c.html#a3659b5e590c77085aeee7d8411293515" title="References the PCB queue appropriate for processes of a given state.">get_queue_by_state</a>( pcb-&gt;<a class="code" href="structpcb__t.html#a4d5915ca3699801884f572d0ff51fd24" title="Process state (Ready, Running, or Blocked).">state</a> );
+        queue = <a class="code" href="pcb_8c.html#a3659b5e590c77085aeee7d8411293515" title="References the PCB queue appropriate for processes of a given state.">get_queue_by_state</a>( pcb-&gt;<a class="code" href="structpcb__t.html#a4d5915ca3699801884f572d0ff51fd24" title="Process state (Ready, Running, or Blocked).">state</a> );
 
         <span class="comment">/* Validate queue. */</span>
         <span class="keywordflow">if</span> ( queue == NULL ){
