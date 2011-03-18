@@ -10,7 +10,7 @@ var NAVTREE =
       [ "date_rec", "structdate__rec.html", null ],
       [ "mpx_command", "structmpx__command.html", null ],
       [ "params", "structparams.html", null ],
-      [ "pcb_queue_node", "structpcb__queue__node.html", null ],
+      [ "pcb_queue_node_t", "structpcb__queue__node__t.html", null ],
       [ "pcb_queue_t", "structpcb__queue__t.html", null ],
       [ "pcb_t", "structpcb__t.html", null ]
     ] ],

@@ -60,9 +60,9 @@ $(document).ready(initResizable);
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Defines</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <h1>mpx/pcb.h File Reference</h1>  </div>
 </div>
@@ -76,17 +76,15 @@ $(document).ready(initResizable);
 Data Structures</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpcb__t.html">pcb_t</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Process control block structure.  <a href="structpcb__t.html#_details">More...</a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpcb__queue__node.html">pcb_queue_node</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpcb__queue__node__t.html">pcb_queue_node_t</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpcb__queue__t.html">pcb_queue_t</a></td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">PCB queue; represents a queue of processes.  <a href="structpcb__queue__t.html#_details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pcb_8h.html#a6423a880df59733d2d9b509c7718d3a9">STACK_SIZE</a>&#160;&#160;&#160;1024</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Amount of stack space to allocate for each process (in bytes).  <a href="#a6423a880df59733d2d9b509c7718d3a9"></a><br/></td></tr>
-<tr><td colspan="2"><h2><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a30c9871adc7bd248be549c1dccaee095"></a><!-- doxytag: member="pcb.h::pcb_queue_node_t" ref="a30c9871adc7bd248be549c1dccaee095" args="" -->
-typedef struct <a class="el" href="structpcb__queue__node.html">pcb_queue_node</a>&#160;</td><td class="memItemRight" valign="bottom"><b>pcb_queue_node_t</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pcb_8h.html#a2b6b058cab24f8f86e2b709aa0a54b06">foreach_listitem</a>(item, list)&#160;&#160;&#160;for ( item = list-&gt;head; item != NULL; item = item-&gt;next )</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides syntactic sugar for looping over the elements of a linked list.  <a href="#a2b6b058cab24f8f86e2b709aa0a54b06"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pcb_8h.html#ab97efa0d1c4aeaf55ff756bf16685854">process_state_t</a> { <br/>
@@ -105,14 +103,25 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Type for variables that hold the class of a process. </p>
  <a href="pcb_8h.html#a0a588f2c0718670d14af46803d17f553">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pcb_8h.html#a89d62fb2a0883d11532aec76683337cf">pcb_queue_sort_order_t</a> { <b>FIFO</b>, 
+<b>PRIORITY</b>
+ }</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight"><p>Enum constants for process sort order (i.e., queue insertion order.) </p>
+<br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pcb_8h.html#a31ed940ffbbe2f5a6f9febd36a6a804f">init_pcb_queues</a> (void)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Must be called before using any other PCB or queue functions.  <a href="#a31ed940ffbbe2f5a6f9febd36a6a804f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structpcb__t.html">pcb_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pcb_8h.html#a6748d85291ec449a49a5bb985a570108">setup_pcb</a> (char *name, int priority, <a class="el" href="pcb_8h.html#a0a588f2c0718670d14af46803d17f553">process_class_t</a> class)</td></tr>
-<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new PCB object and initializes its fields.  <a href="#a6748d85291ec449a49a5bb985a570108"></a><br/></td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates, allocates, and initializes a new PCB object.  <a href="#a6748d85291ec449a49a5bb985a570108"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structpcb__t.html">pcb_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pcb_8h.html#a2244aea6a6410c2eedaa8c3682b977cd">find_pcb</a> (char *name)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds a process.  <a href="#a2244aea6a6410c2eedaa8c3682b977cd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="structpcb__queue__t.html">pcb_queue_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pcb_8h.html#afe0b9476cb5d75d807bdcf06f69a268d">insert_pcb</a> (<a class="el" href="structpcb__t.html">pcb_t</a> *pcb)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Inserts a PCB into the appropriate queue.  <a href="#afe0b9476cb5d75d807bdcf06f69a268d"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3398e375a45666d7539bff66d7ee881"></a><!-- doxytag: member="pcb.h::queues" ref="af3398e375a45666d7539bff66d7ee881" args="[]" -->
+<a class="el" href="structpcb__queue__t.html">pcb_queue_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>queues</b> []</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>PCBs, process queues, and functions to operate on them. </p>
@@ -131,6 +140,77 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>Amount of stack space to allocate for each process (in bytes). </p>
+
+</div>
+</div>
+<a class="anchor" id="a2b6b058cab24f8f86e2b709aa0a54b06"></a><!-- doxytag: member="pcb.h::foreach_listitem" ref="a2b6b058cab24f8f86e2b709aa0a54b06" args="(item, list)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define foreach_listitem</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">item, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">list&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;for ( item = list-&gt;head; item != NULL; item = item-&gt;next )</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Provides syntactic sugar for looping over the elements of a linked list. </p>
+<p>This function makes it a little more readable when you want to loop over elements in a linked list, starting with the head. Will work on both singly- and doubly-linked lists.</p>
+<p>If you wish to stop processing early, before iterating through the entire list, simply call break as if you were in a <code>for</code>(;;){} or <code>while()</code> loop.</p>
+<p>In order to use this function on your list, the following requirements must be satisfied:</p>
+<ul>
+<li>
+You must declare the variable you pass as <code>item</code> yourself. </li>
+<li>
+The <code>list</code> parameter must be a pointer to a struct that has a member named <code>head</code> that is a pointer to the first item in the list. </li>
+<li>
+In the case that the list is empty (i.e., contains zero elements), then <code>list-&gt;head</code> must point to NULL. </li>
+<li>
+The <code>item</code> parameter <em>and</em> the <code>list-&gt;head</code> member must both be pointers to structs of the same type, and, </li>
+<li>
+That struct must have a member named <code>next</code> that is a pointer to the next item in the list. </li>
+<li>
+The <code>next</code> member of the last item in the list <em>must</em> point to NULL. </li>
+</ul>
+<p>And also, while the following rules may not be strict requirements, it is <em>strongly</em> encouraged that you adhere to them:</p>
+<ul>
+<li>
+If, in a given execution of the loop body, you modify the list by adding, removing, moving, any list items, you should break out of the loop; <em>you should not,</em> having so-modified the list, continue on to the next iteration / execution of the loop body. </li>
+<li>
+You should not modify the value of <code>item</code> inside the loop body. </li>
+</ul>
+<p>Note that you're free to modify the <em>items</em>, just not the <em>list</em>; so, as long as you do not modify the values of any item's <code>next</code> member, you are free to modify any other members.</p>
+<p>In particular, this function <em>is</em> compatible with the <code><a class="el" href="structpcb__queue__t.html" title="PCB queue; represents a queue of processes.">pcb_queue_t</a></code> and <code><a class="el" href="structpcb__queue__node__t.html">pcb_queue_node_t</a></code> types.</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">item</td><td>Iterator variable / loop index; will point to the current item (node) just before each execution of the loop body. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">list</td><td>The singly- or doubly-linked list to iterate over.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Does <em>not</em> have a return value in the typical sense, however the value of the ouput parameter <code>item</code> is well-defined after the loop has terminated: <ul>
+<li>
+If the loop terminates on its own, after iterating over the entire list, <code>item</code> will be NULL. </li>
+<li>
+Note that an empty list is a special case of the above, and in that case the value of <code>item</code> will be NULL after the loop has terminated, but the loop body will never have been executed. </li>
+<li>
+If you break out of the loop before it terminates on its own, <code>item</code> will point to the list item that was being processed during the iteration of the loop in which <code>break</code> was called, <em>even if that item is the last item in the list.</em> </li>
+</ul>
+</dd></dl>
 
 </div>
 </div>
@@ -198,21 +278,29 @@ Functions</h2></td></tr>
 
 <p>Must be called before using any other PCB or queue functions. </p>
 <div class="fragment"><pre class="fragment">{
+        queues[0] = &amp;queue_ready;
         queue_ready.<a class="code" href="structpcb__queue__t.html#a7c75f07624d866015c2e689e4b114c18" title="Pointer to the first element in the queue.">head</a>                = NULL;
         queue_ready.<a class="code" href="structpcb__queue__t.html#ac5054873965f12bcf1b00894023945a7" title="Pointer to the last element in the queue.">tail</a>                = NULL;
         queue_ready.<a class="code" href="structpcb__queue__t.html#ac8d42bcd4a44e078047ccd7291059238" title="Number of elements in the queue.">length</a>              = 0;
+        queue_ready.<a class="code" href="structpcb__queue__t.html#a1ab05bb2074f88a7283fb8170db6b5e5" title="Specifies how elements in this queue are sorted at insert-time.">sort_order</a>          = PRIORITY;
 
+        queues[1] = &amp;queue_blocked;
         queue_blocked.<a class="code" href="structpcb__queue__t.html#a7c75f07624d866015c2e689e4b114c18" title="Pointer to the first element in the queue.">head</a>              = NULL;
         queue_blocked.<a class="code" href="structpcb__queue__t.html#ac5054873965f12bcf1b00894023945a7" title="Pointer to the last element in the queue.">tail</a>              = NULL;
         queue_blocked.<a class="code" href="structpcb__queue__t.html#ac8d42bcd4a44e078047ccd7291059238" title="Number of elements in the queue.">length</a>            = 0;
+        queue_blocked.<a class="code" href="structpcb__queue__t.html#a1ab05bb2074f88a7283fb8170db6b5e5" title="Specifies how elements in this queue are sorted at insert-time.">sort_order</a>        = FIFO;
 
+        queues[2] = &amp;queue_susp_ready;
         queue_susp_ready.<a class="code" href="structpcb__queue__t.html#a7c75f07624d866015c2e689e4b114c18" title="Pointer to the first element in the queue.">head</a>           = NULL;
         queue_susp_ready.<a class="code" href="structpcb__queue__t.html#ac5054873965f12bcf1b00894023945a7" title="Pointer to the last element in the queue.">tail</a>           = NULL;
         queue_susp_ready.<a class="code" href="structpcb__queue__t.html#ac8d42bcd4a44e078047ccd7291059238" title="Number of elements in the queue.">length</a>         = 0;
+        queue_susp_ready.<a class="code" href="structpcb__queue__t.html#a1ab05bb2074f88a7283fb8170db6b5e5" title="Specifies how elements in this queue are sorted at insert-time.">sort_order</a>     = FIFO;
 
+        queues[3] = &amp;queue_susp_blocked;
         queue_susp_blocked.<a class="code" href="structpcb__queue__t.html#a7c75f07624d866015c2e689e4b114c18" title="Pointer to the first element in the queue.">head</a>         = NULL;
         queue_susp_blocked.<a class="code" href="structpcb__queue__t.html#ac5054873965f12bcf1b00894023945a7" title="Pointer to the last element in the queue.">tail</a>         = NULL;
         queue_susp_blocked.<a class="code" href="structpcb__queue__t.html#ac8d42bcd4a44e078047ccd7291059238" title="Number of elements in the queue.">length</a>       = 0;
+        queue_susp_blocked.<a class="code" href="structpcb__queue__t.html#a1ab05bb2074f88a7283fb8170db6b5e5" title="Specifies how elements in this queue are sorted at insert-time.">sort_order</a>   = FIFO;
 }
 </pre></div>
 </div>
@@ -248,7 +336,8 @@ Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Creates a new PCB object and initializes its fields. </p>
+<p>Creates, allocates, and initializes a new PCB object. </p>
+<p>This function creates a new PCB object (<a class="el" href="structpcb__t.html" title="Process control block structure.">pcb_t</a>), then calls <a class="el" href="pcb_8c.html#ac512aff0dfec4707336627edf3ea1d94" title="Allocates memory for a new PCB, but does not initialize it.">allocate_pcb()</a> to do the allocation step. It then initializes the PCB's various fields according to both default values and the parameters passed in.</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the new PCB, or NULL if an error occured. </dd></dl>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
@@ -332,6 +421,9 @@ Functions</h2></td></tr>
 <p>Finds a process. </p>
 <p>Searches all process queues.</p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the PCB, or NULL if not found or error. </dd></dl>
+
+<p><dl class="todo"><dt><b><a class="el" href="todo.html#_todo000004">Todo:</a></b></dt><dd>This really should be done a little cleaner, possibly using a foreach() macro, like the one at: <a href="http://stackoverflow.com/questions/400951/c-foreach-or-similar">http://stackoverflow.com/questions/400951/c-foreach-or-similar</a> </dd></dl>
+</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>The name of the process to find. </td></tr>
@@ -368,12 +460,130 @@ Functions</h2></td></tr>
 </pre></div>
 </div>
 </div>
+<a class="anchor" id="afe0b9476cb5d75d807bdcf06f69a268d"></a><!-- doxytag: member="pcb.h::insert_pcb" ref="afe0b9476cb5d75d807bdcf06f69a268d" args="(pcb_t *pcb)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structpcb__queue__t.html">pcb_queue_t</a>* insert_pcb </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structpcb__t.html">pcb_t</a> *&#160;</td>
+          <td class="paramname"><em>pcb</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Inserts a PCB into the appropriate queue. </p>
+<p>Inspects the PCB's state member to determine which queue to insert into.</p>
+<p>Inspects the queue's sort_order member to determine whether to insert in order of priority, or to simply insert the PCB at the end of of the queue. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pcb</td><td>Pointer to the PCB to be enqueued. </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="fragment"><pre class="fragment">{
+        <span class="comment">/* Pointer to the queue we will insert into. */</span>
+        <a class="code" href="structpcb__queue__t.html" title="PCB queue; represents a queue of processes.">pcb_queue_t</a>             *queue;
+        <span class="comment">/* Pointer to the new queue node descriptor we must make. */</span>
+        <a class="code" href="structpcb__queue__node__t.html">pcb_queue_node_t</a>        *new_queue_node;
+        <span class="comment">/* For use in loops that iterating through the queue. */</span>
+        <a class="code" href="structpcb__queue__node__t.html">pcb_queue_node_t</a>        *iter_node;
+
+        <span class="comment">/* Validate argument */</span>
+        <span class="keywordflow">if</span> (pcb == NULL) {
+                <span class="comment">/* PCB to insert cannot be null... come on :) */</span>
+                <span class="keywordflow">return</span> NULL;
+        }
+
+        <span class="comment">/* Determine which queue we will insert this PCB into. */</span>
+        <span class="keywordflow">switch</span> (pcb-&gt;<a class="code" href="structpcb__t.html#a4d5915ca3699801884f572d0ff51fd24" title="Process state (Ready, Running, or Blocked).">state</a>) {
+                <span class="keywordflow">case</span> READY:
+                        queue = &amp;queue_ready;
+                <span class="keywordflow">break</span>;
+                <span class="keywordflow">case</span> BLOCKED:
+                        queue = &amp;queue_blocked;
+                <span class="keywordflow">break</span>;
+                <span class="keywordflow">case</span> SUSP_READY:
+                        queue = &amp;queue_susp_ready;
+                <span class="keywordflow">break</span>;
+                <span class="keywordflow">case</span> SUSP_BLOCKED:
+                        queue = &amp;queue_susp_blocked;
+                <span class="keywordflow">break</span>;
+                <span class="keywordflow">default</span>:
+                        <span class="comment">/* Unexpected value for PCB state (maybe Running?) */</span>
+                        <span class="keywordflow">return</span> NULL;
+                <span class="keywordflow">break</span>;
+        }
+
+        <span class="comment">/* Allocate the new queue descriptor. */</span>
+        new_queue_node =
+                (<a class="code" href="structpcb__queue__node__t.html">pcb_queue_node_t</a> *)sys_alloc_mem(<span class="keyword">sizeof</span>(<a class="code" href="structpcb__queue__node__t.html">pcb_queue_node_t</a>));
+        <span class="keywordflow">if</span> ( new_queue_node == NULL ){
+                <span class="comment">/* Error allocating memory. */</span>
+                <span class="keywordflow">return</span> NULL;
+        }
+
+
+        <span class="comment">/* Do the insert ... */</span>
+        <span class="comment">/* ----------------- */</span>
+        
+        new_queue_node-&gt;<a class="code" href="structpcb__queue__node__t.html#a72bbd545b58e53fe37e077ffe6b2aa3b" title="Pointer to the actual PCB associated with this node.">pcb</a> = pcb;
+
+        <span class="comment">/* Case one: queue is empty. */</span>
+        <span class="keywordflow">if</span> ( queue-&gt;<a class="code" href="structpcb__queue__t.html#ac8d42bcd4a44e078047ccd7291059238" title="Number of elements in the queue.">length</a> == 0 ){
+                new_queue_node-&gt;<a class="code" href="structpcb__queue__node__t.html#a4c17fdaca092efd3da5baffe128278dd" title="Pointer to the next PCB node in the queue.">next</a>    = NULL;
+                new_queue_node-&gt;<a class="code" href="structpcb__queue__node__t.html#a3229440fab109be97a790e9738668c0c" title="Pointer to the previous PCB node in the queue.">prev</a>    = NULL;
+                queue-&gt;<a class="code" href="structpcb__queue__t.html#a7c75f07624d866015c2e689e4b114c18" title="Pointer to the first element in the queue.">head</a>             = new_queue_node;
+                queue-&gt;<a class="code" href="structpcb__queue__t.html#ac5054873965f12bcf1b00894023945a7" title="Pointer to the last element in the queue.">tail</a>             = new_queue_node;
+                queue-&gt;<a class="code" href="structpcb__queue__t.html#ac8d42bcd4a44e078047ccd7291059238" title="Number of elements in the queue.">length</a>           = 1;
+                <span class="keywordflow">return</span> queue;
+        }
+
+        <span class="comment">/* Case two: FIFO queue; we only need to insert at end. */</span>
+        <span class="keywordflow">if</span> ( queue-&gt;<a class="code" href="structpcb__queue__t.html#a1ab05bb2074f88a7283fb8170db6b5e5" title="Specifies how elements in this queue are sorted at insert-time.">sort_order</a> == FIFO ){
+                <span class="keywordflow">goto</span> INSERT_AT_END;
+        }
+
+        <span class="comment">/* The hard case: insert in priority-order. */</span>
+        iter_node = queue-&gt;<a class="code" href="structpcb__queue__t.html#a7c75f07624d866015c2e689e4b114c18" title="Pointer to the first element in the queue.">head</a>;
+        <span class="keywordflow">while</span> (iter_node != NULL) {
+                <span class="keywordflow">if</span> ( iter_node-&gt;<a class="code" href="structpcb__queue__node__t.html#a72bbd545b58e53fe37e077ffe6b2aa3b" title="Pointer to the actual PCB associated with this node.">pcb</a>-&gt;<a class="code" href="structpcb__t.html#acec9ce2df15222151ad66fcb1d74eb9f" title="Process priority.">priority</a> &lt; pcb-&gt;<a class="code" href="structpcb__t.html#acec9ce2df15222151ad66fcb1d74eb9f" title="Process priority.">priority</a> ){
+                        <span class="comment">/* Insert before iter_node */</span>
+                        new_queue_node-&gt;<a class="code" href="structpcb__queue__node__t.html#a3229440fab109be97a790e9738668c0c" title="Pointer to the previous PCB node in the queue.">prev</a> = iter_node-&gt;<a class="code" href="structpcb__queue__node__t.html#a3229440fab109be97a790e9738668c0c" title="Pointer to the previous PCB node in the queue.">prev</a>;
+                        iter_node-&gt;<a class="code" href="structpcb__queue__node__t.html#a3229440fab109be97a790e9738668c0c" title="Pointer to the previous PCB node in the queue.">prev</a>-&gt;next = new_queue_node;
+                        iter_node-&gt;<a class="code" href="structpcb__queue__node__t.html#a3229440fab109be97a790e9738668c0c" title="Pointer to the previous PCB node in the queue.">prev</a> = new_queue_node;
+                        new_queue_node-&gt;<a class="code" href="structpcb__queue__node__t.html#a4c17fdaca092efd3da5baffe128278dd" title="Pointer to the next PCB node in the queue.">next</a> = iter_node;
+                        <span class="keywordflow">if</span> ( queue-&gt;<a class="code" href="structpcb__queue__t.html#a7c75f07624d866015c2e689e4b114c18" title="Pointer to the first element in the queue.">head</a> == iter_node ){
+                                queue-&gt;<a class="code" href="structpcb__queue__t.html#a7c75f07624d866015c2e689e4b114c18" title="Pointer to the first element in the queue.">head</a> = new_queue_node;
+                        }
+                        queue-&gt;<a class="code" href="structpcb__queue__t.html#ac8d42bcd4a44e078047ccd7291059238" title="Number of elements in the queue.">length</a>++;
+                        <span class="keywordflow">return</span> queue;
+                }
+                iter_node = iter_node-&gt;<a class="code" href="structpcb__queue__node__t.html#a4c17fdaca092efd3da5baffe128278dd" title="Pointer to the next PCB node in the queue.">next</a>;
+        }
+        <span class="comment">/* If we got this far, we need to do an insert-at-the-end. */</span>
+
+
+        INSERT_AT_END:
+                new_queue_node-&gt;<a class="code" href="structpcb__queue__node__t.html#a4c17fdaca092efd3da5baffe128278dd" title="Pointer to the next PCB node in the queue.">next</a>    = NULL;
+                new_queue_node-&gt;<a class="code" href="structpcb__queue__node__t.html#a3229440fab109be97a790e9738668c0c" title="Pointer to the previous PCB node in the queue.">prev</a>    = queue-&gt;<a class="code" href="structpcb__queue__t.html#ac5054873965f12bcf1b00894023945a7" title="Pointer to the last element in the queue.">tail</a>;
+                queue-&gt;<a class="code" href="structpcb__queue__t.html#ac5054873965f12bcf1b00894023945a7" title="Pointer to the last element in the queue.">tail</a>-&gt;<a class="code" href="structpcb__queue__node__t.html#a4c17fdaca092efd3da5baffe128278dd" title="Pointer to the next PCB node in the queue.">next</a>       = new_queue_node;
+                queue-&gt;<a class="code" href="structpcb__queue__t.html#ac5054873965f12bcf1b00894023945a7" title="Pointer to the last element in the queue.">tail</a>             = new_queue_node;
+                queue-&gt;<a class="code" href="structpcb__queue__t.html#ac8d42bcd4a44e078047ccd7291059238" title="Number of elements in the queue.">length</a>++;
+                <span class="keywordflow">return</span> queue;
+}
+</pre></div>
+</div>
+</div>
 </div>
 </div>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="pcb_8h.html">pcb.h</a>      </li>
-      <li class="footer">Generated on Sun Mar 6 2011 for Paul Prince's MPX by&#160;
+      <li class="footer">Generated on Thu Mar 17 2011 for Paul Prince's MPX by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>

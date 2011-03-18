@@ -70,6 +70,7 @@ $(document).ready(initResizable);
 <div class="textblock"><code>#include &quot;mpx_cmds.h&quot;</code><br/>
 <code>#include &quot;mpx_supt.h&quot;</code><br/>
 <code>#include &quot;mpx_util.h&quot;</code><br/>
+<code>#include &quot;<a class="el" href="pcb_8h.html">pcb.h</a>&quot;</code><br/>
 <code>#include &lt;string.h&gt;</code><br/>
 </div><table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
@@ -89,6 +90,26 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>mpxcmd_help</b> (int 
 void&#160;</td><td class="memItemRight" valign="bottom"><b>mpxcmd_version</b> (int argc, char *argv[])</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a97b6f35564c263316c5f494356af60c2"></a><!-- doxytag: member="mpx_cmds.c::mpxcmd_ls" ref="a97b6f35564c263316c5f494356af60c2" args="(int argc, char *argv[])" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><b>mpxcmd_ls</b> (int argc, char *argv[])</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a697f0f432dba18606d9e514eda9cd073"></a><!-- doxytag: member="mpx_cmds.c::mpxcmd_suspend" ref="a697f0f432dba18606d9e514eda9cd073" args="(int argc, char *argv[])" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpx__cmds_8c.html#a697f0f432dba18606d9e514eda9cd073">mpxcmd_suspend</a> (int argc, char *argv[])</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the <code>suspend</code> shell command. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3c47daf087934d234d896e35e4c03f3b"></a><!-- doxytag: member="mpx_cmds.c::mpxcmd_resume" ref="a3c47daf087934d234d896e35e4c03f3b" args="(int argc, char *argv[])" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpx__cmds_8c.html#a3c47daf087934d234d896e35e4c03f3b">mpxcmd_resume</a> (int argc, char *argv[])</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the <code>resume</code> shell command. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ee66be7af1b1592b616e32ff0974e00"></a><!-- doxytag: member="mpx_cmds.c::mpxcmd_renice" ref="a1ee66be7af1b1592b616e32ff0974e00" args="(int argc, char *argv[])" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpx__cmds_8c.html#a1ee66be7af1b1592b616e32ff0974e00">mpxcmd_renice</a> (int argc, char *argv[])</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the <code>renice</code> shell command. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3dca1605bead1dd6dcfb4fd504ae849"></a><!-- doxytag: member="mpx_cmds.c::mpxcmd_ps" ref="af3dca1605bead1dd6dcfb4fd504ae849" args="(int argc, char *argv[])" -->
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpx__cmds_8c.html#af3dca1605bead1dd6dcfb4fd504ae849">mpxcmd_ps</a> (int argc, char *argv[])</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the <code>ps</code> shell command. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpx__cmds_8c.html#a070c07ce6e15fef3847c53b1470747d5">mpxcmd_create_pcb</a> (int argc, char *argv[])</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the <code>create_pcb</code> shell command.  <a href="#a070c07ce6e15fef3847c53b1470747d5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpx__cmds_8c.html#a8df9777c5c30f7484f62f0a9a8f872d0">mpxcmd_delete_pcb</a> (int argc, char *argv[])</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the <code>delete_pcb</code> shell command.  <a href="#a8df9777c5c30f7484f62f0a9a8f872d0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpx__cmds_8c.html#ae8eb72663ecff92c27ab06e3560fd0d4">mpxcmd_block</a> (int argc, char *argv[])</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the <code>block</code> shell command.  <a href="#ae8eb72663ecff92c27ab06e3560fd0d4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="mpx__cmds_8c.html#a1363a7b6156a84057936c3fd91d91f69">mpxcmd_unblock</a> (int argc, char *argv[])</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements the <code>unblock</code> shell command.  <a href="#a1363a7b6156a84057936c3fd91d91f69"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a03724154f6e163f4c909012fdb4ef3c8"></a><!-- doxytag: member="mpx_cmds.c::init_commands" ref="a03724154f6e163f4c909012fdb4ef3c8" args="(void)" -->
 void&#160;</td><td class="memItemRight" valign="bottom"><b>init_commands</b> (void)</td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
@@ -319,6 +340,180 @@ Variables</h2></td></tr>
 </pre></div>
 </div>
 </div>
+<a class="anchor" id="a070c07ce6e15fef3847c53b1470747d5"></a><!-- doxytag: member="mpx_cmds.c::mpxcmd_create_pcb" ref="a070c07ce6e15fef3847c53b1470747d5" args="(int argc, char *argv[])" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mpxcmd_create_pcb </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Implements the <code>create_pcb</code> shell command. </p>
+<dl class="attention"><dt><b>Attention:</b></dt><dd>This TEMPORARY command will be replaced later. </dd></dl>
+<div class="fragment"><pre class="fragment">{
+        <a class="code" href="structpcb__t.html" title="Process control block structure.">pcb_t</a>           *new_pcb;
+        <span class="keywordtype">int</span>             new_pcb_priority;
+        <a class="code" href="pcb_8h.html#a0a588f2c0718670d14af46803d17f553" title="Type for variables that hold the class of a process.">process_class_t</a> new_pcb_class;
+        <a class="code" href="structpcb__queue__t.html" title="PCB queue; represents a queue of processes.">pcb_queue_t</a>     *new_pcb_dest_queue;
+
+        <span class="keywordflow">if</span> ( argc != 4 ){
+                printf(<span class="stringliteral">&quot;ERROR: Wrong number of arguments to create_pcb.\n&quot;</span>);
+                <span class="keywordflow">return</span>;
+        }
+
+        <span class="keywordflow">if</span> ( strlen(argv[1]) &gt; MAX_ARG_LEN ) {
+                printf(<span class="stringliteral">&quot;ERROR: Specified process name is too long.\n&quot;</span>);
+                <span class="keywordflow">return</span>;
+        }
+
+        new_pcb_priority = atoi(argv[3]);
+
+        <span class="keywordflow">if</span> ( new_pcb_priority &lt; -127 || new_pcb_priority &gt; 128 ){
+                printf(<span class="stringliteral">&quot;ERROR: Invalid priority specified.\n&quot;</span>);
+                printf(<span class="stringliteral">&quot;Priority must be between -127 and 128 (inclusive).\n&quot;</span>);
+                <span class="keywordflow">return</span>;
+        }
+        
+        <span class="keywordflow">if</span> ( strlen(argv[2]) == 1 &amp;&amp; argv[2][0] == <span class="charliteral">&#39;A&#39;</span> ) {
+                new_pcb_class = APPLICATION;
+        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( strlen(argv[2]) == 1 &amp;&amp; argv[2][0] == <span class="charliteral">&#39;S&#39;</span> ) {
+                new_pcb_class = SYSTEM;
+        } <span class="keywordflow">else</span> {
+                printf(<span class="stringliteral">&quot;ERROR: Invalid process class specified.\n&quot;</span>);
+                <span class="keywordflow">return</span>;
+        }
+        
+        new_pcb = <a class="code" href="pcb_8c.html#a6748d85291ec449a49a5bb985a570108" title="Creates, allocates, and initializes a new PCB object.">setup_pcb</a>( argv[1], new_pcb_priority, new_pcb_class);
+
+        <span class="keywordflow">if</span> ( new_pcb == NULL ){
+                printf(<span class="stringliteral">&quot;ERROR: Failure creating process.\n&quot;</span>);
+                <span class="keywordflow">return</span>;
+        }
+
+        new_pcb_dest_queue = <a class="code" href="pcb_8c.html#afe0b9476cb5d75d807bdcf06f69a268d" title="Inserts a PCB into the appropriate queue.">insert_pcb</a>( new_pcb );
+
+        <span class="keywordflow">if</span> ( new_pcb_dest_queue == NULL ){
+                printf(<span class="stringliteral">&quot;ERROR: Failure enqueuing new process.\n&quot;</span>);
+        }
+
+        printf(<span class="stringliteral">&quot;Success: Process created.\n&quot;</span>);
+}
+</pre></div>
+</div>
+</div>
+<a class="anchor" id="a8df9777c5c30f7484f62f0a9a8f872d0"></a><!-- doxytag: member="mpx_cmds.c::mpxcmd_delete_pcb" ref="a8df9777c5c30f7484f62f0a9a8f872d0" args="(int argc, char *argv[])" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mpxcmd_delete_pcb </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Implements the <code>delete_pcb</code> shell command. </p>
+<dl class="attention"><dt><b>Attention:</b></dt><dd>This TEMPORARY command will be replaced later. </dd></dl>
+<div class="fragment"><pre class="fragment">{
+}
+</pre></div>
+</div>
+</div>
+<a class="anchor" id="ae8eb72663ecff92c27ab06e3560fd0d4"></a><!-- doxytag: member="mpx_cmds.c::mpxcmd_block" ref="ae8eb72663ecff92c27ab06e3560fd0d4" args="(int argc, char *argv[])" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mpxcmd_block </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Implements the <code>block</code> shell command. </p>
+<dl class="attention"><dt><b>Attention:</b></dt><dd>This TEMPORARY command will be replaced later. </dd></dl>
+<div class="fragment"><pre class="fragment">{
+}
+</pre></div>
+</div>
+</div>
+<a class="anchor" id="a1363a7b6156a84057936c3fd91d91f69"></a><!-- doxytag: member="mpx_cmds.c::mpxcmd_unblock" ref="a1363a7b6156a84057936c3fd91d91f69" args="(int argc, char *argv[])" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mpxcmd_unblock </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>argc</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>argv</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Implements the <code>unblock</code> shell command. </p>
+<dl class="attention"><dt><b>Attention:</b></dt><dd>This TEMPORARY command will be replaced later. </dd></dl>
+<div class="fragment"><pre class="fragment">{
+}
+</pre></div>
+</div>
+</div>
 <hr/><h2>Variable Documentation</h2>
 <a class="anchor" id="a955d864404841b62305123293d0b1a4b"></a><!-- doxytag: member="mpx_cmds.c::list_head" ref="a955d864404841b62305123293d0b1a4b" args="" -->
 <div class="memitem">
@@ -340,7 +535,7 @@ Variables</h2></td></tr>
   <div id="nav-path" class="navpath">
     <ul>
       <li class="navelem"><a class="el" href="mpx__cmds_8c.html">mpx_cmds.c</a>      </li>
-      <li class="footer">Generated on Sun Mar 6 2011 for Paul Prince's MPX by&#160;
+      <li class="footer">Generated on Thu Mar 17 2011 for Paul Prince's MPX by&#160;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.3 </li>
     </ul>
