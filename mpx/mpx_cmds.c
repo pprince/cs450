@@ -318,7 +318,7 @@ void mpxcmd_ls( int argc, char *argv[] )
 		}
 		else {
 			printf("ERROR: sys_get_entry() failed");
-			pritnf("trying to read directory '%s'.\n", dir);
+			printf("trying to read directory '%s'.\n", dir);
 			printf("Giving up on this directory.\n");
 			return;
 		}
