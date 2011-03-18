@@ -27,6 +27,7 @@
 #include "mpx_supt.h"
 #include <string.h>
 #include <stdio.h>
+#include <pager.h>
 
 /*! Removes trailing newline, if any.
  *
@@ -105,6 +106,9 @@ int mpx_cat ( char *file_name ){
 		return 0;
 	}
 
+	/* Begin paged output. */
+	pager_init();
+
 	for(;;){
 		fgets_retval = fgets( line_buffer, sizeof(line_buffer), fp );
 
@@ -117,8 +121,13 @@ int mpx_cat ( char *file_name ){
 			return 0;
 		}
 
-		fputs( line_buffer, stdout );
+		/* Paged output. */
+		pager_printf("%s", line_buffer);
+		  /* fputs( line_buffer, stdout ); */
 	}
+
+	/* Finish paged output. */
+	pager_stop();
 
 	if ( fclose(fp) != 0 ){
 		return 0;

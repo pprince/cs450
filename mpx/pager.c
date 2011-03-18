@@ -19,8 +19,29 @@
 /*! @addtogroup	pager
  *  @{  */
 
+
+#include "pager.h"
+#include "mpx_supt.h"
 #include <stdio.h>
 
+
+/*!
+ */
+void end_of_page_prompt (void)
+{
+	char buf[5];
+	int buf_size=4;
+	int retval;
+
+	printf("<<_ PRESS [ RETURN ] for more output _>>");
+
+	retval = sys_req( READ, TERMINAL, buf, &buf_size );
+	if ( retval < 0 ) {
+		printf("ERROR: sys_req() threw error while trying to read ");
+		printf("from the terminal!\n");
+		return;
+	}
+}
 
 /*! Keeps track of how many rows have been printed on the current screen.
  *
@@ -44,6 +65,7 @@ void pager_init (void)
 void pager_stop (void)
 {
 	/* Currently a no-op? */
+	return;
 }
 
 
@@ -58,18 +80,28 @@ void pager_stop (void)
  * argument lists (va_list), and vprintf.
  *
  * @return
- * 	Returns the number of bytes written, or EOF to indicate that and
- * 	error occurred.
+ * 	Returns the number of bytes output to the screen,
+ * 	or EOF to indicate that and error occurred.
  */
 int pager_printf (const char *format, ...)
 {
+	int bytes_written;
+
 	va_list args;
 	va_start(args, format);
 
 	/* Pass the format string and the rest of the args onto vprintf. */
-	vprintf(format, args);
+	bytes_written = vprintf(format, args);
 
 	va_end(args);
+
+	rows_printed++;
+
+	if ( (rows_printed % (SCREEN_ROWS-1)) == 0 ){
+		rows_printed = 0;
+	}
+
+	return bytes_written;
 }
 
 
