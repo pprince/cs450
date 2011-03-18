@@ -23,6 +23,7 @@
 #include "pager.h"
 #include "mpx_supt.h"
 #include <stdio.h>
+#include <stdarg.h>
 
 
 /*!
