@@ -3,8 +3,10 @@ var NAVTREE =
   [ "Paul Prince's MPX", "index.html", [
     [ "Introduction", "index.html", null ],
     [ "Related Pages", "pages.html", [
-      [ "Todo List", "todo.html", null ],
-      [ "Bug List", "bug.html", null ]
+      [ "Todo List", "todo.html", null ]
+    ] ],
+    [ "Modules", "modules.html", [
+      [ "Pager", "group__pager.html", null ]
     ] ],
     [ "Data Structures", "annotated.html", [
       [ "date_rec", "structdate__rec.html", null ],
@@ -15,16 +17,7 @@ var NAVTREE =
       [ "pcb_t", "structpcb__t.html", null ]
     ] ],
     [ "Data Structure Index", "classes.html", null ],
-    [ "Data Fields", "functions.html", null ],
-    [ "File List", "files.html", [
-      [ "mpx/mpx.c", "mpx_8c.html", null ],
-      [ "mpx/mpx_cmds.c", "mpx__cmds_8c.html", null ],
-      [ "mpx/mpx_sh.c", "mpx__sh_8c.html", null ],
-      [ "mpx/mpx_util.c", "mpx__util_8c.html", null ],
-      [ "mpx/pcb.c", "pcb_8c.html", null ],
-      [ "mpx/pcb.h", "pcb_8h.html", null ]
-    ] ],
-    [ "Globals", "globals.html", null ]
+    [ "Data Fields", "functions.html", null ]
   ] ]
 ];
 
