@@ -246,32 +246,29 @@ pcb_t* find_pcb(
 	/* Pointer to the requested PCB, if we find it. */
 	pcb_t *found_pcb;
 
+	/* Loop index. */
+	int i;
+
 	/* Validate arguments. */
 	if ( name == NULL || strlen(name) > MAX_ARG_LEN ) {
 		/* Invalid process name. */
 		return NULL;
 	}
 
-	/* Search for the PCB.  If we find it, return it. */
-	/*!
-	 * @todo This really should be done a little cleaner, possibly
-	 * 	using a foreach() macro, like the one at:
-	 * 	http://stackoverflow.com/questions/400951/c-foreach-or-similar
-	 */
-	if ( found_pcb = find_pcb_in_queue( name, &queue_ready ) ) {
-		return found_pcb;
-	}
-	if ( found_pcb = find_pcb_in_queue( name, &queue_blocked ) ) {
-		return found_pcb;
-	}
-	if ( found_pcb = find_pcb_in_queue( name, &queue_susp_ready ) ) {
-		return found_pcb;
-	}
-	if ( found_pcb = find_pcb_in_queue( name, &queue_susp_blocked ) ) {
-		return found_pcb;
+	/* Search each queue for the PCB; if we find it, return it: */
+	for ( i=0; i<4; i++ ){
+
+		/* Search this specific queue for the PCB: */
+		found_pcb = find_pcb_in_queue( name, queues[i] );
+
+		if ( found_pcb ){
+			/* We found it, so return it: */
+			return found_pcb;
+		}
 	}
 
-	/* If we get here, the process was not found. */
+	/* If we get to this point, the process was not found in any queue.
+	 * ("Sorry Mario, your PCB is in another castle!") */
 	return NULL;
 }
 
