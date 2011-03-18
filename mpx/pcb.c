@@ -297,6 +297,9 @@ pcb_queue_t* remove_pcb (
 	/* Loop index / iterator. */
 	pcb_queue_node_t* this_node;
 
+	/* The queue we will soon try to remove the given PCB from. */
+	pcb_queue_t* queue = NULL;
+
 	/* Validate argument. */
 	if ( pcb == NULL ){
 		/* ERROR: Got NULL pointer for argument. */
@@ -304,7 +307,7 @@ pcb_queue_t* remove_pcb (
 	}
 
 	/* Fetch the queue that we will be removing this process from. */
-	pcb_queue_t* queue = get_queue_by_state( pcb->state );
+	queue = get_queue_by_state( pcb->state );
 
 	/* Validate queue. */
 	if ( queue == NULL ){
