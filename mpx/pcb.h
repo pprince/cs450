@@ -223,6 +223,9 @@ int		resume_pcb		( pcb_t *pcb );
 int		is_blocked		( pcb_t *pcb );
 int		is_suspended		( pcb_t *pcb );
 int		is_ready		( pcb_t *pcb );
+char*		process_state_to_string	( process_state_t state );
+char*		process_class_to_string	( process_class_t class );
+char		process_class_to_char	( process_class_t class );
 
 
 #endif

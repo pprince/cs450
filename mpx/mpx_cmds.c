@@ -420,15 +420,8 @@ void mpxcmd_renice ( int argc, char *argv[] )
 
 
 void print_pcb_info( pcb_t *pcb ){
-	char *process_state = pcb->state == READY        ? "READY"        :
-	                      pcb->state == BLOCKED      ? "BLOCKED"      :
-	                      pcb->state == SUSP_READY   ? "SUSP_READY"   :
-	                      pcb->state == SUSP_BLOCKED ? "SUSP_BLOCKED" :
-	                                                   "??";
-
-	char *process_class = pcb->class == APPLICATION ? "APPLICATION" :
-	                      pcb->class == SYSTEM      ? "SYSTEM"      :
-	                                                  "?";
+	char *process_state = process_state_to_string(pcb->state);
+	char *process_class = process_class_to_string(pcb->class);
 
 	printf("+-PROCESS----- Name: %24s",  pcb->name);
 		printf(" --------------------\n");
@@ -442,16 +435,16 @@ void print_pcb_info( pcb_t *pcb ){
 
 
 void print_pcb_info_oneline( pcb_t *pcb ){
-	char *process_class = pcb->class == APPLICATION ? "A" :
-	                     pcb->class == SYSTEM      ? "S" :
-	                                                 "?";
+	char *process_state = process_state_to_string(pcb->state);
+	char process_class = process_class_to_char(pcb->class);
 
-	printf("%-24s    %1s    %4d  %8d  %8d\n",
+	printf("%-24s    %1s    %4d  %8d  %8d %s\n",
 		pcb->name,
 		process_class,
 		pcb->priority,
 		pcb->memory_size,
-		pcb->stack_top - pcb->stack_base
+		pcb->stack_top - pcb->stack_base,
+		process_state
 	);
 }
 
@@ -523,12 +516,12 @@ void mpxcmd_ps ( int argc, char *argv[] )
 
 	printf("\n");
 	printf("=== ");
-	printf("========================  =====  ====  ========  ========");
+	printf(" =======================  =====  ====  ========  ========");
 	printf(" =================\n");
-	printf("=== ");
+	printf("    ");
 	printf("Process Name              Class  Prio  Mem Size  Stk Size\n");
 	printf("=== ");
-	printf("========================  =====  ====  ========  ========");
+	printf(" =======================  =====  ====  ========  ========");
 	printf(" =================\n");
 
 	if ( print_ready ){
