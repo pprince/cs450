@@ -440,9 +440,11 @@ void mpxcmd_create_pcb ( int argc, char *argv[] )
 		return;
 	}
 	
-	if ( strlen(argv[2]) == 1 && argv[2][0] == 'A' ) {
+	if ( strlen(argv[2]) == 1 &&
+				(argv[2][0] == 'A' || argv[2][0] == 'a') ){
 		new_pcb_class = APPLICATION;
-	} else if ( strlen(argv[2]) == 1 && argv[2][0] == 'S' ) {
+	} else if ( strlen(argv[2]) == 1 &&
+				(argv[2][0] == 'S' || argv[2][0] == 's') ){
 		new_pcb_class = SYSTEM;
 	} else {
 		printf("ERROR: Invalid process class specified.\n");
