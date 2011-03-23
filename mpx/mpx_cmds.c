@@ -362,10 +362,10 @@ void mpxcmd_renice ( int argc, char *argv[] )
  */
 void mpxcmd_ps ( int argc, char *argv[] )
 {
-//	int i;
+	int i;
 	pcb_queue_node_t *iter_node;
 
-	for ( int i=0; i<4; i++ ){
+	for ( i=0; i<4; i++ ){
 		iter_node = queues[i]->head;
 		while ( iter_node != NULL ) {
 			printf("%16s %4d\n",
@@ -377,7 +377,7 @@ void mpxcmd_ps ( int argc, char *argv[] )
 	}
 
 	printf("\nReversed:\n");
-	for ( int i=3; i>=0; i-- ){
+	for ( i=3; i>=0; i-- ){
 
 		foreach_listitem_rev( iter_node, queues[i], 1 ){
 			printf("%16s %4d\n",
