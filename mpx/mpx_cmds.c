@@ -479,12 +479,12 @@ void mpxcmd_delete_pcb ( int argc, char *argv[] )
 		return;
 	}
 
-	if ( strlen( argc[1]) > MAX_ARG_LEN || strlen(argc[1]) < 1 ){
+	if ( strlen(argv[1]) > MAX_ARG_LEN || strlen(argv[1]) < 1 ){
 		printf("ERROR: Invalid process name.\n");
 		return;
 	}
 	
-	pcb = find_pcb( argc[1] );
+	pcb = find_pcb( argv[1] );
 	if ( pcb == NULL ){
 		printf("ERROR: Specified process does not exist.\n");
 		return;
@@ -498,7 +498,7 @@ void mpxcmd_delete_pcb ( int argc, char *argv[] )
 
 	free_pcb( pcb );
 
-	printf("Success: PCB for process '%s' removed.\n", argc[1]);
+	printf("Success: PCB for process '%s' removed.\n", argv[1]);
 }
 
 
