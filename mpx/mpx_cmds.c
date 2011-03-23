@@ -521,10 +521,15 @@ void mpxcmd_ps ( int argc, char *argv[] )
 		print_blocked = 1;
 	}
 
-	printf("    ");
+	printf("\n");
+	printf("=== ");
+	printf("========================  =====  ====  ========  ========");
+	printf(" =================\n");
+	printf("=== ");
 	printf("Process Name              Class  Prio  Mem Size  Stk Size\n");
-	printf("    ");
-	printf("========================  =====  ====  ========  ========\n");
+	printf("=== ");
+	printf("========================  =====  ====  ========  ========");
+	printf(" =================\n");
 
 	if ( print_ready ){
 		printf("\n");
