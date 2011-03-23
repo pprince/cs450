@@ -462,14 +462,14 @@ int block_pcb( pcb_t *pcb )
 {
 	switch( pcb->state ){
 		case READY:
-			remove_pcb(pcb) || return 0;
+			if ( ! remove_pcb(pcb) ) return 0;
 			pcb->state = BLOCKED;
-			insert_pcb(pcb) || return 0;
+			if ( ! insert_pcb(pcb) ) return 0;
 		break;
 		case SUSP_READY:
-			remove_pcb(pcb) || return 0;
+			if ( ! remove_pcb(pcb) ) return 0;
 			pcb->state = SUSP_BLOCKED;
-			insert_pcb(pcb) || return 0;
+			if ( ! insert_pcb(pcb) ) return 0;
 		break;
 		default:
 			return 0;
@@ -484,14 +484,14 @@ int unblock_pcb( pcb_t *pcb )
 {
 	switch( pcb->state ){
 		case BLOCKED:
-			remove_pcb(pcb) || return 0;
+			if ( ! remove_pcb(pcb) ) return 0;
 			pcb->state = READY;
-			insert_pcb(pcb) || return 0;
+			if ( ! insert_pcb(pcb) ) return 0;
 		break;
 		case SUSP_BLOCKED:
-			remove_pcb(pcb) || return 0;
+			if ( ! remove_pcb(pcb) ) return 0;
 			pcb->state = SUSP_READY;
-			insert_pcb(pcb) || return 0;
+			if ( ! insert_pcb(pcb) ) return 0;
 		break;
 		default:
 			return 0;
