@@ -9,6 +9,7 @@
 #include "pcb.h"
 #include "mpx_supt.h"
 #include "mpx_util.h"
+#include "mem.h"
 
 
 static	pcb_queue_t	queue_ready;
@@ -198,9 +199,7 @@ pcb_t* setup_pcb (
 	new_pcb->exec_address	= NULL;
 
 	/* Initialize the stack to 0's. */
-	for (i=0; i<STACK_SIZE; i++) {
-		*(new_pcb->stack_base + i) = (unsigned char)0;
-	}
+	memset( new_pcb->stack_base, 0, STACK_SIZE );
 
 	return new_pcb;
 }
