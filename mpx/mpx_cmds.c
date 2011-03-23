@@ -509,6 +509,8 @@ void mpxcmd_delete_pcb ( int argc, char *argv[] )
  * \attention This TEMPORARY command will be replaced later. */
 void mpxcmd_block ( int argc, char *argv[] )
 {
+	pcb_t		*pcb;
+
 	if ( argc != 2 ){
 		printf("ERROR: Wrong number of arguments to block.\n");
 		return;
@@ -546,6 +548,8 @@ void mpxcmd_block ( int argc, char *argv[] )
  * \attention This TEMPORARY command will be replaced later. */
 void mpxcmd_unblock ( int argc, char *argv[] )
 {
+	pcb_t		*pcb;
+
 	if ( argc != 2 ){
 		printf("ERROR: Wrong number of arguments to unblock.\n");
 		return;
