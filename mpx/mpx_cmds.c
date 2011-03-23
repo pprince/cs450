@@ -379,7 +379,7 @@ void mpxcmd_ps ( int argc, char *argv[] )
 	printf("\nReversed:\n");
 	for ( i=3; i>=0; i-- ){
 
-		foreach_listenitem_rev( iter_node, queues[i], 1 ){
+		foreach_listitem_rev( iter_node, queues[i], 1 ){
 			printf("%16s %4d\n",
 				iter_node->pcb->name,
 				iter_node->pcb->priority
