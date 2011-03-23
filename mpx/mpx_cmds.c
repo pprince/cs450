@@ -471,6 +471,34 @@ void mpxcmd_create_pcb ( int argc, char *argv[] )
  * \attention This TEMPORARY command will be replaced later. */
 void mpxcmd_delete_pcb ( int argc, char *argv[] )
 {
+	pcb_t		*pcb;
+	pcb_queue_t	*retval;
+
+	if ( argc != 2 ){
+		printf("ERROR: Wrong number of arguments to create_pcb.\n");
+		return;
+	}
+
+	if ( strlen( argc[1]) > MAX_ARG_LEN || strlen(argc[1]) < 1 ){
+		printf("ERROR: Invalid process name.\n");
+		return;
+	}
+	
+	pcb = find_pcb( argc[1] );
+	if ( pcb == NULL ){
+		printf("ERROR: Specified process does not exist.\n");
+		return;
+	}
+
+	retval = remove_pcb( pcb );
+	if ( retval == NULL ){
+		printf("ERROR: Unspecified error removing PCB.\n");
+		return;
+	}
+
+	free_pcb( pcb );
+
+	printf("Success: PCB for process '%s' removed.\n", argc[1]);
 }
 
 
