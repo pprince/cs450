@@ -422,14 +422,15 @@ void mpxcmd_renice ( int argc, char *argv[] )
 void print_pcb_info( pcb_t *pcb ){
 	char *process_state = process_state_to_string(pcb->state);
 	char *process_class = process_class_to_string(pcb->class);
-
-	printf("+-PROCESS----- Name: %24s",  pcb->name);
+	
+	printf("\n");
+	printf("+-PROCESS----- Name: %-24s",  pcb->name);
 		printf(" --------------------\n");
-	printf("|             Class: %s\n",  process_class);
-	printf("|          Priority: %4d\n", pcb->priority);
-	printf("|             State: %s\n",  process_state);
-	printf("|       Memory Size: %8d\n", pcb->memory_size);
-	printf("|        Stack Size: %8d\n", pcb->stack_top - pcb->stack_base);
+	printf("|             Class: %s\n",   process_class);
+	printf("|          Priority: %-4d\n", pcb->priority);
+	printf("|             State: %s\n",   process_state);
+	printf("|       Memory Size: %-8d\n", pcb->memory_size);
+	printf("|        Stack Size: %-8d\n", pcb->stack_top - pcb->stack_base);
 	printf("+----------------------------------------------------------\n");
 }
 
@@ -508,7 +509,7 @@ void mpxcmd_ps ( int argc, char *argv[] )
 		}
 	}
 
-	if ( argc == 1 ) {
+	if ( argc == 1 || (argc == 2 && print_in_reverse) ) {
 		print_ready = 1;
 		print_suspended = 1;
 		print_blocked = 1;
