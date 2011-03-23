@@ -19,7 +19,6 @@
 /*! Type for variables that hold the state of a process. */
 typedef enum {
 
-	RUNNING,
 	READY,
 	BLOCKED,
 	SUSP_READY,
@@ -217,6 +216,11 @@ pcb_t*		setup_pcb   ( char *name, int priority, process_class_t class );
 pcb_t*		find_pcb		( char *name );
 pcb_queue_t*	remove_pcb		( pcb_t *pcb );
 pcb_queue_t*	insert_pcb		( pcb_t *pcb );
+int		block_pcb		( pcb_t *pcb );
+int		unblock_pcb		( pcb_t *pcb );
+int		is_blocked		( pcb_t *pcb );
+int		is_suspended		( pcb_t *pcb );
+int		is_ready		( pcb_t *pcb );
 
 
 #endif

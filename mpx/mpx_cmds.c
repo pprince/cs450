@@ -509,6 +509,35 @@ void mpxcmd_delete_pcb ( int argc, char *argv[] )
  * \attention This TEMPORARY command will be replaced later. */
 void mpxcmd_block ( int argc, char *argv[] )
 {
+	if ( argc != 2 ){
+		printf("ERROR: Wrong number of arguments to block.\n");
+		return;
+	}
+
+	if ( strlen(argv[1]) > MAX_ARG_LEN || strlen(argv[1]) < 1 ){
+		printf("ERROR: Invalid process name.\n");
+		return;
+	}
+
+	pcb = find_pcb( argv[1] );
+	if ( pcb == NULL ){
+		printf("ERROR: Specified process does not exist.\n");
+		return;
+	}
+
+	if ( is_blocked(pcb) ){
+		printf("ERROR: Specified process is already blocked.\n");
+		return;
+	}
+
+	/* Block PCB, checking for error return. */
+	if ( ! block_pcb(pcb) ){
+		printf("ERROR: Unspecified error blocking process.");
+		return;
+	}
+
+	/* Let the user know that the operation was successful. */
+	printf("Success: Process '%s' is now blocked.\n", argv[1]);
 }
 
 
@@ -517,6 +546,36 @@ void mpxcmd_block ( int argc, char *argv[] )
  * \attention This TEMPORARY command will be replaced later. */
 void mpxcmd_unblock ( int argc, char *argv[] )
 {
+	if ( argc != 2 ){
+		printf("ERROR: Wrong number of arguments to unblock.\n");
+		return;
+	}
+
+	if ( strlen(argv[1]) > MAX_ARG_LEN || strlen(argv[1]) < 1 ){
+		printf("ERROR: Invalid process name.\n");
+		return;
+	}
+
+	pcb = find_pcb( argv[1] );
+	if ( pcb == NULL ){
+		printf("ERROR: Specified process does not exist.\n");
+		return;
+	}
+
+	if ( ! is_blocked(pcb) ){
+		printf("ERROR: Specified process is not blocked.\n");
+		return;
+	}
+
+	/* Unblock PCB, checking for error return. */
+	if ( ! unblock_pcb(pcb) ){
+		printf("ERROR: Unspecified error unblocking process.");
+		return;
+	}
+
+	/* Let the user know that the operation was successful. */
+	printf("Success: Process '%s' is now unblocked.\n", argv[1]);
+
 }
 
 

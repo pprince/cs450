@@ -57,14 +57,11 @@ void init_pcb_queues(void)
 
 /*! References the PCB queue appropriate for processes of a given state.
  *
- * Note that RUNNING is <em>not</em> a valid value for passing as the \c state
- * parameter, since running processes do not belong in <em>any</em> queue.
- *
  * @return	Returns either a pointer to a valid PCB queue that should hold
  * 		processes of the given state, or NULL on error.
  */
 pcb_queue_t* get_queue_by_state (
-	/* [in] One of the valid process states (except RUNNING). */
+	/* [in] One of the valid process states. */
 	process_state_t state
 )
 {
@@ -80,10 +77,6 @@ pcb_queue_t* get_queue_by_state (
 		break;
 		case SUSP_BLOCKED:
 			return &queue_susp_blocked;
-		break;
-		case RUNNING:
-			/* ERROR: running processes don't go in *any* queue. */
-			return NULL;
 		break;
 		/* no default (to avoid stupid Turbo C warning.) */
 	}
@@ -464,3 +457,77 @@ pcb_queue_t* insert_pcb (
 		return queue;
 }
 
+
+int block_pcb( pcb_t *pcb )
+{
+	switch( pcb->state ){
+		case READY:
+			remove_pcb(pcb) || return 0;
+			pcb->state = BLOCKED;
+			insert_pcb(pcb) || return 0;
+		break;
+		case SUSP_READY:
+			remove_pcb(pcb) || return 0;
+			pcb->state = SUSP_BLOCKED;
+			insert_pcb(pcb) || return 0;
+		break;
+		default:
+			return 0;
+		break;
+	}
+
+	return 1;
+}
+
+
+int unblock_pcb( pcb_t *pcb )
+{
+	switch( pcb->state ){
+		case BLOCKED:
+			remove_pcb(pcb) || return 0;
+			pcb->state = READY;
+			insert_pcb(pcb) || return 0;
+		break;
+		case SUSP_BLOCKED:
+			remove_pcb(pcb) || return 0;
+			pcb->state = SUSP_READY;
+			insert_pcb(pcb) || return 0;
+		break;
+		default:
+			return 0;
+		break;
+	}
+
+	return 1;
+
+}
+
+
+int is_blocked( pcb_t *pcb )
+{
+	if ( pcb->state == BLOCKED || pcb->state == SUSP_BLOCKED ){
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+
+int is_suspended( pcb_t *pcb )
+{
+	if ( pcb->state == SUSP_READY || pcb->state == SUSP_BLOCKED ){
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+
+int is_ready( pcb_t *pcb )
+{
+	if ( pcb->state == READY ){
+		return 1;
+	} else {
+		return 0;
+	}
+}
