@@ -505,7 +505,7 @@ void mpxcmd_ps ( int argc, char *argv[] )
 			print_suspended = 1;
 			print_blocked = 1;
 		} else
-		if (strcmp( "-r", argv[i]) == 0 ){
+		if (strcmp( "-R", argv[i]) == 0 ){
 			print_in_reverse = 1;
 		}
 		else {
@@ -515,54 +515,69 @@ void mpxcmd_ps ( int argc, char *argv[] )
 		}
 	}
 
+	if ( argc == 1 ) {
+		print_ready = 1;
+		print_suspended = 1;
+		print_blocked = 1;
+	}
 
+	printf("    ");
 	printf("Process Name              Class  Prio  Mem Size  Stk Size\n");
-	printf("------------------------  -----  ----  --------  --------\n");
+	printf("    ");
+	printf("========================  =====  ====  ========  ========\n");
 
 	if ( print_ready ){
+		printf("\n");
 		printf("  Processes in state READY:\n");
+		printf("  -------------------------\n");
 		foreach_listitem_rev(
 			iter_node,
 			get_queue_by_state(READY),
 			print_in_reverse
 		){
-			printf("   ");
+			printf("    ");
 			print_pcb_info_oneline( iter_node->pcb );
 		}
 	}
 
 	if ( print_blocked ){
+		printf("\n");
 		printf("  Processes in state BLOCKED:\n");
+		printf("  ---------------------------\n");
 		foreach_listitem_rev(
 			iter_node,
 			get_queue_by_state(BLOCKED),
 			print_in_reverse
 		){
-			printf("   ");
+			printf("    ");
 			print_pcb_info_oneline( iter_node->pcb );
 		}
 	}
 		
 	if ( print_ready || print_suspended ){
+		printf("\n");
 		printf("  Processes in state SUSP_READY:\n");
+		printf("  ------------------------------\n");
 		foreach_listitem_rev(
 			iter_node,
 			get_queue_by_state(SUSP_READY),
 			print_in_reverse
 		){
-			printf("   ");
+			printf("    ");
 			print_pcb_info_oneline( iter_node->pcb );
 		}
 	}
 
 	if ( print_blocked || print_suspended ){
+		printf("\n");
 		printf("  Processes in state SUSP_BLOCKED:\n");
+		printf("  --------------------------------\n");
 		foreach_listitem_rev(
 			iter_node,
 			get_queue_by_state(SUSP_BLOCKED),
 			print_in_reverse
 		){
-			printf("   ");
+			printf("    ");
 			print_pcb_info_oneline( iter_node->pcb );
 		}
 	}
