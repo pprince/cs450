@@ -446,7 +446,7 @@ void print_pcb_info_oneline( pcb_t *pcb ){
 	                     pcb->class == SYSTEM      ? "S" :
 	                                                 "?";
 
-	printf("%24s   %1s   %4d %8d %8d\n",
+	printf("%-24s    %1s    %4d  %8d  %8d\n",
 		pcb->name,
 		process_class,
 		pcb->priority,
@@ -515,8 +515,12 @@ void mpxcmd_ps ( int argc, char *argv[] )
 		}
 	}
 
+
+	printf("Process Name              Class  Prio  Mem Size  Stk Size\n");
+	printf("------------------------  -----  ----  --------  --------\n");
+
 	if ( print_ready ){
-		printf("Processes in state READY:\n");
+		printf("  Processes in state READY:\n");
 		foreach_listitem_rev(
 			iter_node,
 			get_queue_by_state(READY),
@@ -528,7 +532,7 @@ void mpxcmd_ps ( int argc, char *argv[] )
 	}
 
 	if ( print_blocked ){
-		printf("Processes in state BLOCKED:\n");
+		printf("  Processes in state BLOCKED:\n");
 		foreach_listitem_rev(
 			iter_node,
 			get_queue_by_state(BLOCKED),
@@ -540,7 +544,7 @@ void mpxcmd_ps ( int argc, char *argv[] )
 	}
 		
 	if ( print_ready || print_suspended ){
-		printf("Processes in state SUSP_READY:\n");
+		printf("  Processes in state SUSP_READY:\n");
 		foreach_listitem_rev(
 			iter_node,
 			get_queue_by_state(SUSP_READY),
@@ -552,7 +556,7 @@ void mpxcmd_ps ( int argc, char *argv[] )
 	}
 
 	if ( print_blocked || print_suspended ){
-		printf("Processes in state SUSP_BLOCKED:\n");
+		printf("  Processes in state SUSP_BLOCKED:\n");
 		foreach_listitem_rev(
 			iter_node,
 			get_queue_by_state(SUSP_BLOCKED),
