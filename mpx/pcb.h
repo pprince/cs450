@@ -190,6 +190,13 @@ typedef struct pcb_queue {
 #define foreach_listitem( item, list ) \
 	for ( item = list->head; item != NULL; item = item->next )
 
+#define foreach_listitem_rev( item, list, rev ) \
+	for ( \
+		(item) = (rev) ? (list)->tail : (list)->head; \
+		(item) != NULL; \
+		(item) = (rev) ? (item)->prev : (item)->next \
+	)
+
 
 
 /* EXTERNS *
