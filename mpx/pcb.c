@@ -572,10 +572,10 @@ int is_ready( pcb_t *pcb )
 
 char* process_state_to_string( process_state_t state )
 {
-        char *process_state = pcb->state == READY        ? "READY"        :
-                              pcb->state == BLOCKED      ? "BLOCKED"      :
-                              pcb->state == SUSP_READY   ? "SUSP_READY"   :
-                              pcb->state == SUSP_BLOCKED ? "SUSP_BLOCKED" :
+        char *process_state = state == READY        ? "READY"        :
+                              state == BLOCKED      ? "BLOCKED"      :
+                              state == SUSP_READY   ? "SUSP_READY"   :
+                              state == SUSP_BLOCKED ? "SUSP_BLOCKED" :
                                                            "?";
 	return process_state;
 }
@@ -583,8 +583,8 @@ char* process_state_to_string( process_state_t state )
 
 char* process_class_to_string( process_class_t class )
 {
-        char *process_class = pcb->class == APPLICATION ? "APPLICATION" :
-                              pcb->class == SYSTEM      ? "SYSTEM"      :
+        char *process_class = class == APPLICATION ? "APPLICATION" :
+                              class == SYSTEM      ? "SYSTEM"      :
                                                           "?";
 	return process_class;
 }
@@ -592,8 +592,8 @@ char* process_class_to_string( process_class_t class )
 
 char process_class_to_char( process_class_t class )
 {
-        char process_class = pcb->class == APPLICATION ? 'A' :
-                             pcb->class == SYSTEM      ? 'S' :
+        char process_class = class == APPLICATION ? 'A' :
+                             class == SYSTEM      ? 'S' :
                                                          '?';
 	return process_class;
 }
