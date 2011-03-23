@@ -12,7 +12,7 @@
 #define MAX_CMDLINE_LEN		255
 
 /*! Defines the maximum length for a single argument to an MPX command (and for the command names, also). */
-#define MAX_ARG_LEN		64
+#define MAX_ARG_LEN		24
 
 /*! Defines the maximum number of arguments to an MPX command. */
 #define MAX_ARGS		16

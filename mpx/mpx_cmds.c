@@ -419,58 +419,149 @@ void mpxcmd_renice ( int argc, char *argv[] )
 }
 
 
+void print_pcb_info( pcb_t *pcb ){
+	char *process_state = pcb->state == READY        ? "READY"        :
+	                      pcb->state == BLOCKED      ? "BLOCKED"      :
+	                      pcb->state == SUSP_READY   ? "SUSP_READY"   :
+	                      pcb->state == SUSP_BLOCKED ? "SUSP_BLOCKED" :
+	                                                   "??";
+
+	char *process_class = pcb->class == APPLICATION ? "APPLICATION" :
+	                      pcb->class == SYSTEM      ? "SYSTEM"      :
+	                                                  "?";
+
+	printf("+-PROCESS----- Name: %24s",  pcb->name);
+		printf(" --------------------\n");
+	printf("|             Class: %s\n",  process_class);
+	printf("|          Priority: %4d\n", pcb->priority);
+	printf("|             State: %s\n",  process_state);
+	printf("|       Memory Size: %8d\n", pcb->memory_size);
+	printf("|        Stack Size: %8d\n", pcb->stack_top - pcb->stack_base);
+	printf("+----------------------------------------------------------\n");
+}
+
+
+void print_pcb_info_oneline( pcb_t *pcb ){
+	char *process_class = pcb->class == APPLICATION ? "A" :
+	                     pcb->class == SYSTEM      ? "S" :
+	                                                 "?";
+
+	printf("%24s   %1s   %4d %8d %8d\n",
+		pcb->name,
+		process_class,
+		pcb->priority,
+		pcb->memory_size,
+		pcb->stack_top - pcb->stack_base
+	);
+}
+
+
 /*! Implements the <tt>ps</tt> shell command.
  *
  */
 void mpxcmd_ps ( int argc, char *argv[] )
 {
 	int i;
+	pcb_t *specified_pcb;
 	pcb_queue_node_t *iter_node;
 
-	for ( i=0; i<4; i++ ){
-		iter_node = queues[i]->head;
-		while ( iter_node != NULL ) {
-			printf("%16s %4d\n",
-				iter_node->pcb->name,
-				iter_node->pcb->priority
-			);
-			iter_node = iter_node->next;
+	int print_ready		= 0;
+	int print_suspended	= 0;
+	int print_blocked	= 0;
+	int print_in_reverse	= 0;
+
+	if ( argc == 3 && strcmp("--", argv[2]) == 0 ){
+		specified_pcb = find_pcb( argv[1] );
+		if (specified_pcb == NULL ){
+			printf("ERROR: Specified process does not exist.\n");
+			return;
+		}
+		print_pcb_info( specified_pcb );
+		return;
+	}
+
+	if ( argc == 2 && argv[1][0] != '-' ){
+		specified_pcb = find_pcb( argv[1] );
+		if (specified_pcb == NULL ){
+			printf("ERROR: Specified process does not exist.\n");
+			return;
+		}
+		print_pcb_info( specified_pcb );
+		return;
+	}
+
+	for ( i = 1; i < argc; i++ ) {
+		if ( strcmp("-r", argv[i]) == 0 ){
+			print_ready = 1;
+		} else
+		if (strcmp( "-s", argv[i]) == 0 ){
+			print_suspended = 1;
+		} else
+		if (strcmp( "-b", argv[i]) == 0 ){
+			print_blocked = 1;
+		} else
+		if (strcmp( "-a", argv[i]) == 0 ){
+			print_ready = 1;
+			print_suspended = 1;
+			print_blocked = 1;
+		} else
+		if (strcmp( "-r", argv[i]) == 0 ){
+			print_in_reverse = 1;
+		}
+		else {
+			printf("ERROR: Invalid argument '%s'.", argv[i]);
+			printf("Remember, flags are case-sensitive.\n");
+			return;
 		}
 	}
 
-	printf("\nReversed:\n");
-	for ( i=3; i>=0; i-- ){
-
-		foreach_listitem_rev( iter_node, queues[i], 1 ){
-			printf("%16s %4d\n",
-				iter_node->pcb->name,
-				iter_node->pcb->priority
-			);
-
+	if ( print_ready ){
+		printf("Processes in state READY:\n");
+		foreach_listitem_rev(
+			iter_node,
+			get_queue_by_state(READY),
+			print_in_reverse
+		){
+			printf("   ");
+			print_pcb_info_oneline( iter_node->pcb );
 		}
-		/* 
-		iter_node = queues[i]->tail;
-		while ( iter_node != NULL ) {
-			printf("%16s %4d\n",
-				iter_node->pcb->name,
-				iter_node->pcb->priority
-			);
-			iter_node = iter_node->prev;
-		}
-		*/
 	}
 
-
-	printf("\n\n**> TEST OF foreach_listitem():\n");
-
-	foreach_listitem( iter_node, queues[0] ){
-		printf("%16s %4d\n",
-			iter_node->pcb->name,
-			iter_node->pcb->priority
-		);
+	if ( print_blocked ){
+		printf("Processes in state BLOCKED:\n");
+		foreach_listitem_rev(
+			iter_node,
+			get_queue_by_state(BLOCKED),
+			print_in_reverse
+		){
+			printf("   ");
+			print_pcb_info_oneline( iter_node->pcb );
+		}
 	}
 		
+	if ( print_ready || print_suspended ){
+		printf("Processes in state SUSP_READY:\n");
+		foreach_listitem_rev(
+			iter_node,
+			get_queue_by_state(SUSP_READY),
+			print_in_reverse
+		){
+			printf("   ");
+			print_pcb_info_oneline( iter_node->pcb );
+		}
+	}
 
+	if ( print_blocked || print_suspended ){
+		printf("Processes in state SUSP_BLOCKED:\n");
+		foreach_listitem_rev(
+			iter_node,
+			get_queue_by_state(SUSP_BLOCKED),
+			print_in_reverse
+		){
+			printf("   ");
+			print_pcb_info_oneline( iter_node->pcb );
+		}
+	}
 }
 
 

@@ -9,7 +9,7 @@
 #include "pcb.h"
 #include "mpx_supt.h"
 #include "mpx_util.h"
-#include "mem.h"
+#include <string.h>
 
 
 static	pcb_queue_t	queue_ready;
