@@ -338,6 +338,37 @@ void mpxcmd_ls( int argc, char *argv[] )
  */
 void mpxcmd_suspend ( int argc, char *argv[] )
 {
+	pcb_t		*pcb;
+
+	if ( argc != 2 ){
+		printf("ERROR: Wrong number of arguments to suspend.\n");
+		return;
+	}
+
+	if ( strlen(argv[1]) > MAX_ARG_LEN || strlen(argv[1]) < 1 ){
+		printf("ERROR: Invalid process name.\n");
+		return;
+	}
+
+	pcb = find_pcb( argv[1] );
+	if ( pcb == NULL ){
+		printf("ERROR: Specified process does not exist.\n");
+		return;
+	}
+
+	if ( is_suspended(pcb) ){
+		printf("ERROR: Specified process is already suspended.\n");
+		return;
+	}
+
+	/* Suspend PCB, checking for error return. */
+	if ( ! suspend_pcb(pcb) ){
+		printf("ERROR: Unspecified error suspending process.");
+		return;
+	}
+
+	/* Let the user know that the operation was successful. */
+	printf("Success: Process '%s' is now suspended.\n", argv[1]);
 }
 
 
@@ -346,6 +377,37 @@ void mpxcmd_suspend ( int argc, char *argv[] )
  */
 void mpxcmd_resume ( int argc, char *argv[] )
 {
+	pcb_t		*pcb;
+
+	if ( argc != 2 ){
+		printf("ERROR: Wrong number of arguments to resume.\n");
+		return;
+	}
+
+	if ( strlen(argv[1]) > MAX_ARG_LEN || strlen(argv[1]) < 1 ){
+		printf("ERROR: Invalid process name.\n");
+		return;
+	}
+
+	pcb = find_pcb( argv[1] );
+	if ( pcb == NULL ){
+		printf("ERROR: Specified process does not exist.\n");
+		return;
+	}
+
+	if ( ! is_suspended(pcb) ){
+		printf("ERROR: Specified process is not suspended.\n");
+		return;
+	}
+
+	/* Un-suspend PCB, checking for error return. */
+	if ( ! resume_pcb(pcb) ){
+		printf("ERROR: Unspecified error resuming process.");
+		return;
+	}
+
+	/* Let the user know that the operation was successful. */
+	printf("Success: Process '%s' is no longer suspended.\n", argv[1]);
 }
 
 
