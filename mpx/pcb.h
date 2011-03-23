@@ -218,6 +218,8 @@ pcb_queue_t*	remove_pcb		( pcb_t *pcb );
 pcb_queue_t*	insert_pcb		( pcb_t *pcb );
 int		block_pcb		( pcb_t *pcb );
 int		unblock_pcb		( pcb_t *pcb );
+int		suspend_pcb		( pcb_t *pcb );
+int		resume_pcb		( pcb_t *pcb );
 int		is_blocked		( pcb_t *pcb );
 int		is_suspended		( pcb_t *pcb );
 int		is_ready		( pcb_t *pcb );
