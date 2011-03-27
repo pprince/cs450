@@ -52,7 +52,8 @@ void mpx_setprompt( char *new_prompt ){
  *
  * mpx_shell() never returns!
  *
- * \bug A command should be able to depend on argv[argc] == NULL, but we do not currently implement this feature.
+ * \bug A command should be able to depend on argv[argc] == NULL, but we do
+ * not currently implement this feature.
  *
  */
 void mpx_shell(void) {
@@ -67,17 +68,19 @@ void mpx_shell(void) {
 	/* Used to capture the return value of sys_req(). */
 	int err;
 
-	/* argc to be passed to MPX command; works just like the one passed to main(). */
+	/* argc to pass to MPX command; works like the one passed to main. */
 	int argc;
-	/* argv array to be passed to MPX command; works almost just like the one passed to main().
+	/* argv to pass to MPX command; works almost like the one passed to main
 	 *
-	 * But there is one caveat: argv[argc] is undefined in my implementation, not garanteed to be NULL. */
+	 * But there is one caveat: argv[argc] is undefined in my
+	 * implementation, not garanteed to be NULL. */
 	char **argv;
 
 	/* Temporary pointer for use in string tokenization. */
 	char *token;
 
-	/* Delimiters that separate arguments in the MPX shell command-line environment. */
+	/* Delimiters that separate arguments in the MPX shell command-line
+	 * environment. */
 	char *delims = "\t \n";
 
 	/* An index for use in for(;;) loops. */
@@ -85,12 +88,20 @@ void mpx_shell(void) {
 	/* An index for use in nested for(;;) loops. */
 	int j;
 
+	/* A flag to track if a single argument was too long...
+	 * This is kind of a quick-and-dirty workaround for C not having
+	 * the 'continue LABEL' feature. */
+	int arg_too_long;
+
 	/* We must initialize the prompt string. */
 	mpx_setprompt(MPX_DEFAULT_PROMPT);
 
 	/* Loop Forever; this is the REPL. */
 	/* This loop terminates only via the MPX 'exit' command. */
 	for(;;) {
+
+		arg_too_long = 0;
+
 		/* Output the current MPX prompt string. */
 		printf("%s", mpx_prompt_string);
 
@@ -100,18 +111,26 @@ void mpx_shell(void) {
 		/* Remove trailing newline. */
 		mpx_chomp(cmdline);
 
-		/* Allocate space for the argv argument that is to be sent to an MPX command. */
-		argv = (char **)sys_alloc_mem( sizeof(char**) * (MAX_ARGS+1) );	/* +1 for argv[0] */
-		for( i=0; i < MAX_ARGS+1; i++ ){				/* +1 for argv[0] */
-			argv[i] = sys_alloc_mem(MAX_ARG_LEN+1);			/* +1 for \0 */
+		/* Allocate space for argv */
+		/* *********************** */
+
+		/* +1 for argv[0] */
+		argv = (char **)sys_alloc_mem( sizeof(char**) * (MAX_ARGS+1) );
+		/* +1 for argv[0] */
+		for( i=0; i < MAX_ARGS+1; i++ ){				
+			/* +1 for \0 */
+			argv[i] = sys_alloc_mem(MAX_ARG_LEN+1);
 		}
 
 
-		/* Tokenize the command line entered by the user, and set argc. */
-		/* 0 is a special value here for argc; a value > 0 after the for loop indicates
-		 * that tokenizing was successful and that argc and argv contain valid data.
+		/* Tokenize the command line entered by the user + set argc. */
+		/* ********************************************************* */
+
+		/* 0 is a special value here for argc; a value > 0 after the
+		 * for loop indicates that tokenizing was successful and that
+		 * argc and argv contain valid data.
 		 * 
-		 *****  NOTE:  argc includes argv[0], but MAX_ARGS does not!  *****/
+		 *****  NOTE:  argc includes argv[0], but MAX_ARGS does not! */
 
 		argc = 0; token = NULL;
 
@@ -130,13 +149,21 @@ void mpx_shell(void) {
 
 			if (strlen(token) > MAX_ARG_LEN) {
 				/* This argument is too long. */
-				printf("ERROR: Argument too long. MAX_ARG_LEN is %d.\n", MAX_ARG_LEN);
+				arg_too_long = 1;
 				argc = 0;
 				break;
 			}
 
 			argc++;
 			strcpy( argv[i], token );
+		}
+
+		if ( arg_too_long ){
+			printf("ERROR: Argument too long. MAX_ARG_LEN is %d.\n",
+				MAX_ARG_LEN
+			);
+			continue;
+			/*! @bug Allocated memory not freed in error cases. */
 		}
 
 		if ( strtok( NULL, delims ) != NULL ){
