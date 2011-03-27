@@ -445,7 +445,7 @@ void print_pcb_info_oneline( pcb_t *pcb ){
 		pcb->priority,
 		pcb->memory_size,
 		(pcb->stack_top - pcb->stack_base),
-		process_class
+		pcb->name
 	);
 }
 
