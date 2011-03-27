@@ -439,14 +439,14 @@ void print_pcb_info_oneline( pcb_t *pcb ){
 	char *process_state = process_state_to_string(pcb->state);
 	char process_class = process_class_to_char(pcb->class);
 
-	printf("%-24s    %c    %4d  %8d  %8d  %s\n",
+	printf("%-24s    %c    %4d  %8d  %8d  ",
 		pcb->name,
 		process_class,
 		pcb->priority,
 		pcb->memory_size,
 		(pcb->stack_top - pcb->stack_base),
-		pcb->name
 	);
+	printf("%s\n", process_state);
 }
 
 
