@@ -439,7 +439,7 @@ void print_pcb_info_oneline( pcb_t *pcb ){
 	char *process_state = process_state_to_string(pcb->state);
 	char process_class = process_class_to_char(pcb->class);
 
-	printf("%-24s    %c    %4d  %8d  %8d %s\n",
+	printf("%-24s    %c    %4d  %8d  %8d  %s\n",
 		pcb->name,
 		process_class,
 		pcb->priority,
@@ -520,10 +520,11 @@ void mpxcmd_ps ( int argc, char *argv[] )
 	printf(" =======================  =====  ====  ========  ========");
 	printf(" =================\n");
 	printf("    ");
-	printf(" Process Name             Class  Prio  Mem Size  Stk Size\n");
+	printf(" Process Name             Class  Prio  Mem Size  Stk Size");
+	printf("  State\n");
 	printf(" ===");
 	printf(" =======================  =====  ====  ========  ========");
-	printf(" =================\n");
+	printf("  ================\n");
 
 	if ( print_ready ){
 		printf("\n");
